@@ -1,0 +1,33 @@
+{
+    "email": "pandian248@gmail.com",
+    "exchanges": [
+        "BCD",
+        "NFO",
+        "BSE",
+        "NSE",
+        "CDS",
+        "BFO",
+        "MCX"
+    ],
+    "products": [
+        "OCO",
+        "D",
+        "CO",
+        "I"
+    ],
+    "broker": "UPSTOX",
+    "user_id": "4KCMGV",
+    "user_name": "Subramania Pandian",
+    "order_types": [
+        "MARKET",
+        "LIMIT",
+        "SL",
+        "SL-M"
+    ],
+    "user_type": "individual",
+    "poa": false,
+    "ddpi": false,
+    "is_active": true,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJrZXlfaWQiOiJza192MS4wIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiI0S0NNR1YiLCJqdGkiOiI2OTA1ZWY3MjkwMmIwZjYzMTczMTJlNWUiLCJpc011bHRpQ2xpZW50IjpmYWxzZSwiaXNQbHVzUGxhbiI6dHJ1ZSwiaWF0IjoxNzYxOTk2NjU4LCJpc3MiOiJ1ZGFwaS1nYXRld2F5LXNlcnZpY2UiLCJleHAiOjE3NjIwMzQ0MDB9.rHVSpBbfxUoumAgDz83lI8GwElj6F1rAn9ddH3UTzIk",
+    "extended_token": null
+}

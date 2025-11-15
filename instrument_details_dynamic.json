@@ -1,0 +1,110 @@
+{
+  "NSE_FO|38358|07-10-2025": {
+    "strike": 24600,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38358|07-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|38357|07-10-2025": {
+    "strike": 24600,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38357|07-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|38360|07-10-2025": {
+    "strike": 24650,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38360|07-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|38359|07-10-2025": {
+    "strike": 24650,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38359|07-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|38362|07-10-2025": {
+    "strike": 24700,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38362|07-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|38361|07-10-2025": {
+    "strike": 24700,
+    "expiry": "2025-10-07",
+    "instrument_key": "NSE_FO|38361|07-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|42678|14-10-2025": {
+    "strike": 25050,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42678|14-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|42677|14-10-2025": {
+    "strike": 25050,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42677|14-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|42684|14-10-2025": {
+    "strike": 25100,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42684|14-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|42679|14-10-2025": {
+    "strike": 25100,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42679|14-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|42686|14-10-2025": {
+    "strike": 25150,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42686|14-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|42685|14-10-2025": {
+    "strike": 25150,
+    "expiry": "2025-10-14",
+    "instrument_key": "NSE_FO|42685|14-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|45251|20-10-2025": {
+    "strike": 25050,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45251|20-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|45250|20-10-2025": {
+    "strike": 25050,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45250|20-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|45253|20-10-2025": {
+    "strike": 25100,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45253|20-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|45252|20-10-2025": {
+    "strike": 25100,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45252|20-10-2025",
+    "type": "CE"
+  },
+  "NSE_FO|45255|20-10-2025": {
+    "strike": 25150,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45255|20-10-2025",
+    "type": "PE"
+  },
+  "NSE_FO|45254|20-10-2025": {
+    "strike": 25150,
+    "expiry": "2025-10-20",
+    "instrument_key": "NSE_FO|45254|20-10-2025",
+    "type": "CE"
+  }
+}

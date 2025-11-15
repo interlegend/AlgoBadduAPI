@@ -1,0 +1,95 @@
+
+# Product Requirements Document (PRD)
+
+## Operation Trader-Baddu, Phase 2 Upgrade (Surgical Strike Edition)
+
+### Overview
+Trader-Baddu is a Python-based automated trading system designed to simulate real-world trading of At-the-Money (ATM) NIFTY option contracts. The upgrade to Phase 2 aims to transform the existing paper-trading engine into a robust, modular, and error-resilient platform that leverages the official Dhan SDK for all market data and order management. This solution is intended for algorithmic traders and developers seeking a reliable simulation environment for options strategies.
+
+### Objective
+Upgrade the codebase from Phase 1 to Phase 2 by refactoring `paper_trader.py` and related modules to support dynamic ATM option trading, improved error handling, and comprehensive trade logging, all while strictly adhering to the SDK interface.
+
+### PRIME DIRECTIVE (NON-NEGOTIABLE)
+- The `Dhan_Tradehull.py` file is the official, sacred SDK from the provider. It is 100% correct and MUST NOT BE MODIFIED.
+- All fixes and changes must be made in our own application files (`data_fetcher.py`, `paper_trader.py`, `order_manager.py`, `config.py`), specifically in how we *call* the SDK.
+
+### Core Features
+1. **Critical Bug Fixes:**
+   - Resolve startup errors by correcting SDK calls, especially for NIFTY index data (Security ID `13`, exchange `NSE_IDX`).
+2. **Dynamic Option Chain Integration:**
+   - Identify correct ATM CE/PE option symbols for nearest expiry using real-time NIFTY spot price.
+3. **Option Data Pipeline:**
+   - Fetch 5-min OHLC candle data for ATM options via a new `get_option_ohlc` function.
+4. **Strategy Execution:**
+   - Apply MACD, EMA, ATR logic from `strategy_v25.py` to both CE and PE option candles.
+5. **Trade Simulation:**
+   - Simulate entries/exits in `paper_trader.py` based on option signals.
+6. **Comprehensive Logging:**
+   - Log all simulated trades to CSV with full details and P&L.
+
+### User Experience
+- **User Personas:** Algorithmic traders, quant developers, and testers.
+- **User Flows:**
+  - Start the engine, configure parameters in `config.py`, run simulations, review logs.
+- **UI/UX Considerations:** CLI-based workflow; clear error messages and log outputs; configuration via a single file.
+
+### Technical Architecture
+- **System Components:**
+  - `paper_trader.py`: Main simulation engine
+  - `data_fetcher.py`: Data acquisition and bug fixes
+  - `order_manager.py`: Option symbol resolution
+  - `strategy_v25.py`: Trading logic
+  - `config.py`: Centralized settings
+- **Data Models:**
+  - Option contract objects, trade log entries, configuration parameters
+- **APIs and Integrations:**
+  - Dhan_Tradehull SDK (official, unmodified)
+- **Infrastructure Requirements:**
+  - Python 3.11+, CSV file output, local execution
+
+### Development Roadmap
+- **Phase 2 MVP:**
+  1. Fix DH-905 bug in `data_fetcher.py`
+  2. Implement `get_option_ohlc` in `data_fetcher.py`
+  3. Integrate option symbol resolution in `paper_trader.py`
+  4. Refactor trading loop for option pipeline
+  5. Enhance logging and error handling
+- **Future Enhancements:**
+  - Add more strategies, support for other indices, advanced analytics, GUI
+
+### Logical Dependency Chain
+1. Foundation: Fix SDK call bugs (must be done first)
+2. Data pipeline: Enable option data fetching
+3. Symbol resolution: Integrate dynamic option selection
+4. Trading logic: Refactor main loop for options
+5. Logging & error handling: Finalize robustness
+
+### Risks and Mitigations
+- **Technical Challenges:** SDK interface changes, option symbol resolution complexity
+- **MVP Scope:** Focus only on ATM NIFTY options and simulation
+- **Resource Constraints:** Limited to CLI and CSV output for now
+- **Mitigations:** Strict adherence to SDK, modular code, centralized config, robust error handling
+
+### Non-Functional Requirements & Constraints
+- **Modularity:** Respect the existing file structure
+- **Configuration:** Centralize all settings in `config.py`
+- **Error Handling:** Wrap all SDK calls in `try...except` blocks
+
+### Appendix
+- **Research Findings:**
+  - DH-905 bug root cause: incorrect SDK parameters for NIFTY index
+  - Option data requires correct symbol and exchange
+- **Technical Specifications:**
+  - Security ID for NIFTY: `13`, Exchange: `NSE_IDX`
+  - Option data: 5-min OHLC, fetched via SDK
+
+### Task Generation Guidelines for Task Master
+Break this PRD into a logical sequence of tasks:
+1. Fix the `DH-905` bug by modifying index fetching logic in `data_fetcher.py` to use the correct Security ID.
+2. Implement a new `get_option_ohlc` function in `data_fetcher.py`.
+3. Integrate `order_manager.py` symbol resolution into the `paper_trader.py` main flow.
+4. Refactor the main trading loop in `paper_trader.py` to use the new option data pipeline.
+5. Enhance trade logging and add robust error handling around all external API calls.
+
+---
+This PRD contains the complete, corrected strategy for Task Master AI to generate actionable tasks.
