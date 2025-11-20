@@ -203,72 +203,56 @@ def run_backtest(nifty_df, options_df):
             ema13 = nifty_row['ema13']
             macd_hist = nifty_row['macd_hist']                
             
-            # === ENTRY LOGIC WITH SMART TIMESTAMP MATCHING ===
-            # === ENTRY LOGIC WITH SMART TIMESTAMP MATCHING ===
+            # === ENTRY LOGIC (NEXT CANDLE OPEN) ===
             if not position:
+                # 1. Check for signal on the CURRENT NIFTY candle
                 signal = strategy.check_entry_signal(day_nifty, idx)
                 if signal:
                     day_signals[signal] = day_signals.get(signal, 0) + 1
+                    
+                    # 2. Plan to execute on the NEXT NIFTY candle
+                    next_idx = idx + 1
+                    
+                    # 3. Boundary Check: Ensure the next candle exists
+                    if next_idx < len(day_nifty):
+                        execution_time = day_nifty.iloc[next_idx]['datetime']
+                        
+                        option_data = ce_data if signal == "BUY_CE" else pe_data
+                        
+                        # 4. Find the corresponding option candle for the execution time
+                        exec_option_time = find_next_option_candle(execution_time, option_data.index)
+                        
+                        if exec_option_time:
+                            option_candle = option_data.loc[exec_option_time]
+                            option_atr = option_candle['option_atr']
 
-                    if signal == "BUY_CE":
-                        next_ce_time = find_next_option_candle(signal_time, ce_data.index)
-                        if next_ce_time is not None:
-                            ce_candle = ce_data.loc[next_ce_time]
-                            option_price = ce_candle['close']
-                            option_atr = ce_candle['option_atr']
-
-                            if pd.isna(option_atr):
-                                missed_entries += 1
-                                continue
-
-                            levels = strategy.calculate_entry_levels("BUY_CE", option_price, option_atr)
-                            position = {
-                                'side': 'BUY_CE',
-                                'signal_time': signal_time,
-                                'entry_time': next_ce_time,
-                                'entry_candle_index': idx,  # ✅ ADD THIS!
-                                'entry_price': option_price,
-                                'strike': strike,
-                                'sl': levels['sl'],
-                                'initial_sl': levels['sl'],
-                                'tp1': levels['tp1'],
-                                'tp1_hit': False,
-                                'highest': ce_candle['high'],
-                                'option_atr': option_atr,
-                            }
-                            matched_entries += 1
+                            # 5. Check for valid data (ATR must be calculated)
+                            if pd.notna(option_atr):
+                                # 6. Set Entry Price: Open of the execution candle + slippage
+                                entry_price = option_candle['open'] + 0.5
+                                
+                                levels = strategy.calculate_entry_levels(signal, entry_price, option_atr)
+                                position = {
+                                    'side': signal,
+                                    'signal_time': signal_time,         # Time of signal (T)
+                                    'entry_time': exec_option_time,     # Time of execution (T+1)
+                                    'entry_candle_index': next_idx,     # NIFTY index of execution
+                                    'entry_price': entry_price,
+                                    'strike': strike,
+                                    'sl': levels['sl'],
+                                    'initial_sl': levels['sl'],
+                                    'tp1': levels['tp1'],
+                                    'tp1_hit': False,
+                                    'highest': option_candle['high'],
+                                    'option_atr': option_atr,
+                                }
+                                matched_entries += 1
+                            else:
+                                missed_entries += 1 # Missed due to no ATR
                         else:
-                            missed_entries += 1
-
-                    elif signal == "BUY_PE":
-                        next_pe_time = find_next_option_candle(signal_time, pe_data.index)
-                        if next_pe_time is not None:
-                            pe_candle = pe_data.loc[next_pe_time]
-                            option_price = pe_candle['close']
-                            option_atr = pe_candle['option_atr']
-
-                            if pd.isna(option_atr):
-                                missed_entries += 1
-                                continue
-
-                            levels = strategy.calculate_entry_levels("BUY_PE", option_price, option_atr)
-                            position = {
-                                'side': 'BUY_PE',
-                                'signal_time': signal_time,
-                                'entry_time': next_pe_time,
-                                'entry_candle_index': idx,  # ✅ ADD THIS!
-                                'entry_price': option_price,
-                                'strike': strike,
-                                'sl': levels['sl'],
-                                'initial_sl': levels['sl'],
-                                'tp1': levels['tp1'],
-                                'tp1_hit': False,
-                                'highest': pe_candle['high'],
-                                'option_atr': option_atr,
-                            }
-                            matched_entries += 1
-                        else:
-                            missed_entries += 1
+                            missed_entries += 1 # Missed due to no option candle
+                    else:
+                        missed_entries += 1 # Missed because it's the last candle of the day
 
             # === UNIFIED POSITION MANAGEMENT ===
             if position:
