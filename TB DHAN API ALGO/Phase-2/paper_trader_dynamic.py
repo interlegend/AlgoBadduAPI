@@ -73,7 +73,7 @@ def load_and_prepare_data():
     
     # Load NIFTY index data
     print(f"\n[1/2] Loading NIFTY index data...")
-    nifty_df = pd.read_csv(r"C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-2\nifty_5min_last_month.csv")
+    nifty_df = pd.read_csv(r"C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-2\nifty_5min_last_year.csv")
     nifty_df['datetime'] = pd.to_datetime(nifty_df['datetime'])
     nifty_df['date'] = nifty_df['datetime'].dt.date
     print(f"✅ Loaded {len(nifty_df)} NIFTY candles")
@@ -87,7 +87,7 @@ def load_and_prepare_data():
     
     # Calculate indicators on NIFTY (for signals only)
     print(f"\n[INFO] Calculating NIFTY indicators for signal generation...")
-    nifty_df['ema21'] = EMA(nifty_df['index_close'], 21)
+    nifty_df['ema13'] = EMA(nifty_df['index_close'], 13)
     nifty_df['macd'], nifty_df['macd_signal'], nifty_df['macd_hist'] = MACD(nifty_df['index_close'])
     
     # Choppiness on NIFTY
@@ -104,7 +104,10 @@ def load_and_prepare_data():
     # Load ATM options data
     print(f"\n[2/2] Loading ATM options data...")
     # ✅ CORRECT
-    options_df = pd.read_csv(r"C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\UPSTOX-API\atm_daily_options_HYBRID_V3.csv")
+    options_file_path = r"C:\Users\sakth\Desktop\VSCODE\atm_daily_options_HYBRID_V3_ULTRA_FIXED.csv"
+    if not os.path.exists(options_file_path):
+        raise FileNotFoundError(f"Options data file not found at: {options_file_path}")
+    options_df = pd.read_csv(options_file_path)
     options_df['datetime'] = pd.to_datetime(options_df['datetime'])
     options_df['trading_day'] = pd.to_datetime(options_df['trading_day']).dt.date
     print(f"✅ Loaded {len(options_df)} option candles")
@@ -132,7 +135,6 @@ def run_backtest(nifty_df, options_df):
     print(f"   ATR Period: {config['atr_period']}")
     print(f"   CE TP1: {config['tp1_ce']} | PE TP1: {config['tp1_pe']}")
     print(f"   Trail: {config['trail_atr_multiplier']}x ATR | Max SL: {config['max_sl_points']:.1f} pts (₹{config['max_sl_points'] * 75:.0f})")
-    print(f"   Choppiness: < {config['choppiness_threshold']}")
     
     trades = []
     position = None
@@ -198,153 +200,163 @@ def run_backtest(nifty_df, options_df):
             
             # Get NIFTY metrics (for signals and exit logic)
             nifty_close = nifty_row['index_close']
-            ema21 = nifty_row['ema21']
+            ema13 = nifty_row['ema13']
             macd_hist = nifty_row['macd_hist']                
             
             # === ENTRY LOGIC WITH SMART TIMESTAMP MATCHING ===
+            # === ENTRY LOGIC WITH SMART TIMESTAMP MATCHING ===
             if not position:
-                signal = strategy.check_entry_signal(day_nifty, idx)                        
-                
+                signal = strategy.check_entry_signal(day_nifty, idx)
                 if signal:
                     day_signals[signal] = day_signals.get(signal, 0) + 1
-                
-                if signal == "BUY_CE":
-                    # Find next available CE candle at or after signal time
-                    next_ce_time = find_next_option_candle(signal_time, ce_data.index)
 
-                    if next_ce_time is not None:
-                        ce_candle = ce_data.loc[next_ce_time]
-                        option_price = ce_candle['close']
-                        option_atr = ce_candle['option_atr']
+                    if signal == "BUY_CE":
+                        next_ce_time = find_next_option_candle(signal_time, ce_data.index)
+                        if next_ce_time is not None:
+                            ce_candle = ce_data.loc[next_ce_time]
+                            option_price = ce_candle['close']
+                            option_atr = ce_candle['option_atr']
 
-                        if pd.isna(option_atr):
+                            if pd.isna(option_atr):
+                                missed_entries += 1
+                                continue
+
+                            levels = strategy.calculate_entry_levels("BUY_CE", option_price, option_atr)
+                            position = {
+                                'side': 'BUY_CE',
+                                'signal_time': signal_time,
+                                'entry_time': next_ce_time,
+                                'entry_candle_index': idx,  # ✅ ADD THIS!
+                                'entry_price': option_price,
+                                'strike': strike,
+                                'sl': levels['sl'],
+                                'initial_sl': levels['sl'],
+                                'tp1': levels['tp1'],
+                                'tp1_hit': False,
+                                'highest': ce_candle['high'],
+                                'option_atr': option_atr,
+                            }
+                            matched_entries += 1
+                        else:
                             missed_entries += 1
-                            continue
 
-                        levels = strategy.calculate_entry_levels("BUY_CE", option_price, option_atr)
+                    elif signal == "BUY_PE":
+                        next_pe_time = find_next_option_candle(signal_time, pe_data.index)
+                        if next_pe_time is not None:
+                            pe_candle = pe_data.loc[next_pe_time]
+                            option_price = pe_candle['close']
+                            option_atr = pe_candle['option_atr']
 
-                        position = {
-                            'side': 'BUY_CE',
-                            'signal_time': signal_time,
-                            'entry_time': next_ce_time,
-                            'entry_price': option_price,
-                            'strike': strike,
-                            'sl': levels['sl'],
-                            'initial_sl': levels['sl'],
-                            'tp1': levels['tp1'],
-                            'tp1_hit': False,
-                            'highest': ce_candle['high'],
-                            'option_atr': option_atr,  # 🔥 ADD THIS LINE!
-                        }
-                        matched_entries += 1
-                    else:
-                        missed_entries += 1
+                            if pd.isna(option_atr):
+                                missed_entries += 1
+                                continue
 
-                elif signal == "BUY_PE":
-                    next_pe_time = find_next_option_candle(signal_time, pe_data.index)
-
-                    if next_pe_time is not None:
-                        pe_candle = pe_data.loc[next_pe_time]
-                        option_price = pe_candle['close']
-                        option_atr = pe_candle['option_atr']
-
-                        if pd.isna(option_atr):
+                            levels = strategy.calculate_entry_levels("BUY_PE", option_price, option_atr)
+                            position = {
+                                'side': 'BUY_PE',
+                                'signal_time': signal_time,
+                                'entry_time': next_pe_time,
+                                'entry_candle_index': idx,  # ✅ ADD THIS!
+                                'entry_price': option_price,
+                                'strike': strike,
+                                'sl': levels['sl'],
+                                'initial_sl': levels['sl'],
+                                'tp1': levels['tp1'],
+                                'tp1_hit': False,
+                                'highest': pe_candle['high'],
+                                'option_atr': option_atr,
+                            }
+                            matched_entries += 1
+                        else:
                             missed_entries += 1
-                            continue
 
-                        levels = strategy.calculate_entry_levels("BUY_PE", option_price, option_atr)
-
-                        position = {
-                            'side': 'BUY_PE',
-                            'signal_time': signal_time,
-                            'entry_time': next_pe_time,
-                            'entry_price': option_price,
-                            'strike': strike,
-                            'sl': levels['sl'],
-                            'initial_sl': levels['sl'],
-                            'tp1': levels['tp1'],
-                            'tp1_hit': False,
-                            'highest': pe_candle['high'],
-                            'option_atr': option_atr,  # 🔥 ADD THIS LINE!
-                        }
-                        matched_entries += 1
-                    else:
-                        missed_entries += 1
-            
-                        # === UNIFIED POSITION MANAGEMENT ===
+            # === UNIFIED POSITION MANAGEMENT ===
             if position:
                 side = position['side']
                 entry_price = position['entry_price']
                 entry_time = position['entry_time']
-                
-                # Determine the correct option data to use
-                option_data = ce_data if side == "BUY_CE" else pe_data
-                
-                # Find current option candle
-                current_option_time = find_next_option_candle(signal_time, option_data.index)
-                
-                if current_option_time is None or current_option_time < entry_time:
-                    continue  # Haven't entered yet or no data
-                
-                current_candle = option_data.loc[current_option_time]
-                option_close = current_candle['close']
-                option_high = current_candle['high']
-                
-                exit_reason = None
-                exit_price = None
+                entry_candle_idx = position['entry_candle_index']
 
-                # --- UNIVERSAL LOGIC FOR BOTH CE AND PE ---
-                
-                # 1. Update highest price reached
-                position['highest'] = max(position.get('highest', option_high), option_high)
-                
-                # 2. Check for TP1 Hit and set profit-lock
-                if not position['tp1_hit'] and strategy.check_tp1_hit(side, option_high, position['tp1']):
-                    position['tp1_hit'] = True
-                    # Use the new optimized trailing SL of +13 for both!
-                    position['sl'] = round(entry_price + 13, 2)
-                    print(f"✅ TP1 HIT! {side} SL locked to {position['sl']:.2f}")
+                # ✅ CRITICAL: Skip exit checks on entry candle (prevent same-candle exit)
+                if idx == entry_candle_idx:
+                    continue  # Must wait for next candle!
 
-                # 3. Check for Stop Loss Hit
-                if strategy.check_sl_hit(side, option_close, position['sl']):
-                    exit_reason = "SL Hit"
-                    exit_price = position['sl']
-                
-                # 4. Check for MACD/EMA Reversal Exit (only after TP1)
-                elif strategy.check_macd_ema_exit(side, position['tp1_hit'], nifty_close, ema21, macd_hist):
-                    exit_reason = "MACD/EMA Exit"
-                    exit_price = option_close
-                
-                # 5. Check for EOD Exit
-                elif strategy.check_eod_exit(current_time_only):
-                    exit_reason = "EOD Exit"
-                    exit_price = option_close
+                # ... rest of your exit logic continues here
 
-                # --- EXECUTE EXIT ---
-                if exit_reason:
-                    pnl_data = strategy.calculate_pnl(side, entry_price, exit_price)
-                    slippage_seconds = (entry_time - position['signal_time']).total_seconds()
+                # === UNIFIED POSITION MANAGEMENT ===
+                if position:
+                    side = position['side']
+                    entry_price = position['entry_price']
+                    entry_time = position['entry_time']
 
-                    trades.append({
-                        'SignalTime': position['signal_time'],
-                        'EntryTime': position['entry_time'],
-                        'Slippage_Sec': int(slippage_seconds),
-                        'Side': side,
-                        'Strike': position['strike'],
-                        'EntryPrice': entry_price,
-                        'ExitTime': current_option_time,
-                        'ExitPrice': exit_price,
-                        'ExitReason': exit_reason,
-                        'SL_Value': position['sl'],
-                        'Initial_SL': position['initial_sl'],
-                        'TP1_Hit': position['tp1_hit'],
-                        'PnL_Points': pnl_data['pnl_points'],
-                        'PnL_INR': pnl_data['pnl_inr']
-                    })
-                    
-                    day_trades += 1
-                    position = None
-        
+                    # Determine the correct option data to use
+                    option_data = ce_data if side == "BUY_CE" else pe_data
+
+                    # Find current option candle
+                    current_option_time = find_next_option_candle(signal_time, option_data.index)
+
+                    if current_option_time is None or current_option_time < entry_time:
+                        continue  # Haven't entered yet or no data
+
+                    current_candle = option_data.loc[current_option_time]
+                    option_close = current_candle['close']
+                    option_high = current_candle['high']
+
+                    exit_reason = None
+                    exit_price = None
+
+                    # --- UNIVERSAL LOGIC FOR BOTH CE AND PE ---
+
+                    # 1. Update highest price reached
+                    position['highest'] = max(position.get('highest', option_high), option_high)
+
+                    # 2. Check for TP1 Hit and set profit-lock
+                    if not position['tp1_hit'] and strategy.check_tp1_hit(side, option_high, position['tp1']):
+                        position['tp1_hit'] = True
+                        # Use the new optimized trailing SL of +13 for both!
+                        position['sl'] = round(entry_price + 13, 2)
+                        print(f"✅ TP1 HIT! {side} SL locked to {position['sl']:.2f}")
+
+                    # 3. Check for Stop Loss Hit
+                    if strategy.check_sl_hit(side, option_close, position['sl']):
+                        exit_reason = "SL Hit"
+                        exit_price = position['sl']
+
+                    # 4. Check for MACD/EMA Reversal Exit (only after TP1)
+                    elif strategy.check_macd_ema_exit(side, position['tp1_hit'], nifty_close, ema13, macd_hist):
+                        exit_reason = "MACD/EMA Exit"
+                        exit_price = option_close
+
+                    # 5. Check for EOD Exit
+                    elif strategy.check_eod_exit(current_time_only):
+                        exit_reason = "EOD Exit"
+                        exit_price = option_close
+
+                    # --- EXECUTE EXIT ---
+                    if exit_reason:
+                        pnl_data = strategy.calculate_pnl(side, entry_price, exit_price)
+                        slippage_seconds = (entry_time - position['signal_time']).total_seconds()
+
+                        trades.append({
+                            'SignalTime': position['signal_time'],
+                            'EntryTime': position['entry_time'],
+                            'Slippage_Sec': int(slippage_seconds),
+                            'Side': side,
+                            'Strike': position['strike'],
+                            'EntryPrice': entry_price,
+                            'ExitTime': current_option_time,
+                            'ExitPrice': exit_price,
+                            'ExitReason': exit_reason,
+                            'SL_Value': position['sl'],
+                            'Initial_SL': position['initial_sl'],
+                            'TP1_Hit': position['tp1_hit'],
+                            'PnL_Points': pnl_data['pnl_points'],
+                            'PnL_INR': pnl_data['pnl_inr']
+                        })
+
+                        day_trades += 1
+                        position = None
+
         total_signals = day_signals.get('BUY_CE', 0) + day_signals.get('BUY_PE', 0)
         match_rate = (matched_entries / total_signals * 100) if total_signals > 0 else 0
         
