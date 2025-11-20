@@ -58,7 +58,7 @@ class StrategyV27:
     
     def check_entry_signal(self, df, idx):
         """
-        Check for entry signal based on NIFTY indicators
+        Check for entry signal based on NIFTY indicators, using an RSI Regime Filter.
         
         Args:
             df: DataFrame with NIFTY OHLC + indicators
@@ -84,6 +84,7 @@ class StrategyV27:
         # === GET INDICATOR VALUES ===
         close = row['index_close']
         ema13 = row['ema13']
+        rsi = row['rsi']
         
         # MACD histogram (current and 2 previous)
         macd_hist = row['macd_hist']
@@ -91,13 +92,17 @@ class StrategyV27:
         prev2_hist = prev2_row['macd_hist']
         
         # === BUY_CE LOGIC ===
-        # 3 consecutive rising histogram + close > EMA13
-        if (prev2_hist < prev_hist < macd_hist) and (close > ema13):
+        # MACD/EMA confirm uptrend AND RSI is in the bullish 'sweet spot' (50-70)
+        is_ce_momentum = (prev2_hist < prev_hist < macd_hist) and (close > ema13)
+        is_ce_regime = (rsi > 50) and (rsi < 70)
+        if is_ce_momentum and is_ce_regime:
             return "BUY_CE"
         
         # === BUY_PE LOGIC ===
-        # 3 consecutive falling histogram + close < EMA13
-        if (prev2_hist > prev_hist > macd_hist) and (close < ema13):
+        # MACD/EMA confirm downtrend AND RSI is in the bearish 'sweet spot' (30-50)
+        is_pe_momentum = (prev2_hist > prev_hist > macd_hist) and (close < ema13)
+        is_pe_regime = (rsi > 30) and (rsi < 50)
+        if is_pe_momentum and is_pe_regime:
             return "BUY_PE"
         
         return None

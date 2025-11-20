@@ -22,33 +22,25 @@ from datetime import time
 import pandas as pd
 
 
-class StrategyV28:
+class StrategyV29:
     """
-    Enhanced Strategy V28 - Champion of the Filter Battle Royale.
-    
-    Key Features:
-    - Vortex Indicator for high-quality trend identification.
-    - MACD histogram momentum detection.
-    - EMA13 trend filter.
-    - Dynamic ATR-based trailing stop.
-    - Professional risk management.
+    The final, hyper-optimized champion strategy.
     """
     
-    def __init__(self, ema_period=21, vi_period=21):
-        # === TUNABLE PARAMETERS ===
+    def __init__(self, ema_period=21, vi_period=21, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
+        # === TUNABLE INDICATOR PARAMETERS ===
         self.EMA_PERIOD = ema_period
-        self.VI_PERIOD = vi_period # Vortex Indicator period
+        self.VI_PERIOD = vi_period
+
+        # === TUNABLE RISK PARAMETERS ===
+        self.SL_MULTIPLIER = sl_multiplier
+        self.TP1_POINTS = tp_points
+        self.TRAIL_ATR_MULTIPLIER = trail_atr_multiplier
 
         # === CORE CONFIGURATION ===
         self.LOT_SIZE = 75
         self.ATR_PERIOD = 14
-        
-        # === RISK MANAGEMENT ===
-        self.SL_MULTIPLIER = 1.2
-        self.TP1_POINTS_CE = 10
-        self.TP1_POINTS_PE = 10
-        self.TRAIL_ATR_MULTIPLIER = 0.5
-        self.MAX_SL_POINTS = 26.67
+        self.MAX_SL_POINTS = 26.67 # Max loss = ₹2000 (₹2000/75)
         
         # === TIME WINDOWS ===
         self.ENTRY_START = time(9, 30)
@@ -58,29 +50,18 @@ class StrategyV28:
     def check_entry_signal(self, df, idx):
         """
         Check for entry signal based on NIFTY indicators, using Vortex Indicator as the primary filter.
-        
-        Args:
-            df: DataFrame with NIFTY OHLC + indicators
-            idx: Current candle index
-        
-        Returns:
-            "BUY_CE", "BUY_PE", or None
         """
-        # Need at least 2 previous candles for VI gap and MACD pattern
         if idx < 2:
             return None
         
-        # Get current and previous candles
         row = df.iloc[idx]
         prev_row = df.iloc[idx - 1]
         prev2_row = df.iloc[idx - 2]
         current_time = row['datetime'].time()
         
-        # === TIME WINDOW CHECK ===
         if not (self.ENTRY_START <= current_time <= self.ENTRY_END):
             return None
 
-        # === VORTEX INDICATOR FILTER ===
         vi_plus_col = f'vi_plus_{self.VI_PERIOD}'
         vi_minus_col = f'vi_minus_{self.VI_PERIOD}'
 
@@ -92,39 +73,30 @@ class StrategyV28:
         is_bullish_vortex = False
         is_bearish_vortex = False
 
-        # Check for bullish vortex signal (VI+ > VI- and gap is widening)
         if vi_plus > vi_minus:
             current_gap = vi_plus - vi_minus
             previous_gap = prev_vi_plus - prev_vi_minus
             if current_gap > previous_gap:
                 is_bullish_vortex = True
-
-        # Check for bearish vortex signal (VI- > VI+ and gap is widening)
         elif vi_minus > vi_plus:
             current_gap = vi_minus - vi_plus
             previous_gap = prev_vi_minus - prev_vi_plus
             if current_gap > previous_gap:
                 is_bearish_vortex = True
 
-        # === GET INDICATOR VALUES (Only if a vortex signal exists) ===
         if is_bullish_vortex or is_bearish_vortex:
             close = row['index_close']
             ema_col = f'ema{self.EMA_PERIOD}'
             ema = row[ema_col]
             
-            # MACD histogram (current and 2 previous)
             macd_hist = row['macd_hist']
             prev_hist = prev_row['macd_hist']
             prev2_hist = prev2_row['macd_hist']
             
-            # === BUY_CE LOGIC ===
-            # Vortex is bullish AND original MACD/EMA conditions are met
-            if is_bullish_vortex and (prev2_hist < prev_hist < macd_hist) and (close > ema):
+            if is_bullish_vortex and  (close > ema):
                 return "BUY_CE"
             
-            # === BUY_PE LOGIC ===
-            # Vortex is bearish AND original MACD/EMA conditions are met
-            if is_bearish_vortex and (prev2_hist > prev_hist > macd_hist) and (close < ema):
+            if is_bearish_vortex and (close < ema):
                 return "BUY_PE"
         
         return None
@@ -136,14 +108,8 @@ class StrategyV28:
         atr_based_sl = self.SL_MULTIPLIER * option_atr
         actual_sl_distance = min(atr_based_sl, self.MAX_SL_POINTS)
         
-        if side == "BUY_CE":
-            sl = round(entry_price - actual_sl_distance, 2)
-            tp1 = entry_price + self.TP1_POINTS_CE
-        elif side == "BUY_PE":
-            sl = round(entry_price - actual_sl_distance, 2)
-            tp1 = entry_price + self.TP1_POINTS_PE
-        else:
-            raise ValueError(f"Invalid side: {side}")
+        sl = round(entry_price - actual_sl_distance, 2)
+        tp1 = entry_price + self.TP1_POINTS
         
         return {'sl': sl, 'tp1': tp1, 'atr_based_sl': atr_based_sl}
     
@@ -179,15 +145,14 @@ class StrategyV28:
     def get_config(self):
         """Return strategy configuration for logging/display"""
         return {
-            'version': 'V28 - Vortex Filter Champion',
+            'version': 'V29 - Final Optimized Champion',
             'ema_period': self.EMA_PERIOD,
             'vi_period': self.VI_PERIOD,
+            'sl_multiplier': self.SL_MULTIPLIER,
+            'tp1_points': self.TP1_POINTS,
+            'trail_atr_multiplier': self.TRAIL_ATR_MULTIPLIER,
             'lot_size': self.LOT_SIZE,
             'atr_period': self.ATR_PERIOD,
-            'sl_multiplier': self.SL_MULTIPLIER,
-            'tp1_ce': self.TP1_POINTS_CE,
-            'tp1_pe': self.TP1_POINTS_PE,
-            'trail_atr_multiplier': self.TRAIL_ATR_MULTIPLIER,
             'max_sl_points': self.MAX_SL_POINTS,
             'entry_start': str(self.ENTRY_START),
             'entry_end': str(self.ENTRY_END),

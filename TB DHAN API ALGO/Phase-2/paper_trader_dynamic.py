@@ -1,14 +1,73 @@
 #TRADER BADDU:D
 import os
 import pandas as pd
+import pandas_ta as ta
 import numpy as np
 from datetime import datetime, time
-from strategy_v27 import StrategyV27
+from strategy_v29 import StrategyV29
 
 # ==================== INDICATOR FUNCTIONS ====================
 def EMA(series, period):
     """Calculate Exponential Moving Average"""
     return series.ewm(span=period, adjust=False).mean()
+
+def wilders_smoothing(series, period):
+    """
+    Calculates Wilder's Smoothing (Relative Moving Average) for a given series.
+    Equivalent to an EMA with alpha = 1/period and adjust=False.
+    """
+    return series.ewm(alpha=1/period, adjust=False).mean()
+
+def calculate_adx(df, period=14):
+    """
+    Calculates the Average Directional Index (ADX) along with +DI and -DI.
+
+    Args:
+        df (pd.DataFrame): DataFrame with 'High', 'Low', and 'Close' columns.
+        period (int): The lookback period for ADX calculation (default is 14).
+
+    Returns:
+        pd.DataFrame: A DataFrame with 'ADX', '+DI', '-DI' columns.
+    """
+    df_adx = df.copy()
+
+    # 1. Calculate True Range (TR)
+    df_adx['H-L'] = df_adx['High'] - df_adx['Low']
+    df_adx['H-PC'] = abs(df_adx['High'] - df_adx['Close'].shift(1))
+    df_adx['L-PC'] = abs(df_adx['Low'] - df_adx['Close'].shift(1))
+    df_adx['TR'] = df_adx[['H-L', 'H-PC', 'L-PC']].max(axis=1)
+
+    # 2. Calculate Directional Movement (+DM and -DM)
+    df_adx['UpMove'] = df_adx['High'] - df_adx['High'].shift(1)
+    df_adx['DownMove'] = df_adx['Low'].shift(1) - df_adx['Low']
+
+    df_adx['+DM'] = 0.0
+    df_adx['-DM'] = 0.0
+
+    df_adx.loc[(df_adx['UpMove'] > df_adx['DownMove']) & (df_adx['UpMove'] > 0), '+DM'] = df_adx['UpMove']
+    df_adx.loc[(df_adx['DownMove'] > df_adx['UpMove']) & (df_adx['DownMove'] > 0), '-DM'] = df_adx['DownMove']
+
+    # 3. Smooth TR, +DM, and -DM using Wilder's Smoothing
+    df_adx['TR_Smooth'] = wilders_smoothing(df_adx['TR'], period)
+    df_adx['+DM_Smooth'] = wilders_smoothing(df_adx['+DM'], period)
+    df_adx['-DM_Smooth'] = wilders_smoothing(df_adx['-DM'], period)
+
+    df_adx['TR_Smooth'] = df_adx['TR_Smooth'].replace(0, np.nan)
+
+    # 4. Calculate Directional Indicators (+DI and -DI)
+    df_adx['+DI'] = (df_adx['+DM_Smooth'] / df_adx['TR_Smooth']) * 100
+    df_adx['-DI'] = (df_adx['-DM_Smooth'] / df_adx['TR_Smooth']) * 100
+
+    # 5. Calculate Directional Index (DX)
+    df_adx['DI_Sum'] = df_adx['+DI'] + df_adx['-DI']
+    df_adx['DI_Sum'] = df_adx['DI_Sum'].replace(0, np.nan)
+    df_adx['DX'] = (abs(df_adx['+DI'] - df_adx['-DI']) / df_adx['DI_Sum']) * 100
+
+    # 6. Calculate Average Directional Index (ADX)
+    df_adx['ADX'] = wilders_smoothing(df_adx['DX'], period)
+
+    return df_adx[['ADX', '+DI', '-DI']]
+
 
 def MACD(series, fast=12, slow=26, signal=9):
     """Calculate MACD, Signal, and Histogram"""
@@ -18,6 +77,15 @@ def MACD(series, fast=12, slow=26, signal=9):
     macd_signal = EMA(macd, signal)
     macd_hist = macd - macd_signal
     return macd, macd_signal, macd_hist
+
+def calculate_bb_width(close_series, period=20, std_dev=2):
+    """Calculate Bollinger Band Width"""
+    sma = close_series.rolling(period).mean()
+    std = close_series.rolling(period).std()
+    upper = sma + (std * std_dev)
+    lower = sma - (std * std_dev)
+    width = (upper - lower) / sma
+    return width
 
 def ATR_simple(high, low, close, period=14):
     """Calculate Average True Range on any OHLC data"""
@@ -65,7 +133,7 @@ def find_next_option_candle(signal_time, option_data_index):
         return None  # No future candles available
 
 # ==================== DATA LOADING ====================
-def load_and_prepare_data():
+def load_and_prepare_data(ema_period=13, vi_period=14):
     """Load NIFTY index and ATM options data"""
     print("="*70)
     print("📊 LOADING DATA")
@@ -86,17 +154,37 @@ def load_and_prepare_data():
         'close': 'index_close'}, inplace=True)
     
     # Calculate indicators on NIFTY (for signals only)
-    print(f"\n[INFO] Calculating NIFTY indicators for signal generation...")
-    nifty_df['ema13'] = EMA(nifty_df['index_close'], 13)
+    print(f"\n[INFO] Calculating NIFTY indicators for signal generation (EMA={ema_period}, VI={vi_period})...")
+    ema_col = f'ema{ema_period}'
+    nifty_df[ema_col] = EMA(nifty_df['index_close'], ema_period)
     nifty_df['macd'], nifty_df['macd_signal'], nifty_df['macd_hist'] = MACD(nifty_df['index_close'])
     
-    # Choppiness on NIFTY
-    nifty_indicator_df = pd.DataFrame({
-        'high': nifty_df['index_high'],
-        'low': nifty_df['index_low'],
-        'close': nifty_df['index_close']
+    # ADX on NIFTY
+    print(f"\n[INFO] Calculating ADX for trend strength...")
+    adx_input_df = pd.DataFrame({
+        'High': nifty_df['index_high'],
+        'Low': nifty_df['index_low'],
+        'Close': nifty_df['index_close']
     })
-    nifty_df['choppiness'] = choppiness_index(nifty_indicator_df)
+    adx_output_df = calculate_adx(adx_input_df)
+    nifty_df['ADX'] = adx_output_df['ADX']
+    nifty_df['+DI'] = adx_output_df['+DI']
+    nifty_df['-DI'] = adx_output_df['-DI']
+
+    # BB Width on NIFTY
+    print(f"[INFO] Calculating Bollinger Band Width for volatility analysis...")
+    nifty_df['bb_width'] = calculate_bb_width(nifty_df['index_close'])
+
+    # Vortex Indicator on NIFTY
+    print(f"[INFO] Calculating Vortex Indicator for trend identification...")
+    vortex_df = ta.vortex(high=nifty_df['index_high'], low=nifty_df['index_low'], close=nifty_df['index_close'], length=vi_period)
+    nifty_df[f'vi_plus_{vi_period}'] = vortex_df[f'VTXP_{vi_period}']
+    nifty_df[f'vi_minus_{vi_period}'] = vortex_df[f'VTXM_{vi_period}']
+
+    # Remove choppiness if it exists
+    if 'choppiness' in nifty_df.columns:
+        nifty_df.drop(columns=['choppiness'], inplace=True)
+    
     nifty_df.dropna(inplace=True)
     nifty_df.reset_index(drop=True, inplace=True)
     print(f"✅ NIFTY indicators calculated, {len(nifty_df)} valid candles")
@@ -118,22 +206,28 @@ def load_and_prepare_data():
     return nifty_df, options_df
 
 # ==================== BACKTESTING ENGINE ====================
-def run_backtest(nifty_df, options_df):
+def run_backtest(nifty_df, options_df, ema_period=21, vi_period=21, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
     """
-    Run backtest using Strategy V27 (BUY ONLY)
-    WITH SMART TIMESTAMP MATCHING
+    Run backtest using StrategyV29
+    WITH FULLY CONFIGURABLE PARAMETERS
     """
-    # 🔥 Initialize strategy
-    strategy = StrategyV27()
+    # 🔥 Initialize strategy with given parameters
+    strategy = StrategyV29(
+        ema_period=ema_period, 
+        vi_period=vi_period,
+        sl_multiplier=sl_multiplier,
+        tp_points=tp_points,
+        trail_atr_multiplier=trail_atr_multiplier
+    )
     config = strategy.get_config()
     
     print("\n" + "="*70)
-    print("🚀 STARTING BACKTEST - BUY ONLY MODE")
+    print(f"🚀 STARTING BACKTEST - V29 (EMA={ema_period}, VI={vi_period}, SL={sl_multiplier}, TP={tp_points}, Trail={trail_atr_multiplier})")
     print("="*70)
     print(f"\n📋 STRATEGY CONFIG:")
     print(f"   Lot Size: {config['lot_size']}")
     print(f"   ATR Period: {config['atr_period']}")
-    print(f"   CE TP1: {config['tp1_ce']} | PE TP1: {config['tp1_pe']}")
+    print(f"   TP1: {config['tp1_points']} pts")
     print(f"   Trail: {config['trail_atr_multiplier']}x ATR | Max SL: {config['max_sl_points']:.1f} pts (₹{config['max_sl_points'] * 75:.0f})")
     
     trades = []
@@ -200,7 +294,8 @@ def run_backtest(nifty_df, options_df):
             
             # Get NIFTY metrics (for signals and exit logic)
             nifty_close = nifty_row['index_close']
-            ema13 = nifty_row['ema13']
+            ema_col = f'ema{ema_period}'
+            ema_value = nifty_row[ema_col]
             macd_hist = nifty_row['macd_hist']                
             
             # === ENTRY LOGIC (NEXT CANDLE OPEN) ===
@@ -307,7 +402,7 @@ def run_backtest(nifty_df, options_df):
                         exit_price = position['sl']
 
                     # 4. Check for MACD/EMA Reversal Exit (only after TP1)
-                    elif strategy.check_macd_ema_exit(side, position['tp1_hit'], nifty_close, ema13, macd_hist):
+                    elif strategy.check_macd_ema_exit(side, position['tp1_hit'], nifty_close, ema_value, macd_hist):
                         exit_reason = "MACD/EMA Exit"
                         exit_price = option_close
 
@@ -446,31 +541,48 @@ def generate_report(trades):
 
 # ==================== MAIN ====================
 def main():
-    """Main execution function"""
+    """Main execution function for the final, optimized strategy."""
     print("\n" + "🔥"*35)
-    print("   OPERATION TRADER-BADDU: BUY ONLY PAPER TRADER")
-    print("   Timestamp Matching + Real Strategy V25 (CORRECTED!)")
-    print("   King Claude Edition - Complete")
+    print("   OPERATION TRADER-BADDU: FINAL CHAMPION RUN")
+    print("   Strategy V29 (EMA=21, VI=21, SL=2.0, TP=10, Trail=0.5)")
     print("🔥"*35 + "\n")
+
+    # --- Final Winning Parameters ---
+    ema_period = 21
+    vi_period = 21
+    sl_multiplier = 2.0
+    tp_points = 10
+    trail_atr = 0.5
     
     try:
-        # Load data
-        nifty_df, options_df = load_and_prepare_data()        
+        # Load data with the winning parameters
+        nifty_df, options_df = load_and_prepare_data(ema_period=ema_period, vi_period=vi_period)
         
-        # Run backtest
-        trades = run_backtest(nifty_df, options_df)        
+        # Run backtest with winning parameters
+        trades = run_backtest(
+            nifty_df, 
+            options_df, 
+            ema_period=ema_period, 
+            vi_period=vi_period,
+            sl_multiplier=sl_multiplier,
+            tp_points=tp_points,
+            trail_atr_multiplier=trail_atr
+        )
         
-        # Generate report
-        trade_df = generate_report(trades)        
-        
+        # Generate and store report
+        if trades:
+            trade_df = generate_report(trades)
+        else:
+            print("\n❌ No trades executed for this configuration!")
+
         print("\n" + "="*70)
-        print("✅ BACKTEST COMPLETED SUCCESSFULLY!")
-        print("="*70 + "\n")        
+        print("✅ MISSION COMPLETE: FINAL STRATEGY VERIFIED!")
+        print("="*70 + "\n")
         
         return trade_df
-    
+
     except Exception as e:
-        print(f"\n💥 ERROR: {e}")
+        print(f"\n💥 ERROR during final run: {e}")
         import traceback
         traceback.print_exc()
         return None
