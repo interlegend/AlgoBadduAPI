@@ -1,30 +1,9 @@
-# Mission Log: Session Debrief
-
-This document summarizes the actions and solutions executed by Agent Goku (CLI) under the command of King Gemini.
-
-## 1. Intelligence Assimilation
-
--   **Action:** Read and assimilated all mission-critical documents from the `memoryfiles` directory, including `GEMINI.md`, `all_instruments_master.md`, and `dhan_tradehull_memory.md`.
--   **Outcome:** Gained full context of Phase 2 objectives, repository structure, and known data risks (e.g., `SEM_EXPIRY_DATE` as string).
-
-## 2. Problem: Critical `KeyError: 'INDEX'` Bug
-
--   **Symptom:** The system was failing with a `KeyError` and `DH-905` error when trying to fetch NIFTY index data.
--   **Diagnosis:** The `data_fetcher.py` script was incorrectly passing `exchange='INDEX'` to the underlying SDK, which expects `exchange='NSE'` for index data.
--   **Action:** Surgically modified the `get_index_ohlc` function in `data_fetcher.py` to use the correct `exchange='NSE'` parameter.
--   **Outcome:** The root cause of the data fetching error was eliminated, hardening the function for all index types.
-
-## 3. Problem: Scattered Configuration & Brittle File Paths
-
--   **Symptom:** Core configuration (`ALIAS_MAP`) was located in an operational file (`order_manager.py`), and the instrument file path logic was not robust.
--   **Diagnosis:** This posed a risk for future maintenance and could lead to errors if scripts were run from different directories.
--   **Actions & Outcomes:**
-    1.  **Centralized Configuration:** The `ALIAS_MAP` dictionary was moved from `order_manager.py` to the central `config.py` file.
-    2.  **Updated Imports:** `order_manager.py` and `data_fetcher.py` were refactored to import `ALIAS_MAP` from its new, single source of truth.
-    3.  **Hardened File Paths:** The `_latest_instrument_csv` function in `order_manager.py` was rewritten to be location-aware. It now robustly finds the `Dependencies/all_instrument*.csv` file by calculating the path relative to the project root, making it immune to changes in the current working directory.
-
-## 4. Knowledge Transfer: `step` vs. `lot_size`
-
--   **Query:** The Commander questioned the meaning of the `step` value in the `ALIAS_MAP`.
--   **Action:** Clarified that `step` represents the **option strike price interval** (e.g., 50 for NIFTY, 100 for BANKNIFTY) and is used to calculate the ATM strike. It is distinct from `LOT_SIZE`.
--   **Outcome:** Ensured full understanding of the system's configuration parameters.
+📖 GEMINI AGENT KNOWLEDGE BASE: OPERATION TRADER-BADDU (V30 CHAMPION)📌 1. PROJECT STATUS: V30 - OPTIMAL STRATEGY CONFIRMEDProject Name: Operation Trader-Baddu (NIFTY Options Scalping Bot).Goal: Achieve high-probability, automated trading.Current Status: Phase 3: Live Forward Paper Trading Implementation.Next Phase (Phase 4): Live Deployment (Actual Money). We are NOT there yet.🥇 Strategy Champion: StrategyV30MetricStrategy V30 Stats (Confirmed)Win Rate65.92% (S-Class Reliability)Total Trades672 (Increased Volume +44.5%)Total P&L (Gross)₹202,280.25 (Gross)Max Drawdown₹-9,555.75 (Ultra-Low Risk)MACD Fix:The MACD Histogram filter was REMOVED from the entry logic.🛠️ Key Architectural FactsBacktest Execution Fix: Entry execution is fixed to Next Candle Open (300s slippage confirmed). This must be mirrored in the live code.Codebase Focus: All development is centered in the Phase-3/ folder.Strategy File: The core logic is in strategy_v30.py. The live framework must import and use this file.Transaction Costs: IGNORE the transaction cost task for now. It will be implemented post-Phase 3.🔌 2. LIVE INTEGRATION ENVIRONMENT (UPSTOX)API Provider: Upstox Open API. (CRITICAL RESOURCE)Data Handling: Uses Websockets for live Nifty data (often Protobuf encoded) and REST API for quotes/orders.📁 Phase-3 Folder Fileslive_trader_main.py: The main runner. Must handle the loop and dashboard printing.live_data_streamer.py: Handles Upstox Websocket connection, decoding, and candle aggregation.atm_selector.py: Logic for dynamically finding the At-The-Money strike price.paper_order_manager.py: Handles simulated order placement.🚀 THE FINAL MISSION PROMPT: PHASE 3 GOHAN MODE🟢 SYSTEM OVERRIDE: PHASE 3 LIVE DEPLOYMENT & VISUALS (TITAN MODE)⚠️ OPERATIONAL STATUS: LIVE FORWARD TESTING SETUPAUTHORIZATION: YOLO MODE ENABLED (Search, Edit, Run, Fix, NO INTERRUPTIONS)PROJECT: OPERATION TRADER-BADDU (Strategy V30)🏆 PART 1: PRIORITY & CONSTRAINTSSTRICT FOCUS: IGNORE all tasks related to the final Transaction Cost audit (Phase 2 backtest). We are focused on Phase 3 Live Forward Paper Trading.STRATEGY UPGRADE: Ensure all Phase-3 files import and use strategy_v30.py.EXECUTION: The code must run continuously, connecting to the Upstox Websocket, processing data, and printing live status.🛠️ PART 2: UPSTOX INTEGRATION & VISUAL DEBUGGING🌐 TASK 1: UPSTOX API DOCUMENTATION SEARCH (CRITICAL)Use the Web Search tool to find the specific Python library methods/API endpoints from the official documentation. This is the most important piece of information.Base URL (MANDATORY): https://upstox.com/developer/api-documentation/open-api/Search Queries: Find the specific methods for:Real-time LTP/Quote: To get the current Nifty price.Websocket Connection: To subscribe to the Nifty 5-minute stream (or aggregate from 1-min ticks).Order Placement: To trigger paper_order_manager.py.👁️ TASK 2: BUILD THE CONSOLE HEARTBEAT (THE VISUAL ENGINE)Target File: live_trader_main.py (or the main loop controller).Action: Inject code to print a clear, formatted debug dashboard every 5 minutes when a new candle closes.The Heartbeat Must Display:Current ATM Strike Verification: The bot must call the Upstox API (via live_data_streamer) for the live Nifty price, then call atm_selector.py to determine the correct ATM Strike CE/PE. Print both the Nifty Price and the calculated strike.Live 5-Min Candle: The O, H, L, C values of the newly closed 5-minute Nifty candle.Indicator & Signal Status: The values of the Vortex (VI+ / VI-) and EMA (21) for the last closed candle, followed by the output of strategy_v30.check_entry_signal() (i.e., [✅ BUY_CE DETECTED!] or [WAITING...]).Required Console Output Format (Must be easily legible):Plaintext======================= LIVE ALGO HEARTBEAT V30 =======================
+⏰ TIME: [Current Nifty Candle Close Time]
+💰 NIFTY SPOT: [Live LTP from Upstox] | 🎯 ATM: [Strike CE/PE from atm_selector]
+-----------------------------------------------------------------------
+🕯️ LAST 5-MIN BAR: O:[Open] H:[High] L:[Low] C:[Close] Vol:[Volume]
+📊 INDICATORS: EMA(21): [EMA Value] | Vortex: [VI_Plus] / [VI_Minus]
+🚥 SIGNAL CHECK: [✅ BUY_PE Detected] or [WAITING. Max Drawdown: ₹-9555]
+=======================================================================
+🧠 TASK 3: V30 INTEGRATION & NEXT CANDLE LOGIC (LIVE)Target Files: live_signal_scanner.py, live_trader_main.py.Action: Ensure that the sequence remains: Signal confirmed on 5-min close -> Place Paper Order immediately (which achieves the Next Candle Open entry).🚀 PART 4: THE EXECUTION SEQUENCEYour Loop Order:Perform Web Search for Upstox API endpoints.Integrate strategy_v30 into all Phase-3 files.Implement the Console Heartbeat and ATM Check logic (Tasks 2 & 3).Run the live_trader_main.py (The main execution file in Phase-3) and ensure the console dashboard is working.REPORT the successful deployment of the Console Heartbeat.GO![END OF PROMPT]

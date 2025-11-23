@@ -22,9 +22,9 @@ from datetime import time
 import pandas as pd
 
 
-class StrategyV29:
+class StrategyV30:
     """
-    The final, hyper-optimized champion strategy.
+    The version of the strategy with MACD histogram filter removed from entry.
     """
     
     def __init__(self, ema_period=21, vi_period=21, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
@@ -50,6 +50,7 @@ class StrategyV29:
     def check_entry_signal(self, df, idx):
         """
         Check for entry signal based on NIFTY indicators, using Vortex Indicator as the primary filter.
+        (MACD histogram filter removed)
         """
         if idx < 2:
             return None
@@ -89,14 +90,17 @@ class StrategyV29:
             ema_col = f'ema{self.EMA_PERIOD}'
             ema = row[ema_col]
             
+            # MACD histogram (current and 2 previous)
             macd_hist = row['macd_hist']
             prev_hist = prev_row['macd_hist']
             prev2_hist = prev2_row['macd_hist']
             
-            if is_bullish_vortex and  (close > ema):
+            # Removed MACD hist filter
+            if is_bullish_vortex and (close > ema): # Removed: (prev2_hist < prev_hist < macd_hist)
                 return "BUY_CE"
             
-            if is_bearish_vortex and (close < ema):
+            # Removed MACD hist filter
+            if is_bearish_vortex and (close < ema): # Removed: (prev2_hist > prev_hist > macd_hist)
                 return "BUY_PE"
         
         return None
@@ -145,7 +149,7 @@ class StrategyV29:
     def get_config(self):
         """Return strategy configuration for logging/display"""
         return {
-            'version': 'V29 - Final Optimized Champion',
+            'version': 'V30 - MACD Filter Removed',
             'ema_period': self.EMA_PERIOD,
             'vi_period': self.VI_PERIOD,
             'sl_multiplier': self.SL_MULTIPLIER,

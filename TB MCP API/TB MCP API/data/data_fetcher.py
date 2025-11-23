@@ -35,7 +35,7 @@ def build_fyers_client():
 # Fetch OHLC candles using fyers.history
 def get_ohlc(symbol="NSE:NIFTY50-INDEX", resolution="5", days_back=365):
     fyers = build_fyers_client()
-    include_today = False
+    include_today = True
     end_dt = datetime.now().astimezone().replace(hour=15, minute=30, second=0, microsecond=0)
     if not include_today:
         end_dt -= timedelta(days=1)

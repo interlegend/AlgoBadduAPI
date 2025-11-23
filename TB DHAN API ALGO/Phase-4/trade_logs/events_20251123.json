@@ -1,0 +1,74 @@
+[
+  {
+    "timestamp": "2025-11-23T15:20:06.629209",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_PE 25950",
+    "data": {
+      "order_id": "423bd1fb",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:07.871191",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25950",
+    "data": {
+      "order_id": "f2639b41",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:09.437911",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "5b779ab0",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:10.226174",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "f5f42da7",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:10.415896",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "191bf9ea",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:11.137052",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "d09d535e",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:11.727798",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "3cd456d1",
+      "new_sl": "N/A"
+    }
+  },
+  {
+    "timestamp": "2025-11-23T15:20:12.054327",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "bbac72ad",
+      "new_sl": "N/A"
+    }
+  }
+]

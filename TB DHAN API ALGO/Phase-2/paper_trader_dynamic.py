@@ -4,7 +4,7 @@ import pandas as pd
 import pandas_ta as ta
 import numpy as np
 from datetime import datetime, time
-from strategy_v29 import StrategyV29
+from strategy_v30 import StrategyV30
 
 # ==================== INDICATOR FUNCTIONS ====================
 def EMA(series, period):
@@ -212,7 +212,7 @@ def run_backtest(nifty_df, options_df, ema_period=21, vi_period=21, sl_multiplie
     WITH FULLY CONFIGURABLE PARAMETERS
     """
     # 🔥 Initialize strategy with given parameters
-    strategy = StrategyV29(
+    strategy = StrategyV30(
         ema_period=ema_period, 
         vi_period=vi_period,
         sl_multiplier=sl_multiplier,
@@ -544,7 +544,7 @@ def main():
     """Main execution function for the final, optimized strategy."""
     print("\n" + "🔥"*35)
     print("   OPERATION TRADER-BADDU: FINAL CHAMPION RUN")
-    print("   Strategy V29 (EMA=21, VI=21, SL=2.0, TP=10, Trail=0.5)")
+    print("   Strategy V30 (EMA=21, VI=21, SL=2.0, TP=10, Trail=0.5)")
     print("🔥"*35 + "\n")
 
     # --- Final Winning Parameters ---

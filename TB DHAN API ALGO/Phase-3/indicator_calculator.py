@@ -14,16 +14,23 @@ class IndicatorCalculator:
     def __init__(self, buffer_size=100):
         self.buffer_size = buffer_size
         
+        # Data buffers
         self.nifty_buffer = deque(maxlen=buffer_size)
         self.ce_buffer = deque(maxlen=buffer_size)
         self.pe_buffer = deque(maxlen=buffer_size)
         
+        # DataFrames with indicators
+        self.nifty_df = pd.DataFrame()
+        self.ce_df = pd.DataFrame()
+        self.pe_df = pd.DataFrame()
+        
+        # Latest indicator values
         self.nifty_indicators = {}
         self.ce_indicators = {}
         self.pe_indicators = {}
     
     def add_candle(self, instrument_type, candle):
-        """Add new candle to buffer"""
+        """Add new candle to the appropriate buffer"""
         if instrument_type == 'NIFTY':
             self.nifty_buffer.append(candle)
         elif instrument_type == 'CE':
@@ -32,8 +39,8 @@ class IndicatorCalculator:
             self.pe_buffer.append(candle)
     
     def _buffer_to_df(self, buffer):
-        """Convert buffer to pandas DataFrame"""
-        if len(buffer) == 0:
+        """Convert a deque buffer to a pandas DataFrame"""
+        if not buffer:
             return pd.DataFrame()
         
         df = pd.DataFrame(list(buffer))
@@ -45,7 +52,7 @@ class IndicatorCalculator:
         return series.ewm(span=period, adjust=False).mean()
     
     def MACD(self, series, fast=12, slow=26, signal=9):
-        """Calculate MACD, Signal, and Histogram"""
+        """Calculate MACD, Signal line, and Histogram"""
         ema_fast = self.EMA(series, fast)
         ema_slow = self.EMA(series, slow)
         macd = ema_fast - ema_slow
@@ -55,55 +62,55 @@ class IndicatorCalculator:
     
     def ATR(self, high, low, close, period=7):
         """Calculate Average True Range"""
-        high_low = high - low
-        high_close = np.abs(high - close.shift())
-        low_close = np.abs(low - close.shift())
-        ranges = pd.concat([high_low, high_close, low_close], axis=1)
-        true_range = ranges.max(axis=1)
-        return true_range.rolling(period).mean()
-    
-    def choppiness_index(self, high, low, close, period=14):
-        """Calculate Choppiness Index"""
-        high_low = high - low
-        high_close = np.abs(high - close.shift())
-        low_close = np.abs(low - close.shift())
-        ranges = pd.concat([high_low, high_close, low_close], axis=1)
-        tr = ranges.max(axis=1)
-        
+        tr1 = high - low
+        tr2 = np.abs(high - close.shift())
+        tr3 = np.abs(low - close.shift())
+        tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+        return tr.rolling(period).mean()
+
+    def Vortex(self, high, low, close, period=21):
+        """Calculate Vortex Indicator (VI+ and VI-)"""
+        tr = pd.concat([high - low, np.abs(high - close.shift()), np.abs(low - close.shift())], axis=1).max(axis=1)
         atr_sum = tr.rolling(window=period).sum()
-        hh = high.rolling(window=period).max()
-        ll = low.rolling(window=period).min()
-        ci = 100 * np.log10(atr_sum / (hh - ll)) / np.log10(period)
-        return ci
-    
+
+        vm_plus = np.abs(high - low.shift())
+        vm_minus = np.abs(low - high.shift())
+
+        vi_plus = vm_plus.rolling(window=period).sum() / atr_sum
+        vi_minus = vm_minus.rolling(window=period).sum() / atr_sum
+
+        return vi_plus, vi_minus
+
     def calculate_nifty_indicators(self):
-        """Calculate indicators for NIFTY index"""
+        """Calculate all required indicators for the NIFTY index"""
         if len(self.nifty_buffer) < 30:
-            logger.warning(f"⚠️  Not enough NIFTY candles: {len(self.nifty_buffer)}/30")
+            logger.debug(f"Not enough NIFTY candles to calculate indicators: {len(self.nifty_buffer)}/{30}")
             return False
         
         df = self._buffer_to_df(self.nifty_buffer)
         
+        # Calculate indicators
         df['ema21'] = self.EMA(df['close'], 21)
         df['macd'], df['macd_signal'], df['macd_hist'] = self.MACD(df['close'])
-        df['choppiness'] = self.choppiness_index(df['high'], df['low'], df['close'])
+        df['vi_plus_21'], df['vi_minus_21'] = self.Vortex(df['high'], df['low'], df['close'], 21)
         
+        # Store the full DataFrame
+        self.nifty_df = df
+        
+        # Store latest indicator values for quick access
         latest = df.iloc[-1]
-        
         self.nifty_indicators = {
             'close': latest['close'],
             'ema21': latest['ema21'],
-            'macd': latest['macd'],
-            'macd_signal': latest['macd_signal'],
-            'macd_hist': latest['macd_hist'],
-            'choppiness': latest['choppiness'],
+            'vi_plus': latest['vi_plus_21'],
+            'vi_minus': latest['vi_minus_21'],
             'timestamp': latest['timestamp']
         }
         
         return True
     
     def calculate_option_indicators(self, option_type):
-        """Calculate indicators for CE or PE options"""
+        """Calculate all required indicators for CE or PE options"""
         buffer = self.ce_buffer if option_type == 'CE' else self.pe_buffer
         
         if len(buffer) < 10:
@@ -111,10 +118,17 @@ class IndicatorCalculator:
         
         df = self._buffer_to_df(buffer)
         
+        # Calculate indicators
         df['atr'] = self.ATR(df['high'], df['low'], df['close'], period=7)
         
-        latest = df.iloc[-1]
+        # Store the full DataFrame
+        if option_type == 'CE':
+            self.ce_df = df
+        else:
+            self.pe_df = df
         
+        # Store latest indicator values
+        latest = df.iloc[-1]
         indicators = {
             'close': latest['close'],
             'high': latest['high'],
@@ -131,18 +145,23 @@ class IndicatorCalculator:
         return True
     
     def get_nifty_indicators(self):
-        """Get current NIFTY indicators"""
+        """Get the latest NIFTY indicators as a dictionary"""
         return self.nifty_indicators
-    
+        
+    def get_nifty_data(self):
+        """Get the entire NIFTY DataFrame"""
+        return self.nifty_df
+
     def get_option_indicators(self, option_type):
-        """Get current option indicators"""
-        if option_type == 'CE':
-            return self.ce_indicators
-        else:
-            return self.pe_indicators
-    
+        """Get the latest option indicators as a dictionary"""
+        return self.ce_indicators if option_type == 'CE' else self.pe_indicators
+
+    def get_option_data(self, option_type):
+        """Get the entire option DataFrame"""
+        return self.ce_df if option_type == 'CE' else self.pe_df
+
     def get_buffer_status(self):
-        """Get status of all buffers"""
+        """Get the current size of all data buffers"""
         return {
             'nifty': len(self.nifty_buffer),
             'ce': len(self.ce_buffer),
