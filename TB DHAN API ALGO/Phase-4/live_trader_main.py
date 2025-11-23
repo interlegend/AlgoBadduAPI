@@ -1,6 +1,7 @@
 """
-LIVE TRADER MAIN - V4 (True Data Matrix Replay)
+LIVE TRADER MAIN - FIXED VERSION
 Main orchestrator for Phase 4 Simulation
+IMPLEMENTS: T+1 Execution, Full Candle Data, Proper Warmup
 """
 
 import os
@@ -12,10 +13,6 @@ import time as time_module
 import signal
 import pandas as pd
 import threading
-
-# Add parent directories to path
-# sys.path.append(r'C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-2') # Removed to ensure local Phase-4 modules are used
-sys.path.append(r'C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\UPSTOX-API')
 
 # Import all components
 from config_live import *
@@ -57,11 +54,21 @@ class LiveTraderMain:
         self.upstox_api = None
         
         self.strategy = StrategyV30()
-        self.indicator_calculator = IndicatorCalculator(buffer_size=CANDLE_BUFFER_SIZE, strategy_params=self.strategy.get_config())
+        self.indicator_calculator = IndicatorCalculator(
+            buffer_size=CANDLE_BUFFER_SIZE, 
+            strategy_params=self.strategy.get_config()
+        )
         self.position_tracker = PositionTracker()
         self.trade_logger = TradeLogger(TRADE_LOG_DIR)
-        self.paper_order_manager = PaperOrderManager(self.strategy, self.position_tracker, self.trade_logger)
-        self.signal_scanner = LiveSignalScanner(self.indicator_calculator)
+        self.paper_order_manager = PaperOrderManager(
+            self.strategy, 
+            self.position_tracker, 
+            self.trade_logger
+        )
+        self.signal_scanner = LiveSignalScanner(
+            self.indicator_calculator,
+            self.position_tracker  # Pass position tracker for flatness check
+        )
         self.data_streamer = LiveDataStreamer(
             access_token=self.access_token,
             instrument_keys={'nifty': NIFTY_INDEX_KEY, 'ce': '', 'pe': ''},
@@ -108,7 +115,10 @@ class LiveTraderMain:
         return True
 
     def on_candle_closed(self, candle_type):
-        """Callback triggered when a 5-minute candle closes (real or simulated)."""
+        """
+        Callback triggered when a 5-minute candle closes.
+        CRITICAL: Execute pending entries BEFORE scanning for new signals
+        """
         if candle_type != 'NIFTY':
             return
         
@@ -117,60 +127,110 @@ class LiveTraderMain:
             prices = self.data_streamer.get_current_prices()
             self.atm_config['strike'] = prices.get('CE', {}).get('strike_price', 'N/A')
 
-        # Calculate indicators for all instruments
+        # === STEP 1: Calculate indicators for all instruments ===
         self.indicator_calculator.calculate_nifty_indicators()
         self.indicator_calculator.calculate_option_indicators('CE')
         self.indicator_calculator.calculate_option_indicators('PE')
 
-        # Scan for signals
-        signal = self.signal_scanner.on_candle_closed(candle_type)
+        # === STEP 2: Update positions FIRST (execute pending T+1 entries) ===
+        # This ensures position count is correct when scanner checks
+        # Capture if any orders were closed this candle
+        closed_orders = self.update_positions()
+        
+        # === STEP 3: THEN scan for signals (now position count is accurate) ===
+        # STRICT CHECK: Only scan if:
+        # 1. FLAT (No Open Positions)
+        # 2. IDLE (No Pending Signals)
+        # 3. STABLE (No trade closed THIS candle - enforces 1-candle cooldown matching Phase 2)
+        if (self.position_tracker.get_open_position_count() == 0 and 
+            self.paper_order_manager.pending_signal is None and
+            not closed_orders):
+            
+            signal = self.signal_scanner.on_candle_closed(candle_type)
+        else:
+            signal = None
+            
         self.last_signal = signal if signal else "WAITING..."
         
-        # Display dashboard
-        self.display_dashboard()
-        
+        # === STEP 4: Handle signal (queue for T+1 execution) ===
         if signal:
             self.handle_signal(signal)
         
-        self.update_positions()
+        # Display dashboard
+        self.display_dashboard()
 
     def handle_signal(self, signal):
-        """Handle an entry signal by creating a paper order."""
+        """
+        Handle an entry signal by queuing it for T+1 execution.
+        FIXED: Passes signal_time to paper_order_manager + logs signal
+        """
         logger.info(f"🚥 HANDLING SIGNAL: {signal}")
-        prices = self.data_streamer.get_current_prices()
-        nifty_indicators = self.indicator_calculator.get_nifty_indicators()
         
-        option_side = signal.split('_')[1]
-        option_price = prices.get(option_side, {}).get('ltp', 0)
-        option_atr = self.indicator_calculator.get_option_indicators(option_side).get('atr', 0)
-
-        if option_price > 0 and option_atr > 0:
-            self.paper_order_manager.create_paper_order(
-                signal=signal,
-                option_price=option_price,
-                option_atr=option_atr,
-                strike=self.atm_config.get('strike'),
-                signal_time=nifty_indicators.get('timestamp')
-            )
-        else:
-            logger.warning(f"Could not create order for {signal} due to missing price/ATR data.")
+        nifty_indicators = self.indicator_calculator.get_nifty_indicators()
+        signal_time = nifty_indicators.get('timestamp')
+        
+        # Log the signal for tracking
+        prices = self.data_streamer.get_current_prices()
+        option_side = signal.split('_')[1]  # 'CE' or 'PE'
+        option_ltp = prices.get(option_side, {}).get('ltp', 0)
+        
+        self.trade_logger.log_signal(
+            timestamp=signal_time,
+            side=signal,
+            nifty_close=nifty_indicators.get('close', 0),
+            ema21=nifty_indicators.get(f'ema{self.strategy.EMA_PERIOD}', 0),
+            macd_hist=nifty_indicators.get('macd_hist', 0),
+            choppiness=0,  # Not used in V30
+            option_ltp=option_ltp,
+            strike=self.atm_config.get('strike', 'N/A')
+        )
+        
+        # Queue signal for T+1 execution (next candle)
+        self.paper_order_manager.on_signal_detected(signal, signal_time)
 
     def update_positions(self):
-        """Update P&L for open positions using the historical timestamp."""
+        """
+        Update P&L for open positions and execute pending T+1 orders.
+        CRITICAL FIX: Now passes FULL candle data (open, high, low, close, atr, strike_price)
+        """
         prices = self.data_streamer.get_current_prices()
         nifty_indicators = self.indicator_calculator.get_nifty_indicators()
+        current_time = nifty_indicators.get('timestamp')
         
-        self.paper_order_manager.update_positions(
-            ce_price=prices.get('CE', {}).get('ltp', 0),
-            pe_price=prices.get('PE', {}).get('ltp', 0),
-            ce_high=prices.get('CE', {}).get('high', 0),
-            pe_high=prices.get('PE', {}).get('high', 0),
+        # === BUILD FULL CANDLE DATA (Required for T+1 execution) ===
+        ce_data = {
+            'open': prices.get('CE', {}).get('open', 0),
+            'close': prices.get('CE', {}).get('close', 0),
+            'high': prices.get('CE', {}).get('high', 0),
+            'low': prices.get('CE', {}).get('low', 0),
+            'atr': self.indicator_calculator.get_option_indicators('CE').get('atr', 0),
+            'strike_price': prices.get('CE', {}).get('strike_price', 'N/A')
+        }
+        
+        pe_data = {
+            'open': prices.get('PE', {}).get('open', 0),
+            'close': prices.get('PE', {}).get('close', 0),
+            'high': prices.get('PE', {}).get('high', 0),
+            'low': prices.get('PE', {}).get('low', 0),
+            'atr': self.indicator_calculator.get_option_indicators('PE').get('atr', 0),
+            'strike_price': prices.get('PE', {}).get('strike_price', 'N/A')
+        }
+        
+        # === CRITICAL: Pass FULL candle data to update_positions ===
+        # MUST RETURN the closed orders list for the scanner check!
+        return self.paper_order_manager.update_positions(
+            ce_price=ce_data['close'],
+            pe_price=pe_data['close'],
+            ce_high=ce_data['high'],
+            pe_high=pe_data['high'],
+            ce_data=ce_data,  # ✅ FULL candle data for T+1 execution
+            pe_data=pe_data,  # ✅ FULL candle data for T+1 execution
             nifty_indicators=nifty_indicators,
-            current_candle_time=nifty_indicators.get('timestamp')
+            current_candle_time=current_time
         )
 
     def display_dashboard(self):
-        # os.system('cls' if os.name == 'nt' else 'clear')
+        """Display live trading dashboard"""
         prices = self.data_streamer.get_current_prices()
         spot_price = prices.get('NIFTY', {}).get('ltp', 0.0)
         atm_strike = self.atm_config.get('strike', 'N/A')
@@ -219,7 +279,7 @@ class LiveTraderMain:
             print("📊 INDICATORS: Not yet calculated.")
         else:
             ema_period = self.strategy.get_config().get('ema_period', 21)
-            vi_period = self.strategy.get_config().get('vi_period', 14)
+            vi_period = self.strategy.get_config().get('vi_period', 21)
             ema_key = f'ema{ema_period}'
             vi_plus_key = f'vi_plus_{vi_period}'
             vi_minus_key = f'vi_minus_{vi_period}'
@@ -227,6 +287,11 @@ class LiveTraderMain:
             print(f"📊 INDICATORS: EMA({ema_period}): {nifty_indicators.get(ema_key, 0.0):.2f} | Vortex: {nifty_indicators.get(vi_plus_key, 0.0):.4f} / {nifty_indicators.get(vi_minus_key, 0.0):.4f}")
         
         print(f"🚥 SIGNAL CHECK: {self.last_signal}")
+        
+        # Display pending T+1 signal if exists
+        if self.paper_order_manager.pending_signal:
+            print(f"⏳ PENDING T+1 ORDER: {self.paper_order_manager.pending_signal}")
+        
         print("=============================================================================")
 
     def start_trading_session(self):
@@ -240,7 +305,7 @@ class LiveTraderMain:
         self.running = True
         logger.info("✅ Entering main execution loop. Waiting for market data...")
         
-        prices = {} # Define prices here to ensure it's available in finally block
+        prices = {}
         try:
             # In MOCK mode, the streamer controls the loop timing.
             # In LIVE mode, this loop keeps the main thread alive.
@@ -251,7 +316,6 @@ class LiveTraderMain:
                     pulse_msg = f"⏳ Waiting for 5-min candle close... | Signal: {self.last_signal} | NIFTY LTP: {spot:.2f}"
                     print(pulse_msg, end='\r')
                 
-                # The mock streamer has its own delay, so a short sleep here is fine
                 time_module.sleep(0.1)
 
         except KeyboardInterrupt:
@@ -285,8 +349,8 @@ class LiveTraderMain:
         if MODE == "LIVE":
             if not self.initialize_components_live():
                 return
-        # No special init needed for MOCK, components are ready
         self.start_trading_session()
+
 
 def main():
     """Main function to run the application."""
@@ -307,6 +371,7 @@ def main():
     print("\n" + "="*70)
     print("✅ TRADER-BADDU SESSION ENDED")
     print("="*70 + "\n")
+
 
 if __name__ == "__main__":
     main()

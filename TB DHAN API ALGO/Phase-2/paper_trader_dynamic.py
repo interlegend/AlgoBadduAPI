@@ -1,4 +1,5 @@
 #TRADER BADDU:D
+#PAPERTRADERDYNAMIC.py
 import os
 import pandas as pd
 import pandas_ta as ta

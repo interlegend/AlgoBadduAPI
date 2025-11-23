@@ -44,7 +44,7 @@ class StrategyV30:
         
         # === TIME WINDOWS ===
         self.ENTRY_START = time(9, 30)
-        self.ENTRY_END = time(14, 30)
+        self.ENTRY_END = time(15, 10)
         self.EOD_EXIT_TIME = time(15, 25)
     
     def check_entry_signal(self, df, idx):

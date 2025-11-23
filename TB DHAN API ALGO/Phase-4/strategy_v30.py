@@ -14,8 +14,9 @@ class StrategyV30:
         self.LOT_SIZE = 75
         self.ATR_PERIOD = 14
         self.MAX_SL_POINTS = 26.67
-        self.ENTRY_START = time(9, 30)  # Matched to Phase 2
-        self.ENTRY_END = time(14, 30)
+        # === TIME WINDOWS ===
+        self.ENTRY_START = time(9, 30)
+        self.ENTRY_END = time(15, 10)
         self.EOD_EXIT_TIME = time(15, 25)
 
     def check_entry_signal(self, df, idx):
@@ -56,7 +57,16 @@ class StrategyV30:
                 is_bearish_vortex = True
         
         ema_val = row[f'ema{self.EMA_PERIOD}']
-        close = row['close']
+        if is_bullish_vortex or is_bearish_vortex:
+            # Handle column name differences between Phase 2 (index_close) and Phase 4 (close)
+            close_col = 'index_close' if 'index_close' in row else 'close'
+            close = row[close_col]
+            
+            ema_col = f'ema{self.EMA_PERIOD}'
+            ema = row[ema_col]
+            
+            # MACD histogram (current and 2 previous)
+            macd_hist = row['macd_hist']
 
         if is_bullish_vortex and (close > ema_val):
             return "BUY_CE"
