@@ -1,4 +1,0 @@
-Paper Trading Summary:
-        - Total Trades: 21
-        - Net PnL: 6012.75
-        - Win Rate: 76.19%
