@@ -395,16 +395,33 @@ def run_backtest(nifty_df, options_df, ema_period=21, vi_period=21, sl_multiplie
                     # 1. Update highest price reached
                     position['highest'] = max(position.get('highest', option_high), option_high)
 
-                    # 2. Check for TP1 Hit and set profit-lock
+                    # --- STAGE 1: SAFETY (Hit TP1 -> Secure +5) ---
                     if not position['tp1_hit'] and strategy.check_tp1_hit(side, option_high, position['tp1']):
                         position['tp1_hit'] = True
-                        # Use the new optimized trailing SL of +13 for both!
-                        position['sl'] = round(entry_price + 13, 2)
-                        print(f"✅ TP1 HIT! {side} SL locked to {position['sl']:.2f}")
+                        position['sl'] = round(entry_price + 5.0, 2)
+                        position['sl_type'] = "Safe SL"
+                        print(f"✅ TP1 HIT! {side} SL moved to Safe Zone (+5 pts) at {position['sl']:.2f}")
+
+                    # --- STAGE 2: LOCK-IN (Hit +15 -> Secure +10) ---
+                    if position['tp1_hit'] and option_high >= (entry_price + 15.0):
+                        new_sl = round(entry_price + 10.0, 2)
+                        if new_sl > position['sl']:
+                            position['sl'] = new_sl
+                            position['sl_type'] = "Locked Profit"
+                            print(f"🔒 LOCKED! {side} SL moved to Locked Profit (+10 pts) at {position['sl']:.2f}")
+
+                    # --- STAGE 3: MOONSHOT (Hit +25 -> ATR Trail) ---
+                    if position['tp1_hit'] and option_high >= (entry_price + 25.0):
+                        # Calculate dynamic trail: Current High - (1.5 * ATR)
+                        atr_trail = round(option_high - (1.5 * position['option_atr']), 2)
+                        if atr_trail > position['sl']:
+                            position['sl'] = atr_trail
+                            position['sl_type'] = "ATR Trail"
+                            print(f"🚀 MOONSHOT! {side} SL trailed via ATR to {position['sl']:.2f}")
 
                     # 3. Check for Stop Loss Hit
                     if strategy.check_sl_hit(side, option_close, position['sl']):
-                        exit_reason = "SL Hit"
+                        exit_reason = f"{position.get('sl_type', 'SL')} Hit"
                         exit_price = position['sl']
 
                     # 4. Check for MACD/EMA Reversal Exit (only after TP1)
