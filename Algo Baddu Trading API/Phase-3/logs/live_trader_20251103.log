@@ -1,0 +1,329 @@
+2025-11-03 13:48:45,533 | INFO | ======================================================================
+2025-11-03 13:48:45,533 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-11-03 13:48:45,534 | INFO | ======================================================================
+2025-11-03 13:48:45,543 | INFO | ✅ Access token loaded
+2025-11-03 13:48:45,544 | INFO | 
+======================================================================
+2025-11-03 13:48:45,544 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-11-03 13:48:45,545 | INFO | ======================================================================
+2025-11-03 13:48:45,546 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-11-03 13:48:45,546 | INFO | ======================================================================
+2025-11-03 13:48:45,547 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-11-03 13:48:45,547 | INFO | ======================================================================
+2025-11-03 13:48:45,754 | ERROR | ❌ Failed to get NIFTY spot: {"status":"error","errors":[{"errorCode":"UDAPI100050","message":"Invalid token used to access API","propertyPath":null,"invalidValue":null,"error_code":"UDAPI100050","property_path":null,"invalid_value":null}]}
+2025-11-03 13:48:45,756 | ERROR | ❌ ATM initialization failed!
+2025-11-03 13:51:05,662 | INFO | ======================================================================
+2025-11-03 13:51:05,663 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-11-03 13:51:05,663 | INFO | ======================================================================
+2025-11-03 13:51:05,664 | INFO | ✅ Access token loaded
+2025-11-03 13:51:05,664 | INFO | 
+======================================================================
+2025-11-03 13:51:05,664 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-11-03 13:51:05,665 | INFO | ======================================================================
+2025-11-03 13:51:05,665 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-11-03 13:51:05,665 | INFO | ======================================================================
+2025-11-03 13:51:05,665 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-11-03 13:51:05,665 | INFO | ======================================================================
+2025-11-03 13:51:05,931 | INFO | ✅ NIFTY Spot: 25728.9
+2025-11-03 13:51:05,933 | INFO | 🎯 Spot: 25728.9 → ATM: 25750
+2025-11-03 13:51:06,173 | INFO | 📅 Nearest Expiry: 2025-11-04
+2025-11-03 13:51:06,437 | INFO | ✅ ATM Instruments Found!
+2025-11-03 13:51:06,437 | INFO |    CE: NSE_FO|47668
+2025-11-03 13:51:06,437 | INFO |    PE: NSE_FO|47669
+2025-11-03 13:51:06,438 | INFO | ✅ ATM Selection Complete!
+2025-11-03 13:51:06,439 | INFO |    Strike: 25750
+2025-11-03 13:51:06,439 | INFO |    Expiry: 2025-11-04
+2025-11-03 13:51:06,440 | INFO | ✅ ATM Selector ready
+2025-11-03 13:51:06,440 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-11-03 13:51:06,440 | INFO | ✅ Indicator Calculator ready
+2025-11-03 13:51:06,441 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-11-03 13:51:06,441 | INFO | ✅ Position Tracker ready
+2025-11-03 13:51:06,441 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-11-03 13:51:06,441 | INFO | ✅ Trade Logger ready
+2025-11-03 13:51:06,442 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-11-03 13:51:06,442 | INFO |    Lot Size: 75
+2025-11-03 13:51:06,442 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-11-03 13:51:06,442 | INFO | ✅ Strategy V27 ready
+2025-11-03 13:51:06,442 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-11-03 13:51:06,443 | INFO | ✅ Paper Order Manager ready
+2025-11-03 13:51:06,443 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-11-03 13:51:06,444 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-11-03 13:51:06,444 | INFO | ✅ Signal Scanner ready
+2025-11-03 13:51:06,444 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-11-03 13:51:06,444 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-11-03 13:51:06,444 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-11-03 13:51:06,444 | INFO | ✅ Data Streamer ready
+2025-11-03 13:51:06,445 | INFO | 
+======================================================================
+2025-11-03 13:51:06,445 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-11-03 13:51:06,445 | INFO | ======================================================================
+2025-11-03 13:51:06,445 | INFO | 
+======================================================================
+2025-11-03 13:51:06,446 | INFO | 📊 WARMING UP INDICATORS
+2025-11-03 13:51:06,446 | INFO | ======================================================================
+2025-11-03 13:51:06,447 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-11-03 13:51:06,447 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-11-03 13:51:06,447 | INFO | 
+======================================================================
+2025-11-03 13:51:06,448 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-11-03 13:51:06,448 | INFO | ======================================================================
+2025-11-03 13:51:06,449 | INFO | ======================================================================
+2025-11-03 13:51:06,449 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-11-03 13:51:06,450 | INFO | ======================================================================
+2025-11-03 13:51:06,450 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-11-03 13:51:06,647 | INFO | ✅ WebSocket auth URL received
+2025-11-03 13:51:06,910 | INFO | Websocket connected
+2025-11-03 13:51:06,911 | INFO | 🔓 WebSocket connection opened!
+2025-11-03 13:51:06,912 | INFO | 📡 Subscribing to instruments:
+2025-11-03 13:51:06,912 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-11-03 13:51:06,913 | INFO |    CE:    NSE_FO|47668
+2025-11-03 13:51:06,913 | INFO |    PE:    NSE_FO|47669
+2025-11-03 13:51:06,914 | INFO | ✅ Subscription request sent
+2025-11-03 13:51:06,955 | INFO | ✅ WebSocket connected successfully!
+2025-11-03 13:51:06,956 | INFO | 
+✅ LIVE TRADING SESSION ACTIVE!
+2025-11-03 13:51:06,956 | INFO |    Press Ctrl+C to stop
+
+2025-11-03 13:51:06,957 | ERROR | 
+💥 FATAL ERROR: type object 'datetime.time' has no attribute 'sleep'
+2025-11-03 13:51:06,959 | INFO | 🔌 Disconnecting WebSocket...
+2025-11-03 13:51:06,989 | WARNING | 🔌 WebSocket closed: None - None
+2025-11-03 13:51:06,990 | INFO | ✅ WebSocket disconnected
+2025-11-03 13:54:05,301 | INFO | ======================================================================
+2025-11-03 13:54:05,302 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-11-03 13:54:05,302 | INFO | ======================================================================
+2025-11-03 13:54:05,303 | INFO | ✅ Access token loaded
+2025-11-03 13:54:05,304 | INFO | 
+======================================================================
+2025-11-03 13:54:05,304 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-11-03 13:54:05,304 | INFO | ======================================================================
+2025-11-03 13:54:05,305 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-11-03 13:54:05,305 | INFO | ======================================================================
+2025-11-03 13:54:05,305 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-11-03 13:54:05,305 | INFO | ======================================================================
+2025-11-03 13:54:05,751 | INFO | ✅ NIFTY Spot: 25736.15
+2025-11-03 13:54:05,754 | INFO | 🎯 Spot: 25736.15 → ATM: 25750
+2025-11-03 13:54:06,021 | INFO | 📅 Nearest Expiry: 2025-11-04
+2025-11-03 13:54:06,179 | INFO | ✅ ATM Instruments Found!
+2025-11-03 13:54:06,180 | INFO |    CE: NSE_FO|47668
+2025-11-03 13:54:06,181 | INFO |    PE: NSE_FO|47669
+2025-11-03 13:54:06,182 | INFO | ✅ ATM Selection Complete!
+2025-11-03 13:54:06,182 | INFO |    Strike: 25750
+2025-11-03 13:54:06,183 | INFO |    Expiry: 2025-11-04
+2025-11-03 13:54:06,183 | INFO | ✅ ATM Selector ready
+2025-11-03 13:54:06,183 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-11-03 13:54:06,183 | INFO | ✅ Indicator Calculator ready
+2025-11-03 13:54:06,184 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-11-03 13:54:06,184 | INFO | ✅ Position Tracker ready
+2025-11-03 13:54:06,184 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-11-03 13:54:06,184 | INFO | ✅ Trade Logger ready
+2025-11-03 13:54:06,185 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-11-03 13:54:06,185 | INFO |    Lot Size: 75
+2025-11-03 13:54:06,185 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-11-03 13:54:06,185 | INFO | ✅ Strategy V27 ready
+2025-11-03 13:54:06,185 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-11-03 13:54:06,185 | INFO | ✅ Paper Order Manager ready
+2025-11-03 13:54:06,186 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-11-03 13:54:06,186 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-11-03 13:54:06,186 | INFO | ✅ Signal Scanner ready
+2025-11-03 13:54:06,186 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-11-03 13:54:06,186 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-11-03 13:54:06,186 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-11-03 13:54:06,187 | INFO | ✅ Data Streamer ready
+2025-11-03 13:54:06,187 | INFO | 
+======================================================================
+2025-11-03 13:54:06,187 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-11-03 13:54:06,188 | INFO | ======================================================================
+2025-11-03 13:54:06,188 | INFO | 
+======================================================================
+2025-11-03 13:54:06,188 | INFO | 📊 WARMING UP INDICATORS
+2025-11-03 13:54:06,189 | INFO | ======================================================================
+2025-11-03 13:54:06,189 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-11-03 13:54:06,189 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-11-03 13:54:06,189 | INFO | 
+======================================================================
+2025-11-03 13:54:06,190 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-11-03 13:54:06,190 | INFO | ======================================================================
+2025-11-03 13:54:06,190 | INFO | ======================================================================
+2025-11-03 13:54:06,190 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-11-03 13:54:06,191 | INFO | ======================================================================
+2025-11-03 13:54:06,192 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-11-03 13:54:06,355 | INFO | ✅ WebSocket auth URL received
+2025-11-03 13:54:06,478 | INFO | Websocket connected
+2025-11-03 13:54:06,479 | INFO | 🔓 WebSocket connection opened!
+2025-11-03 13:54:06,480 | INFO | 📡 Subscribing to instruments:
+2025-11-03 13:54:06,481 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-11-03 13:54:06,481 | INFO |    CE:    NSE_FO|47668
+2025-11-03 13:54:06,482 | INFO |    PE:    NSE_FO|47669
+2025-11-03 13:54:06,483 | INFO | ✅ Subscription request sent
+2025-11-03 13:54:06,558 | INFO | ✅ WebSocket connected successfully!
+2025-11-03 13:54:06,559 | INFO | 
+✅ LIVE TRADING SESSION ACTIVE!
+2025-11-03 13:54:06,559 | INFO |    Press Ctrl+C to stop
+
+2025-11-03 14:56:47,352 | ERROR | 💥 WebSocket Error: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-11-03 14:56:47,410 | ERROR | [WinError 10054] An existing connection was forcibly closed by the remote host - goodbye
+2025-11-03 14:56:47,462 | WARNING | 🔌 WebSocket closed: None - None
+2025-11-03 14:56:47,503 | INFO | 🔄 Attempting to reconnect in 5 seconds...
+2025-11-03 14:56:52,526 | INFO | ======================================================================
+2025-11-03 14:56:52,527 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-11-03 14:56:52,528 | INFO | ======================================================================
+2025-11-03 14:56:52,530 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-11-03 14:56:54,446 | INFO | ✅ WebSocket auth URL received
+2025-11-03 14:56:54,654 | INFO | Websocket connected
+2025-11-03 14:56:54,657 | INFO | 🔓 WebSocket connection opened!
+2025-11-03 14:56:54,660 | INFO | 📡 Subscribing to instruments:
+2025-11-03 14:56:54,664 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-11-03 14:56:54,670 | INFO |    CE:    NSE_FO|47668
+2025-11-03 14:56:54,671 | INFO |    PE:    NSE_FO|47669
+2025-11-03 14:56:54,681 | INFO | ✅ WebSocket connected successfully!
+2025-11-03 14:56:54,683 | INFO | ✅ Subscription request sent
+2025-11-03 15:09:37,610 | ERROR | 💥 WebSocket Error: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-11-03 15:09:37,619 | ERROR | [WinError 10054] An existing connection was forcibly closed by the remote host - goodbye
+2025-11-03 15:09:37,628 | WARNING | 🔌 WebSocket closed: None - None
+2025-11-03 15:09:37,632 | INFO | 🔄 Attempting to reconnect in 5 seconds...
+2025-11-03 15:09:42,633 | INFO | ======================================================================
+2025-11-03 15:09:42,634 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-11-03 15:09:42,634 | INFO | ======================================================================
+2025-11-03 15:09:42,635 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-11-03 15:09:42,848 | INFO | ✅ WebSocket auth URL received
+2025-11-03 15:09:43,004 | INFO | Websocket connected
+2025-11-03 15:09:43,004 | INFO | 🔓 WebSocket connection opened!
+2025-11-03 15:09:43,004 | INFO | 📡 Subscribing to instruments:
+2025-11-03 15:09:43,004 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-11-03 15:09:43,005 | INFO |    CE:    NSE_FO|47668
+2025-11-03 15:09:43,005 | INFO |    PE:    NSE_FO|47669
+2025-11-03 15:09:43,005 | INFO | ✅ Subscription request sent
+2025-11-03 15:09:43,052 | INFO | ✅ WebSocket connected successfully!
+2025-11-03 17:18:23,951 | ERROR | 💥 WebSocket Error: [WinError 10054] An existing connection was forcibly closed by the remote host
+2025-11-03 17:18:23,978 | ERROR | [WinError 10054] An existing connection was forcibly closed by the remote host - goodbye
+2025-11-03 17:18:23,979 | INFO | 🔔 Market closed - ending session
+2025-11-03 17:18:23,980 | INFO | 
+======================================================================
+2025-11-03 17:18:23,981 | WARNING | 🔌 WebSocket closed: None - None
+2025-11-03 17:18:23,981 | INFO | 🔌 SHUTTING DOWN TRADING SESSION
+2025-11-03 17:18:23,982 | INFO | 🔄 Attempting to reconnect in 5 seconds...
+2025-11-03 17:18:23,983 | INFO | ======================================================================
+2025-11-03 17:18:23,988 | INFO | 🔌 Disconnecting WebSocket...
+2025-11-03 17:18:23,988 | INFO | ✅ WebSocket disconnected
+2025-11-03 17:18:23,989 | INFO | 
+💾 Saving logs...
+2025-11-03 17:18:24,025 | INFO | ✅ Summary saved to: C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-3\trade_logs\summary_20251103.txt
+2025-11-03 17:18:24,026 | INFO | ✅ All logs saved successfully!
+2025-11-03 17:18:24,027 | INFO | 
+======================================================================
+2025-11-03 17:18:24,027 | INFO | ✅ SHUTDOWN COMPLETE!
+2025-11-03 17:18:24,027 | INFO | ======================================================================
+2025-11-03 20:06:33,102 | INFO | ======================================================================
+2025-11-03 20:06:33,103 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-11-03 20:06:33,103 | INFO | ======================================================================
+2025-11-03 20:06:33,104 | INFO | ✅ Access token loaded
+2025-11-03 20:06:33,104 | INFO | 
+======================================================================
+2025-11-03 20:06:33,105 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-11-03 20:06:33,105 | INFO | ======================================================================
+2025-11-03 20:06:33,105 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-11-03 20:06:33,105 | INFO | ======================================================================
+2025-11-03 20:06:33,106 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-11-03 20:06:33,106 | INFO | ======================================================================
+2025-11-03 20:06:33,399 | INFO | ✅ NIFTY Spot: 25763.35
+2025-11-03 20:06:33,405 | INFO | 🎯 Spot: 25763.35 → ATM: 25750
+2025-11-03 20:06:33,582 | INFO | 📅 Nearest Expiry: 2025-11-04
+2025-11-03 20:06:33,730 | INFO | ✅ ATM Instruments Found!
+2025-11-03 20:06:33,730 | INFO |    CE: NSE_FO|47668
+2025-11-03 20:06:33,731 | INFO |    PE: NSE_FO|47669
+2025-11-03 20:06:33,734 | INFO | ✅ ATM Selection Complete!
+2025-11-03 20:06:33,734 | INFO |    Strike: 25750
+2025-11-03 20:06:33,735 | INFO |    Expiry: 2025-11-04
+2025-11-03 20:06:33,735 | INFO | ✅ ATM Selector ready
+2025-11-03 20:06:33,736 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-11-03 20:06:33,736 | INFO | ✅ Indicator Calculator ready
+2025-11-03 20:06:33,736 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-11-03 20:06:33,737 | INFO | ✅ Position Tracker ready
+2025-11-03 20:06:33,737 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-11-03 20:06:33,738 | INFO | ✅ Trade Logger ready
+2025-11-03 20:06:33,738 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-11-03 20:06:33,738 | INFO |    Lot Size: 75
+2025-11-03 20:06:33,738 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-11-03 20:06:33,739 | INFO | ✅ Strategy V27 ready
+2025-11-03 20:06:33,739 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-11-03 20:06:33,740 | INFO | ✅ Paper Order Manager ready
+2025-11-03 20:06:33,740 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-11-03 20:06:33,740 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-11-03 20:06:33,741 | INFO | ✅ Signal Scanner ready
+2025-11-03 20:06:33,741 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-11-03 20:06:33,741 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-11-03 20:06:33,741 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-11-03 20:06:33,742 | INFO | ✅ Data Streamer ready
+2025-11-03 20:06:33,742 | INFO | 
+======================================================================
+2025-11-03 20:06:33,742 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-11-03 20:06:33,742 | INFO | ======================================================================
+2025-11-03 20:06:33,743 | INFO | 
+======================================================================
+2025-11-03 20:06:33,743 | INFO | 📊 WARMING UP INDICATORS
+2025-11-03 20:06:33,743 | INFO | ======================================================================
+2025-11-03 20:06:33,743 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-11-03 20:06:33,744 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-11-03 20:06:33,744 | INFO | 
+======================================================================
+2025-11-03 20:06:33,744 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-11-03 20:06:33,744 | INFO | ======================================================================
+2025-11-03 20:06:33,744 | INFO | ======================================================================
+2025-11-03 20:06:33,744 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-11-03 20:06:33,745 | INFO | ======================================================================
+2025-11-03 20:06:33,745 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-11-03 20:06:33,897 | INFO | ✅ WebSocket auth URL received
+2025-11-03 20:06:34,035 | INFO | Websocket connected
+2025-11-03 20:06:34,035 | INFO | 🔓 WebSocket connection opened!
+2025-11-03 20:06:34,036 | INFO | 📡 Subscribing to instruments:
+2025-11-03 20:06:34,036 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-11-03 20:06:34,036 | INFO |    CE:    NSE_FO|47668
+2025-11-03 20:06:34,036 | INFO |    PE:    NSE_FO|47669
+2025-11-03 20:06:34,037 | INFO | ✅ Subscription request sent
+2025-11-03 20:06:34,101 | INFO | ✅ WebSocket connected successfully!
+2025-11-03 20:06:34,103 | INFO | 
+✅ LIVE TRADING SESSION ACTIVE!
+2025-11-03 20:06:34,104 | INFO |    Press Ctrl+C to stop
+
+2025-11-03 20:06:34,104 | INFO | 🔔 Market closed - ending session
+2025-11-03 20:06:34,105 | INFO | 
+======================================================================
+2025-11-03 20:06:34,105 | INFO | 🔌 SHUTTING DOWN TRADING SESSION
+2025-11-03 20:06:34,105 | INFO | ======================================================================
+2025-11-03 20:06:34,105 | INFO | 🔌 Disconnecting WebSocket...
+2025-11-03 20:06:34,129 | WARNING | 🔌 WebSocket closed: None - None
+2025-11-03 20:06:34,131 | INFO | ✅ WebSocket disconnected
+2025-11-03 20:06:34,134 | INFO | 
+💾 Saving logs...
+2025-11-03 20:06:34,140 | INFO | ✅ Summary saved to: C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-3\trade_logs\summary_20251103.txt
+2025-11-03 20:06:34,140 | INFO | ✅ All logs saved successfully!
+2025-11-03 20:06:34,141 | INFO | 
+======================================================================
+2025-11-03 20:06:34,141 | INFO | ✅ SHUTDOWN COMPLETE!
+2025-11-03 20:06:34,142 | INFO | ======================================================================

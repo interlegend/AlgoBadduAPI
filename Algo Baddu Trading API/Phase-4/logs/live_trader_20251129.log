@@ -1,0 +1,571 @@
+2025-11-29 21:48:23,811 | INFO | ✅ Live Signal Scanner initialized with Strategy V30
+2025-11-29 21:48:23,811 | INFO |    Entry Window: 09:30:00 to 15:10:00
+2025-11-29 21:48:23,811 | INFO |    EOD Exit: 15:25:00
+2025-11-29 21:48:23,811 | INFO | ✅ Live Data Streamer initialized for MOCK mode (FIXED VERSION).
+2025-11-29 21:48:23,811 | INFO | ======================================================================
+2025-11-29 21:48:23,811 | INFO | 🔥 TRADER-BADDU - PHASE 4: TRUE DATA REPLAY (V30)
+2025-11-29 21:48:23,811 | INFO | ======================================================================
+2025-11-29 21:48:23,812 | INFO | 
+======================================================================
+🚀 STARTING TRADING SESSION (MOCK MODE)
+======================================================================
+2025-11-29 21:48:23,812 | INFO | 🚀 Starting MOCK data streamer with WARMUP...
+2025-11-29 21:48:23,812 | INFO | 📂 Loading NIFTY data from: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\nifty_5min_last_year.csv
+2025-11-29 21:48:23,812 | INFO | ✅ Entering main execution loop. Waiting for market data...
+2025-11-29 21:48:24,022 | INFO | 📂 Loading OPTIONS data from: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\atm_daily_options_HYBRID_V3_ULTRA_FIXED.csv
+2025-11-29 21:48:24,182 | INFO | 🎯 Replay window: [datetime.date(2025, 11, 18), datetime.date(2025, 11, 19), datetime.date(2025, 11, 20)]
+2025-11-29 21:48:24,187 | INFO | 🔥 WARMUP START: 2024-12-02 (ENTIRE CSV HISTORY - Matching Phase 2)
+2025-11-29 21:48:24,211 | INFO | ======================================================================
+2025-11-29 21:48:24,211 | INFO | 🔄 LOOP 1: WARMUP PHASE (No Callbacks)
+2025-11-29 21:48:24,211 | INFO | ======================================================================
+2025-11-29 21:48:24,216 | INFO | 📊 Found 17863 NIFTY warmup candles.
+2025-11-29 21:48:24,764 | INFO | ✅ NIFTY buffer warmed up with 17863 candles.
+2025-11-29 21:48:24,765 | INFO | ⚠️  OPTION warmup SKIPPED (Cold Start to match Phase 2)
+2025-11-29 21:48:24,766 | INFO | ✅ STABILITY GATE PASSED: 5000 NIFTY candles ready.
+2025-11-29 21:48:24,766 | INFO | ======================================================================
+2025-11-29 21:48:24,766 | INFO | 🔄 LOOP 2: LIVE REPLAY PHASE (With Callbacks)
+2025-11-29 21:48:24,766 | INFO | ======================================================================
+2025-11-29 21:48:24,811 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:24,842 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:24,885 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:24,913 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:24,947 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:24,985 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,017 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,046 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,077 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,105 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,136 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,165 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,195 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,225 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,259 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,286 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,315 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,344 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,376 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,402 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,434 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,463 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,494 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,522 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:25,896 | INFO | 🚨 SIGNAL DETECTED: BUY_PE
+2025-11-29 21:48:25,897 | INFO |    Time: 2025-11-18 10:25
+2025-11-29 21:48:25,897 | INFO |    NIFTY: 25898.80 | EMA(21): 25937.94
+2025-11-29 21:48:25,897 | INFO |    VI+ Prev: 0.8127 → Curr: 0.7875
+2025-11-29 21:48:25,897 | INFO |    VI- Prev: 1.1775 → Curr: 1.1865
+2025-11-29 21:48:25,897 | INFO |    Gap Prev: -0.3648 → Curr: -0.3990 | Widening: False
+2025-11-29 21:48:25,897 | INFO | 🚥 HANDLING SIGNAL: BUY_PE
+2025-11-29 21:48:25,897 | INFO | 📡 SIGNAL: BUY_PE @ 10:25:00
+2025-11-29 21:48:25,898 | INFO |    Strike: 25950 | LTP: ₹82.75 | NIFTY: 25898.8
+2025-11-29 21:48:25,898 | INFO | 📌 SIGNAL QUEUED: BUY_PE at 10:25 - Will execute at T+1
+2025-11-29 21:48:25,963 | INFO | ✅ Position Opened: ea831002
+2025-11-29 21:48:25,964 | INFO |    BUY_PE 25950 @ ₹83.3 | SL: ₹56.63 | TP1: ₹93.3
+2025-11-29 21:48:25,964 | INFO | 💼 ENTRY: BUY_PE 25950
+2025-11-29 21:48:25,964 | INFO |    Order ID: ea831002
+2025-11-29 21:48:25,964 | INFO |    Price: ₹83.3 | Qty: 75
+2025-11-29 21:48:25,965 | INFO | ✅ ENTRY EXECUTED: BUY_PE @ ₹83.30 | SL: 56.63 | TP1: 93.30 | Slippage: 300s
+2025-11-29 21:48:26,030 | INFO | 🎯 TP1 HIT! Order: ea831002 | BUY_PE 25950
+2025-11-29 21:48:26,030 | INFO | 🔒 Trailing SL Updated: ea831002
+2025-11-29 21:48:26,031 | INFO |    BUY_PE 25950 | SL: ₹56.63 → ₹96.3
+2025-11-29 21:48:26,031 | INFO | 💰 Position Closed: ea831002
+2025-11-29 21:48:26,031 | INFO |    BUY_PE 25950 | Exit: ₹96.3
+2025-11-29 21:48:26,031 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:26,031 | INFO | 💰 EXIT: BUY_PE 25950
+2025-11-29 21:48:26,032 | INFO |    Order ID: ea831002
+2025-11-29 21:48:26,032 | INFO |    Exit Price: ₹96.3 | Reason: SL Hit
+2025-11-29 21:48:26,032 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:27,226 | INFO | 🚨 SIGNAL DETECTED: BUY_PE
+2025-11-29 21:48:27,226 | INFO |    Time: 2025-11-18 11:25
+2025-11-29 21:48:27,227 | INFO |    NIFTY: 25924.85 | EMA(21): 25928.11
+2025-11-29 21:48:27,227 | INFO |    VI+ Prev: 0.9985 → Curr: 0.9591
+2025-11-29 21:48:27,227 | INFO |    VI- Prev: 1.0381 → Curr: 1.0227
+2025-11-29 21:48:27,228 | INFO |    Gap Prev: -0.0396 → Curr: -0.0635 | Widening: False
+2025-11-29 21:48:27,228 | INFO | 🚥 HANDLING SIGNAL: BUY_PE
+2025-11-29 21:48:27,228 | INFO | 📡 SIGNAL: BUY_PE @ 11:25:00
+2025-11-29 21:48:27,229 | INFO |    Strike: 25950 | LTP: ₹55.5 | NIFTY: 25924.85
+2025-11-29 21:48:27,229 | INFO | 📌 SIGNAL QUEUED: BUY_PE at 11:25 - Will execute at T+1
+2025-11-29 21:48:27,290 | INFO | ✅ Position Opened: a3e701a8
+2025-11-29 21:48:27,290 | INFO |    BUY_PE 25950 @ ₹56.05 | SL: ₹31.76 | TP1: ₹66.05
+2025-11-29 21:48:27,291 | INFO | 💼 ENTRY: BUY_PE 25950
+2025-11-29 21:48:27,291 | INFO |    Order ID: a3e701a8
+2025-11-29 21:48:27,291 | INFO |    Price: ₹56.05 | Qty: 75
+2025-11-29 21:48:27,292 | INFO | ✅ ENTRY EXECUTED: BUY_PE @ ₹56.05 | SL: 31.76 | TP1: 66.05 | Slippage: 300s
+2025-11-29 21:48:27,483 | INFO | ❌ Position Closed: a3e701a8
+2025-11-29 21:48:27,484 | INFO |    BUY_PE 25950 | Exit: ₹31.76
+2025-11-29 21:48:27,484 | INFO |    Reason: SL Hit | P&L: ₹-1,821.75
+2025-11-29 21:48:27,484 | INFO | ❌ EXIT: BUY_PE 25950
+2025-11-29 21:48:27,485 | INFO |    Order ID: a3e701a8
+2025-11-29 21:48:27,485 | INFO |    Exit Price: ₹31.76 | Reason: SL Hit
+2025-11-29 21:48:27,485 | INFO |    P&L: ₹-1,821.75
+2025-11-29 21:48:27,717 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:27,717 | INFO |    Time: 2025-11-18 11:55
+2025-11-29 21:48:27,718 | INFO |    NIFTY: 25974.65 | EMA(21): 25943.11
+2025-11-29 21:48:27,718 | INFO |    VI+ Prev: 1.2122 → Curr: 1.2327
+2025-11-29 21:48:27,718 | INFO |    VI- Prev: 0.7755 → Curr: 0.7598
+2025-11-29 21:48:27,718 | INFO |    Gap Prev: 0.4367 → Curr: 0.4729 | Widening: True
+2025-11-29 21:48:27,718 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:27,719 | INFO | 📡 SIGNAL: BUY_CE @ 11:55:00
+2025-11-29 21:48:27,719 | INFO |    Strike: 25950 | LTP: ₹61.35 | NIFTY: 25974.65
+2025-11-29 21:48:27,719 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 11:55 - Will execute at T+1
+2025-11-29 21:48:27,780 | INFO | ✅ Position Opened: aaf781e2
+2025-11-29 21:48:27,781 | INFO |    BUY_CE 25950 @ ₹61.95 | SL: ₹41.49 | TP1: ₹71.95
+2025-11-29 21:48:27,781 | INFO | 💼 ENTRY: BUY_CE 25950
+2025-11-29 21:48:27,782 | INFO |    Order ID: aaf781e2
+2025-11-29 21:48:27,782 | INFO |    Price: ₹61.95 | Qty: 75
+2025-11-29 21:48:27,782 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹61.95 | SL: 41.49 | TP1: 71.95 | Slippage: 300s
+2025-11-29 21:48:28,046 | INFO | ❌ Position Closed: aaf781e2
+2025-11-29 21:48:28,046 | INFO |    BUY_CE 25950 | Exit: ₹41.49
+2025-11-29 21:48:28,046 | INFO |    Reason: SL Hit | P&L: ₹-1,534.50
+2025-11-29 21:48:28,047 | INFO | ❌ EXIT: BUY_CE 25950
+2025-11-29 21:48:28,047 | INFO |    Order ID: aaf781e2
+2025-11-29 21:48:28,047 | INFO |    Exit Price: ₹41.49 | Reason: SL Hit
+2025-11-29 21:48:28,047 | INFO |    P&L: ₹-1,534.50
+2025-11-29 21:48:29,194 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:29,194 | INFO |    Time: 2025-11-18 13:10
+2025-11-29 21:48:29,194 | INFO |    NIFTY: 25953.50 | EMA(21): 25949.14
+2025-11-29 21:48:29,195 | INFO |    VI+ Prev: 1.0435 → Curr: 1.0986
+2025-11-29 21:48:29,195 | INFO |    VI- Prev: 0.9496 → Curr: 0.9288
+2025-11-29 21:48:29,195 | INFO |    Gap Prev: 0.0939 → Curr: 0.1698 | Widening: True
+2025-11-29 21:48:29,195 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:29,196 | INFO | 📡 SIGNAL: BUY_CE @ 13:10:00
+2025-11-29 21:48:29,196 | INFO |    Strike: 25950 | LTP: ₹35.1 | NIFTY: 25953.5
+2025-11-29 21:48:29,196 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 13:10 - Will execute at T+1
+2025-11-29 21:48:29,303 | INFO | ✅ Position Opened: c02c1593
+2025-11-29 21:48:29,303 | INFO |    BUY_CE 25950 @ ₹35.6 | SL: ₹15.74 | TP1: ₹45.6
+2025-11-29 21:48:29,304 | INFO | 💼 ENTRY: BUY_CE 25950
+2025-11-29 21:48:29,304 | INFO |    Order ID: c02c1593
+2025-11-29 21:48:29,304 | INFO |    Price: ₹35.6 | Qty: 75
+2025-11-29 21:48:29,304 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹35.60 | SL: 15.74 | TP1: 45.60 | Slippage: 300s
+2025-11-29 21:48:29,372 | INFO | 🎯 TP1 HIT! Order: c02c1593 | BUY_CE 25950
+2025-11-29 21:48:29,373 | INFO | 🔒 Trailing SL Updated: c02c1593
+2025-11-29 21:48:29,373 | INFO |    BUY_CE 25950 | SL: ₹15.74 → ₹48.6
+2025-11-29 21:48:29,373 | INFO | 💰 Position Closed: c02c1593
+2025-11-29 21:48:29,373 | INFO |    BUY_CE 25950 | Exit: ₹48.6
+2025-11-29 21:48:29,374 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:29,374 | INFO | 💰 EXIT: BUY_CE 25950
+2025-11-29 21:48:29,374 | INFO |    Order ID: c02c1593
+2025-11-29 21:48:29,374 | INFO |    Exit Price: ₹48.6 | Reason: SL Hit
+2025-11-29 21:48:29,374 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:29,746 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:29,746 | INFO |    Time: 2025-11-18 13:35
+2025-11-29 21:48:29,747 | INFO |    NIFTY: 25985.85 | EMA(21): 25958.80
+2025-11-29 21:48:29,747 | INFO |    VI+ Prev: 1.0515 → Curr: 1.0412
+2025-11-29 21:48:29,747 | INFO |    VI- Prev: 0.9989 → Curr: 0.9806
+2025-11-29 21:48:29,747 | INFO |    Gap Prev: 0.0526 → Curr: 0.0606 | Widening: True
+2025-11-29 21:48:29,747 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:29,748 | INFO | 📡 SIGNAL: BUY_CE @ 13:35:00
+2025-11-29 21:48:29,748 | INFO |    Strike: 25950 | LTP: ₹52.75 | NIFTY: 25985.85
+2025-11-29 21:48:29,748 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 13:35 - Will execute at T+1
+2025-11-29 21:48:29,814 | INFO | ✅ Position Opened: 2cf794c5
+2025-11-29 21:48:29,814 | INFO |    BUY_CE 25950 @ ₹53.4 | SL: ₹32.62 | TP1: ₹63.4
+2025-11-29 21:48:29,815 | INFO | 💼 ENTRY: BUY_CE 25950
+2025-11-29 21:48:29,815 | INFO |    Order ID: 2cf794c5
+2025-11-29 21:48:29,815 | INFO |    Price: ₹53.4 | Qty: 75
+2025-11-29 21:48:29,816 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹53.40 | SL: 32.62 | TP1: 63.40 | Slippage: 300s
+2025-11-29 21:48:30,133 | INFO | 🎯 TP1 HIT! Order: 2cf794c5 | BUY_CE 25950
+2025-11-29 21:48:30,133 | INFO | 🔒 Trailing SL Updated: 2cf794c5
+2025-11-29 21:48:30,134 | INFO |    BUY_CE 25950 | SL: ₹32.62 → ₹66.4
+2025-11-29 21:48:30,134 | INFO | 💰 Position Closed: 2cf794c5
+2025-11-29 21:48:30,134 | INFO |    BUY_CE 25950 | Exit: ₹66.4
+2025-11-29 21:48:30,134 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:30,134 | INFO | 💰 EXIT: BUY_CE 25950
+2025-11-29 21:48:30,135 | INFO |    Order ID: 2cf794c5
+2025-11-29 21:48:30,135 | INFO |    Exit Price: ₹66.4 | Reason: SL Hit
+2025-11-29 21:48:30,135 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:30,505 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:30,505 | INFO |    Time: 2025-11-18 14:20
+2025-11-29 21:48:30,506 | INFO |    NIFTY: 25979.85 | EMA(21): 25969.94
+2025-11-29 21:48:30,506 | INFO |    VI+ Prev: 1.0820 → Curr: 1.1212
+2025-11-29 21:48:30,506 | INFO |    VI- Prev: 0.8860 → Curr: 0.8843
+2025-11-29 21:48:30,506 | INFO |    Gap Prev: 0.1960 → Curr: 0.2369 | Widening: True
+2025-11-29 21:48:30,507 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:30,507 | INFO | 📡 SIGNAL: BUY_CE @ 14:20:00
+2025-11-29 21:48:30,507 | INFO |    Strike: 25950 | LTP: ₹38.35 | NIFTY: 25979.85
+2025-11-29 21:48:30,507 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 14:20 - Will execute at T+1
+2025-11-29 21:48:30,573 | INFO | ✅ Position Opened: 5c117b86
+2025-11-29 21:48:30,574 | INFO |    BUY_CE 25950 @ ₹38.75 | SL: ₹12.08 | TP1: ₹48.75
+2025-11-29 21:48:30,574 | INFO | 💼 ENTRY: BUY_CE 25950
+2025-11-29 21:48:30,574 | INFO |    Order ID: 5c117b86
+2025-11-29 21:48:30,574 | INFO |    Price: ₹38.75 | Qty: 75
+2025-11-29 21:48:30,575 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹38.75 | SL: 12.08 | TP1: 48.75 | Slippage: 300s
+2025-11-29 21:48:30,832 | INFO | ❌ Position Closed: 5c117b86
+2025-11-29 21:48:30,832 | INFO |    BUY_CE 25950 | Exit: ₹12.08
+2025-11-29 21:48:30,832 | INFO |    Reason: SL Hit | P&L: ₹-2,000.25
+2025-11-29 21:48:30,833 | INFO | ❌ EXIT: BUY_CE 25950
+2025-11-29 21:48:30,833 | INFO |    Order ID: 5c117b86
+2025-11-29 21:48:30,833 | INFO |    Exit Price: ₹12.08 | Reason: SL Hit
+2025-11-29 21:48:30,834 | INFO |    P&L: ₹-2,000.25
+2025-11-29 21:48:30,948 | INFO | 🚨 SIGNAL DETECTED: BUY_PE
+2025-11-29 21:48:30,948 | INFO |    Time: 2025-11-18 14:50
+2025-11-29 21:48:30,949 | INFO |    NIFTY: 25939.95 | EMA(21): 25963.86
+2025-11-29 21:48:30,949 | INFO |    VI+ Prev: 1.0090 → Curr: 0.9453
+2025-11-29 21:48:30,949 | INFO |    VI- Prev: 1.0056 → Curr: 1.0281
+2025-11-29 21:48:30,949 | INFO |    Gap Prev: 0.0035 → Curr: -0.0827 | Widening: False
+2025-11-29 21:48:30,950 | INFO | 🚥 HANDLING SIGNAL: BUY_PE
+2025-11-29 21:48:30,950 | INFO | 📡 SIGNAL: BUY_PE @ 14:50:00
+2025-11-29 21:48:30,950 | INFO |    Strike: 25950 | LTP: ₹19.75 | NIFTY: 25939.95
+2025-11-29 21:48:30,951 | INFO | 📌 SIGNAL QUEUED: BUY_PE at 14:50 - Will execute at T+1
+2025-11-29 21:48:31,015 | INFO | ✅ Position Opened: 4460074d
+2025-11-29 21:48:31,016 | INFO |    BUY_PE 25950 @ ₹20.25 | SL: ₹6.4 | TP1: ₹30.25
+2025-11-29 21:48:31,016 | INFO | 💼 ENTRY: BUY_PE 25950
+2025-11-29 21:48:31,016 | INFO |    Order ID: 4460074d
+2025-11-29 21:48:31,016 | INFO |    Price: ₹20.25 | Qty: 75
+2025-11-29 21:48:31,017 | INFO | ✅ ENTRY EXECUTED: BUY_PE @ ₹20.25 | SL: 6.40 | TP1: 30.25 | Slippage: 300s
+2025-11-29 21:48:31,079 | INFO | 🎯 TP1 HIT! Order: 4460074d | BUY_PE 25950
+2025-11-29 21:48:31,079 | INFO | 🔒 Trailing SL Updated: 4460074d
+2025-11-29 21:48:31,080 | INFO |    BUY_PE 25950 | SL: ₹6.4 → ₹33.25
+2025-11-29 21:48:31,080 | INFO | 💰 Position Closed: 4460074d
+2025-11-29 21:48:31,080 | INFO |    BUY_PE 25950 | Exit: ₹33.25
+2025-11-29 21:48:31,081 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:31,081 | INFO | 💰 EXIT: BUY_PE 25950
+2025-11-29 21:48:31,081 | INFO |    Order ID: 4460074d
+2025-11-29 21:48:31,081 | INFO |    Exit Price: ₹33.25 | Reason: SL Hit
+2025-11-29 21:48:31,081 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:31,205 | INFO | 🚨 SIGNAL DETECTED: BUY_PE
+2025-11-29 21:48:31,205 | INFO |    Time: 2025-11-18 15:05
+2025-11-29 21:48:31,205 | INFO |    NIFTY: 25905.40 | EMA(21): 25953.57
+2025-11-29 21:48:31,205 | INFO |    VI+ Prev: 0.9003 → Curr: 0.8192
+2025-11-29 21:48:31,206 | INFO |    VI- Prev: 1.0757 → Curr: 1.1260
+2025-11-29 21:48:31,206 | INFO |    Gap Prev: -0.1753 → Curr: -0.3069 | Widening: False
+2025-11-29 21:48:31,206 | INFO | 🚥 HANDLING SIGNAL: BUY_PE
+2025-11-29 21:48:31,206 | INFO | 📡 SIGNAL: BUY_PE @ 15:05:00
+2025-11-29 21:48:31,206 | INFO |    Strike: 25950 | LTP: ₹33.85 | NIFTY: 25905.4
+2025-11-29 21:48:31,206 | INFO | 📌 SIGNAL QUEUED: BUY_PE at 15:05 - Will execute at T+1
+2025-11-29 21:48:31,279 | INFO | ✅ Position Opened: 3001763e
+2025-11-29 21:48:31,280 | INFO |    BUY_PE 25950 @ ₹34.5 | SL: ₹14.91 | TP1: ₹44.5
+2025-11-29 21:48:31,280 | INFO | 💼 ENTRY: BUY_PE 25950
+2025-11-29 21:48:31,280 | INFO |    Order ID: 3001763e
+2025-11-29 21:48:31,280 | INFO |    Price: ₹34.5 | Qty: 75
+2025-11-29 21:48:31,281 | INFO | ✅ ENTRY EXECUTED: BUY_PE @ ₹34.50 | SL: 14.91 | TP1: 44.50 | Slippage: 300s
+2025-11-29 21:48:31,570 | INFO | 💰 Position Closed: 3001763e
+2025-11-29 21:48:31,570 | INFO |    BUY_PE 25950 | Exit: ₹39.95
+2025-11-29 21:48:31,570 | INFO |    Reason: EOD Exit | P&L: ₹408.75
+2025-11-29 21:48:31,571 | INFO | 💰 EXIT: BUY_PE 25950
+2025-11-29 21:48:31,571 | INFO |    Order ID: 3001763e
+2025-11-29 21:48:31,571 | INFO |    Exit Price: ₹39.95 | Reason: EOD Exit
+2025-11-29 21:48:31,571 | INFO |    P&L: ₹408.75
+2025-11-29 21:48:31,574 | INFO | 🌅 NEW DAY DETECTED: 2025-11-19. Resetting Option Buffers (Cold Start).
+2025-11-29 21:48:31,574 | INFO | 🧹 Option buffers cleared for new day (Cold Start).
+2025-11-29 21:48:31,603 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,631 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,662 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,692 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,723 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,753 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,786 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,813 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,846 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,876 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,906 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,934 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,966 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:31,995 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,028 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,056 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,089 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,116 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,148 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,176 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,208 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,235 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,268 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,298 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:32,411 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:32,411 | INFO |    Time: 2025-11-19 10:15
+2025-11-29 21:48:32,412 | INFO |    NIFTY: 25965.80 | EMA(21): 25925.73
+2025-11-29 21:48:32,412 | INFO |    VI+ Prev: 0.9456 → Curr: 1.0087
+2025-11-29 21:48:32,412 | INFO |    VI- Prev: 1.0327 → Curr: 0.9844
+2025-11-29 21:48:32,412 | INFO |    Gap Prev: -0.0871 → Curr: 0.0242 | Widening: True
+2025-11-29 21:48:32,412 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:32,413 | INFO | 📡 SIGNAL: BUY_CE @ 10:15:00
+2025-11-29 21:48:32,413 | INFO |    Strike: 25850 | LTP: ₹230.0 | NIFTY: 25965.8
+2025-11-29 21:48:32,413 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 10:15 - Will execute at T+1
+2025-11-29 21:48:32,475 | INFO | ✅ Position Opened: fc2e4bf3
+2025-11-29 21:48:32,476 | INFO |    BUY_CE 25850 @ ₹230.8 | SL: ₹204.13 | TP1: ₹240.8
+2025-11-29 21:48:32,476 | INFO | 💼 ENTRY: BUY_CE 25850
+2025-11-29 21:48:32,476 | INFO |    Order ID: fc2e4bf3
+2025-11-29 21:48:32,477 | INFO |    Price: ₹230.8 | Qty: 75
+2025-11-29 21:48:32,477 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹230.80 | SL: 204.13 | TP1: 240.80 | Slippage: 300s
+2025-11-29 21:48:33,049 | INFO | ❌ Position Closed: fc2e4bf3
+2025-11-29 21:48:33,049 | INFO |    BUY_CE 25850 | Exit: ₹204.13
+2025-11-29 21:48:33,049 | INFO |    Reason: SL Hit | P&L: ₹-2,000.25
+2025-11-29 21:48:33,049 | INFO | ❌ EXIT: BUY_CE 25850
+2025-11-29 21:48:33,050 | INFO |    Order ID: fc2e4bf3
+2025-11-29 21:48:33,050 | INFO |    Exit Price: ₹204.13 | Reason: SL Hit
+2025-11-29 21:48:33,050 | INFO |    P&L: ₹-2,000.25
+2025-11-29 21:48:33,617 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:33,618 | INFO |    Time: 2025-11-19 11:30
+2025-11-29 21:48:33,618 | INFO |    NIFTY: 25949.90 | EMA(21): 25943.14
+2025-11-29 21:48:33,618 | INFO |    VI+ Prev: 1.1079 → Curr: 1.1706
+2025-11-29 21:48:33,618 | INFO |    VI- Prev: 0.8928 → Curr: 0.8758
+2025-11-29 21:48:33,619 | INFO |    Gap Prev: 0.2151 → Curr: 0.2948 | Widening: True
+2025-11-29 21:48:33,619 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:33,619 | INFO | 📡 SIGNAL: BUY_CE @ 11:30:00
+2025-11-29 21:48:33,619 | INFO |    Strike: 25850 | LTP: ₹212.55 | NIFTY: 25949.9
+2025-11-29 21:48:33,619 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 11:30 - Will execute at T+1
+2025-11-29 21:48:33,682 | INFO | ✅ Position Opened: a1c8c101
+2025-11-29 21:48:33,683 | INFO |    BUY_CE 25850 @ ₹213.5 | SL: ₹189.67 | TP1: ₹223.5
+2025-11-29 21:48:33,683 | INFO | 💼 ENTRY: BUY_CE 25850
+2025-11-29 21:48:33,683 | INFO |    Order ID: a1c8c101
+2025-11-29 21:48:33,684 | INFO |    Price: ₹213.5 | Qty: 75
+2025-11-29 21:48:33,684 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹213.50 | SL: 189.67 | TP1: 223.50 | Slippage: 300s
+2025-11-29 21:48:33,748 | INFO | 🎯 TP1 HIT! Order: a1c8c101 | BUY_CE 25850
+2025-11-29 21:48:33,748 | INFO | 🔒 Trailing SL Updated: a1c8c101
+2025-11-29 21:48:33,749 | INFO |    BUY_CE 25850 | SL: ₹189.67 → ₹226.5
+2025-11-29 21:48:35,002 | INFO | 💰 Position Closed: a1c8c101
+2025-11-29 21:48:35,003 | INFO |    BUY_CE 25850 | Exit: ₹270.45
+2025-11-29 21:48:35,003 | INFO |    Reason: MACD/EMA Exit | P&L: ₹4,271.25
+2025-11-29 21:48:35,003 | INFO | 💰 EXIT: BUY_CE 25850
+2025-11-29 21:48:35,003 | INFO |    Order ID: a1c8c101
+2025-11-29 21:48:35,003 | INFO |    Exit Price: ₹270.45 | Reason: MACD/EMA Exit
+2025-11-29 21:48:35,003 | INFO |    P&L: ₹4,271.25
+2025-11-29 21:48:35,921 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:35,922 | INFO |    Time: 2025-11-19 13:55
+2025-11-29 21:48:35,922 | INFO |    NIFTY: 26006.85 | EMA(21): 26005.21
+2025-11-29 21:48:35,922 | INFO |    VI+ Prev: 1.0758 → Curr: 1.0636
+2025-11-29 21:48:35,923 | INFO |    VI- Prev: 0.9428 → Curr: 0.9219
+2025-11-29 21:48:35,923 | INFO |    Gap Prev: 0.1329 → Curr: 0.1418 | Widening: True
+2025-11-29 21:48:35,923 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:35,923 | INFO | 📡 SIGNAL: BUY_CE @ 13:55:00
+2025-11-29 21:48:35,923 | INFO |    Strike: 25850 | LTP: ₹265.9 | NIFTY: 26006.85
+2025-11-29 21:48:35,924 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 13:55 - Will execute at T+1
+2025-11-29 21:48:35,988 | INFO | ✅ Position Opened: aaf1acb3
+2025-11-29 21:48:35,988 | INFO |    BUY_CE 25850 @ ₹265.65 | SL: ₹240.69 | TP1: ₹275.65
+2025-11-29 21:48:35,988 | INFO | 💼 ENTRY: BUY_CE 25850
+2025-11-29 21:48:35,989 | INFO |    Order ID: aaf1acb3
+2025-11-29 21:48:35,989 | INFO |    Price: ₹265.65 | Qty: 75
+2025-11-29 21:48:35,989 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹265.65 | SL: 240.69 | TP1: 275.65 | Slippage: 300s
+2025-11-29 21:48:36,052 | INFO | 🎯 TP1 HIT! Order: aaf1acb3 | BUY_CE 25850
+2025-11-29 21:48:36,053 | INFO | 🔒 Trailing SL Updated: aaf1acb3
+2025-11-29 21:48:36,053 | INFO |    BUY_CE 25850 | SL: ₹240.69 → ₹278.65
+2025-11-29 21:48:36,053 | INFO | 💰 Position Closed: aaf1acb3
+2025-11-29 21:48:36,053 | INFO |    BUY_CE 25850 | Exit: ₹278.65
+2025-11-29 21:48:36,054 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:36,054 | INFO | 💰 EXIT: BUY_CE 25850
+2025-11-29 21:48:36,054 | INFO |    Order ID: aaf1acb3
+2025-11-29 21:48:36,054 | INFO |    Exit Price: ₹278.65 | Reason: SL Hit
+2025-11-29 21:48:36,055 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:36,286 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:36,286 | INFO |    Time: 2025-11-19 14:15
+2025-11-29 21:48:36,287 | INFO |    NIFTY: 26044.65 | EMA(21): 26012.38
+2025-11-29 21:48:36,287 | INFO |    VI+ Prev: 1.0155 → Curr: 1.0700
+2025-11-29 21:48:36,287 | INFO |    VI- Prev: 0.9416 → Curr: 0.9426
+2025-11-29 21:48:36,288 | INFO |    Gap Prev: 0.0739 → Curr: 0.1274 | Widening: True
+2025-11-29 21:48:36,288 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:36,288 | INFO | 📡 SIGNAL: BUY_CE @ 14:15:00
+2025-11-29 21:48:36,288 | INFO |    Strike: 25850 | LTP: ₹289.6 | NIFTY: 26044.65
+2025-11-29 21:48:36,289 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 14:15 - Will execute at T+1
+2025-11-29 21:48:36,352 | INFO | ✅ Position Opened: 9de9f054
+2025-11-29 21:48:36,353 | INFO |    BUY_CE 25850 @ ₹289.6 | SL: ₹266.06 | TP1: ₹299.6
+2025-11-29 21:48:36,353 | INFO | 💼 ENTRY: BUY_CE 25850
+2025-11-29 21:48:36,353 | INFO |    Order ID: 9de9f054
+2025-11-29 21:48:36,353 | INFO |    Price: ₹289.6 | Qty: 75
+2025-11-29 21:48:36,354 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹289.60 | SL: 266.06 | TP1: 299.60 | Slippage: 300s
+2025-11-29 21:48:36,606 | INFO | 🎯 TP1 HIT! Order: 9de9f054 | BUY_CE 25850
+2025-11-29 21:48:36,607 | INFO | 🔒 Trailing SL Updated: 9de9f054
+2025-11-29 21:48:36,607 | INFO |    BUY_CE 25850 | SL: ₹266.06 → ₹302.6
+2025-11-29 21:48:36,607 | INFO | 💰 Position Closed: 9de9f054
+2025-11-29 21:48:36,608 | INFO |    BUY_CE 25850 | Exit: ₹302.6
+2025-11-29 21:48:36,608 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:36,608 | INFO | 💰 EXIT: BUY_CE 25850
+2025-11-29 21:48:36,608 | INFO |    Order ID: 9de9f054
+2025-11-29 21:48:36,609 | INFO |    Exit Price: ₹302.6 | Reason: SL Hit
+2025-11-29 21:48:36,609 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:36,954 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:36,954 | INFO |    Time: 2025-11-19 14:55
+2025-11-29 21:48:36,955 | INFO |    NIFTY: 26054.85 | EMA(21): 26034.21
+2025-11-29 21:48:36,955 | INFO |    VI+ Prev: 1.1481 → Curr: 1.1281
+2025-11-29 21:48:36,955 | INFO |    VI- Prev: 0.8975 → Curr: 0.8688
+2025-11-29 21:48:36,955 | INFO |    Gap Prev: 0.2506 → Curr: 0.2593 | Widening: True
+2025-11-29 21:48:36,956 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:36,956 | INFO | 📡 SIGNAL: BUY_CE @ 14:55:00
+2025-11-29 21:48:36,956 | INFO |    Strike: 25850 | LTP: ₹289.0 | NIFTY: 26054.85
+2025-11-29 21:48:36,956 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 14:55 - Will execute at T+1
+2025-11-29 21:48:37,020 | INFO | ✅ Position Opened: c1bdb475
+2025-11-29 21:48:37,021 | INFO |    BUY_CE 25850 @ ₹290.5 | SL: ₹267.4 | TP1: ₹300.5
+2025-11-29 21:48:37,021 | INFO | 💼 ENTRY: BUY_CE 25850
+2025-11-29 21:48:37,021 | INFO |    Order ID: c1bdb475
+2025-11-29 21:48:37,022 | INFO |    Price: ₹290.5 | Qty: 75
+2025-11-29 21:48:37,022 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹290.50 | SL: 267.40 | TP1: 300.50 | Slippage: 300s
+2025-11-29 21:48:37,336 | INFO | ❌ Position Closed: c1bdb475
+2025-11-29 21:48:37,337 | INFO |    BUY_CE 25850 | Exit: ₹287.7
+2025-11-29 21:48:37,337 | INFO |    Reason: EOD Exit | P&L: ₹-210.00
+2025-11-29 21:48:37,337 | INFO | ❌ EXIT: BUY_CE 25850
+2025-11-29 21:48:37,337 | INFO |    Order ID: c1bdb475
+2025-11-29 21:48:37,338 | INFO |    Exit Price: ₹287.7 | Reason: EOD Exit
+2025-11-29 21:48:37,338 | INFO |    P&L: ₹-210.00
+2025-11-29 21:48:37,342 | INFO | 🌅 NEW DAY DETECTED: 2025-11-20. Resetting Option Buffers (Cold Start).
+2025-11-29 21:48:37,343 | INFO | 🧹 Option buffers cleared for new day (Cold Start).
+2025-11-29 21:48:37,373 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,402 | INFO | ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,433 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,461 | INFO | ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,491 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,518 | INFO | ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,550 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,577 | INFO | ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,610 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,637 | INFO | ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,670 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,697 | INFO | ⏳ Daily Candle Gate: Only 6/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,728 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,757 | INFO | ⏳ Daily Candle Gate: Only 7/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,792 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,819 | INFO | ⏳ Daily Candle Gate: Only 8/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,849 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,878 | INFO | ⏳ Daily Candle Gate: Only 9/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,908 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,936 | INFO | ⏳ Daily Candle Gate: Only 10/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,965 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:37,993 | INFO | ⏳ Daily Candle Gate: Only 11/13 candles today. Blocking early signals.
+2025-11-29 21:48:38,024 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:38,052 | INFO | ⏳ Daily Candle Gate: Only 12/13 candles today. Blocking early signals.
+2025-11-29 21:48:38,160 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:38,160 | INFO |    Time: 2025-11-20 10:15
+2025-11-29 21:48:38,160 | INFO |    NIFTY: 26103.50 | EMA(21): 26079.01
+2025-11-29 21:48:38,161 | INFO |    VI+ Prev: 1.0298 → Curr: 1.0225
+2025-11-29 21:48:38,161 | INFO |    VI- Prev: 0.9957 → Curr: 0.9616
+2025-11-29 21:48:38,161 | INFO |    Gap Prev: 0.0340 → Curr: 0.0609 | Widening: True
+2025-11-29 21:48:38,161 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:38,161 | INFO | 📡 SIGNAL: BUY_CE @ 10:15:00
+2025-11-29 21:48:38,162 | INFO |    Strike: 26100 | LTP: ₹146.1 | NIFTY: 26103.5
+2025-11-29 21:48:38,162 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 10:15 - Will execute at T+1
+2025-11-29 21:48:38,225 | INFO | ✅ Position Opened: 03aab799
+2025-11-29 21:48:38,225 | INFO |    BUY_CE 26100 @ ₹146.45 | SL: ₹121.8 | TP1: ₹156.45
+2025-11-29 21:48:38,225 | INFO | 💼 ENTRY: BUY_CE 26100
+2025-11-29 21:48:38,225 | INFO |    Order ID: 03aab799
+2025-11-29 21:48:38,226 | INFO |    Price: ₹146.45 | Qty: 75
+2025-11-29 21:48:38,226 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹146.45 | SL: 121.80 | TP1: 156.45 | Slippage: 300s
+2025-11-29 21:48:38,475 | INFO | 🎯 TP1 HIT! Order: 03aab799 | BUY_CE 26100
+2025-11-29 21:48:38,476 | INFO | 🔒 Trailing SL Updated: 03aab799
+2025-11-29 21:48:38,476 | INFO |    BUY_CE 26100 | SL: ₹121.8 → ₹159.45
+2025-11-29 21:48:38,476 | INFO | 💰 Position Closed: 03aab799
+2025-11-29 21:48:38,477 | INFO |    BUY_CE 26100 | Exit: ₹159.45
+2025-11-29 21:48:38,477 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:38,477 | INFO | 💰 EXIT: BUY_CE 26100
+2025-11-29 21:48:38,477 | INFO |    Order ID: 03aab799
+2025-11-29 21:48:38,477 | INFO |    Exit Price: ₹159.45 | Reason: SL Hit
+2025-11-29 21:48:38,477 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:38,611 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:38,611 | INFO |    Time: 2025-11-20 10:45
+2025-11-29 21:48:38,611 | INFO |    NIFTY: 26140.40 | EMA(21): 26097.77
+2025-11-29 21:48:38,612 | INFO |    VI+ Prev: 1.0887 → Curr: 1.1030
+2025-11-29 21:48:38,612 | INFO |    VI- Prev: 0.9038 → Curr: 0.8741
+2025-11-29 21:48:38,612 | INFO |    Gap Prev: 0.1850 → Curr: 0.2289 | Widening: True
+2025-11-29 21:48:38,612 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:38,613 | INFO | 📡 SIGNAL: BUY_CE @ 10:45:00
+2025-11-29 21:48:38,613 | INFO |    Strike: 26100 | LTP: ₹161.3 | NIFTY: 26140.4
+2025-11-29 21:48:38,613 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 10:45 - Will execute at T+1
+2025-11-29 21:48:38,680 | INFO | ✅ Position Opened: 802b7ea2
+2025-11-29 21:48:38,680 | INFO |    BUY_CE 26100 @ ₹162.0 | SL: ₹145.01 | TP1: ₹172.0
+2025-11-29 21:48:38,680 | INFO | 💼 ENTRY: BUY_CE 26100
+2025-11-29 21:48:38,681 | INFO |    Order ID: 802b7ea2
+2025-11-29 21:48:38,681 | INFO |    Price: ₹162.0 | Qty: 75
+2025-11-29 21:48:38,681 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹162.00 | SL: 145.01 | TP1: 172.00 | Slippage: 300s
+2025-11-29 21:48:39,882 | INFO | 🎯 TP1 HIT! Order: 802b7ea2 | BUY_CE 26100
+2025-11-29 21:48:39,883 | INFO | 🔒 Trailing SL Updated: 802b7ea2
+2025-11-29 21:48:39,883 | INFO |    BUY_CE 26100 | SL: ₹145.01 → ₹175.0
+2025-11-29 21:48:39,883 | INFO | 💰 Position Closed: 802b7ea2
+2025-11-29 21:48:39,883 | INFO |    BUY_CE 26100 | Exit: ₹175.0
+2025-11-29 21:48:39,884 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:39,884 | INFO | 💰 EXIT: BUY_CE 26100
+2025-11-29 21:48:39,884 | INFO |    Order ID: 802b7ea2
+2025-11-29 21:48:39,884 | INFO |    Exit Price: ₹175.0 | Reason: SL Hit
+2025-11-29 21:48:39,885 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:40,246 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:40,247 | INFO |    Time: 2025-11-20 12:40
+2025-11-29 21:48:40,247 | INFO |    NIFTY: 26170.35 | EMA(21): 26144.97
+2025-11-29 21:48:40,247 | INFO |    VI+ Prev: 1.1203 → Curr: 1.1730
+2025-11-29 21:48:40,247 | INFO |    VI- Prev: 0.8776 → Curr: 0.8293
+2025-11-29 21:48:40,248 | INFO |    Gap Prev: 0.2427 → Curr: 0.3437 | Widening: True
+2025-11-29 21:48:40,248 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:40,248 | INFO | 📡 SIGNAL: BUY_CE @ 12:40:00
+2025-11-29 21:48:40,248 | INFO |    Strike: 26100 | LTP: ₹172.25 | NIFTY: 26170.35
+2025-11-29 21:48:40,248 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 12:40 - Will execute at T+1
+2025-11-29 21:48:40,314 | INFO | ✅ Position Opened: c7f06b72
+2025-11-29 21:48:40,315 | INFO |    BUY_CE 26100 @ ₹173.0 | SL: ₹157.84 | TP1: ₹183.0
+2025-11-29 21:48:40,315 | INFO | 💼 ENTRY: BUY_CE 26100
+2025-11-29 21:48:40,315 | INFO |    Order ID: c7f06b72
+2025-11-29 21:48:40,316 | INFO |    Price: ₹173.0 | Qty: 75
+2025-11-29 21:48:40,316 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹173.00 | SL: 157.84 | TP1: 183.00 | Slippage: 300s
+2025-11-29 21:48:40,760 | INFO | 🎯 TP1 HIT! Order: c7f06b72 | BUY_CE 26100
+2025-11-29 21:48:40,761 | INFO | 🔒 Trailing SL Updated: c7f06b72
+2025-11-29 21:48:40,761 | INFO |    BUY_CE 26100 | SL: ₹157.84 → ₹186.0
+2025-11-29 21:48:40,761 | INFO | 💰 Position Closed: c7f06b72
+2025-11-29 21:48:40,761 | INFO |    BUY_CE 26100 | Exit: ₹186.0
+2025-11-29 21:48:40,762 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:40,762 | INFO | 💰 EXIT: BUY_CE 26100
+2025-11-29 21:48:40,762 | INFO |    Order ID: c7f06b72
+2025-11-29 21:48:40,762 | INFO |    Exit Price: ₹186.0 | Reason: SL Hit
+2025-11-29 21:48:40,762 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:40,878 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:40,878 | INFO |    Time: 2025-11-20 13:25
+2025-11-29 21:48:40,878 | INFO |    NIFTY: 26203.25 | EMA(21): 26166.57
+2025-11-29 21:48:40,879 | INFO |    VI+ Prev: 1.1434 → Curr: 1.2087
+2025-11-29 21:48:40,879 | INFO |    VI- Prev: 0.8051 → Curr: 0.7495
+2025-11-29 21:48:40,879 | INFO |    Gap Prev: 0.3383 → Curr: 0.4592 | Widening: True
+2025-11-29 21:48:40,879 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:40,880 | INFO | 📡 SIGNAL: BUY_CE @ 13:25:00
+2025-11-29 21:48:40,880 | INFO |    Strike: 26100 | LTP: ₹197.25 | NIFTY: 26203.25
+2025-11-29 21:48:40,880 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 13:25 - Will execute at T+1
+2025-11-29 21:48:40,945 | INFO | ✅ Position Opened: 9f4b3877
+2025-11-29 21:48:40,945 | INFO |    BUY_CE 26100 @ ₹197.85 | SL: ₹180.04 | TP1: ₹207.85
+2025-11-29 21:48:40,945 | INFO | 💼 ENTRY: BUY_CE 26100
+2025-11-29 21:48:40,945 | INFO |    Order ID: 9f4b3877
+2025-11-29 21:48:40,946 | INFO |    Price: ₹197.85 | Qty: 75
+2025-11-29 21:48:40,946 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹197.85 | SL: 180.04 | TP1: 207.85 | Slippage: 300s
+2025-11-29 21:48:41,010 | INFO | 🎯 TP1 HIT! Order: 9f4b3877 | BUY_CE 26100
+2025-11-29 21:48:41,010 | INFO | 🔒 Trailing SL Updated: 9f4b3877
+2025-11-29 21:48:41,011 | INFO |    BUY_CE 26100 | SL: ₹180.04 → ₹210.85
+2025-11-29 21:48:41,639 | INFO | 💰 Position Closed: 9f4b3877
+2025-11-29 21:48:41,639 | INFO |    BUY_CE 26100 | Exit: ₹210.85
+2025-11-29 21:48:41,640 | INFO |    Reason: SL Hit | P&L: ₹975.00
+2025-11-29 21:48:41,640 | INFO | 💰 EXIT: BUY_CE 26100
+2025-11-29 21:48:41,640 | INFO |    Order ID: 9f4b3877
+2025-11-29 21:48:41,640 | INFO |    Exit Price: ₹210.85 | Reason: SL Hit
+2025-11-29 21:48:41,641 | INFO |    P&L: ₹975.00
+2025-11-29 21:48:41,872 | INFO | 🚨 SIGNAL DETECTED: BUY_CE
+2025-11-29 21:48:41,873 | INFO |    Time: 2025-11-20 14:35
+2025-11-29 21:48:41,873 | INFO |    NIFTY: 26218.70 | EMA(21): 26204.63
+2025-11-29 21:48:41,873 | INFO |    VI+ Prev: 1.1049 → Curr: 1.1180
+2025-11-29 21:48:41,874 | INFO |    VI- Prev: 0.8539 → Curr: 0.8376
+2025-11-29 21:48:41,874 | INFO |    Gap Prev: 0.2510 → Curr: 0.2804 | Widening: True
+2025-11-29 21:48:41,874 | INFO | 🚥 HANDLING SIGNAL: BUY_CE
+2025-11-29 21:48:41,875 | INFO | 📡 SIGNAL: BUY_CE @ 14:35:00
+2025-11-29 21:48:41,875 | INFO |    Strike: 26100 | LTP: ₹209.45 | NIFTY: 26218.7
+2025-11-29 21:48:41,875 | INFO | 📌 SIGNAL QUEUED: BUY_CE at 14:35 - Will execute at T+1
+2025-11-29 21:48:41,937 | INFO | ✅ Position Opened: 5ede2057
+2025-11-29 21:48:41,937 | INFO |    BUY_CE 26100 @ ₹209.9 | SL: ₹183.42 | TP1: ₹219.9
+2025-11-29 21:48:41,938 | INFO | 💼 ENTRY: BUY_CE 26100
+2025-11-29 21:48:41,938 | INFO |    Order ID: 5ede2057
+2025-11-29 21:48:41,938 | INFO |    Price: ₹209.9 | Qty: 75
+2025-11-29 21:48:41,939 | INFO | ✅ ENTRY EXECUTED: BUY_CE @ ₹209.90 | SL: 183.42 | TP1: 219.90 | Slippage: 300s
+2025-11-29 21:48:42,522 | INFO | ❌ Position Closed: 5ede2057
+2025-11-29 21:48:42,522 | INFO |    BUY_CE 26100 | Exit: ₹200.4
+2025-11-29 21:48:42,522 | INFO |    Reason: EOD Exit | P&L: ₹-712.50
+2025-11-29 21:48:42,523 | INFO | ❌ EXIT: BUY_CE 26100
+2025-11-29 21:48:42,523 | INFO |    Order ID: 5ede2057
+2025-11-29 21:48:42,523 | INFO |    Exit Price: ₹200.4 | Reason: EOD Exit
+2025-11-29 21:48:42,523 | INFO |    P&L: ₹-712.50
+2025-11-29 21:48:42,526 | INFO | ✅ Mock simulation finished.
+2025-11-29 21:48:42,612 | INFO | 
+======================================================================
+🔌 SHUTTING DOWN TRADING SESSION
+======================================================================
+2025-11-29 21:48:42,613 | INFO | 🔌 Disconnecting streamer...
+2025-11-29 21:48:42,613 | INFO | ✅ Streamer disconnected.
+2025-11-29 21:48:42,614 | INFO | 🔔 Forcing close of all open positions (EOD)...
+2025-11-29 21:48:42,614 | INFO | ✅ All positions closed!
+2025-11-29 21:48:42,615 | INFO | 
+💾 Saving final logs...
+2025-11-29 21:48:42,623 | INFO | ✅ Signals saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\signals_20251129.csv
+2025-11-29 21:48:42,627 | INFO | ✅ Trades saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\trades_20251129.csv
+2025-11-29 21:48:42,628 | INFO | ✅ Events saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\events_20251129.json
+2025-11-29 21:48:42,631 | INFO | ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\summary_20251129.txt
+2025-11-29 21:48:42,631 | INFO | ✅ All logs saved successfully!
+2025-11-29 21:48:42,632 | INFO | 
+======================================================================
+✅ SHUTDOWN COMPLETE!
+======================================================================
+2025-11-29 21:48:42,632 | INFO | Exited main trading loop.

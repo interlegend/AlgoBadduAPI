@@ -36,6 +36,8 @@ class StrategyV30:
         self.SL_MULTIPLIER = sl_multiplier
         self.TP1_POINTS = tp_points
         self.TRAIL_ATR_MULTIPLIER = trail_atr_multiplier
+        
+        self.CHOP_THRESHOLD = 57
 
         # === CORE CONFIGURATION ===
         self.LOT_SIZE = 75
@@ -61,6 +63,11 @@ class StrategyV30:
         current_time = row['datetime'].time()
         
         if not (self.ENTRY_START <= current_time <= self.ENTRY_END):
+            return None
+
+        # FILTER: If market is choppy, DO NOT TRADE
+        choppiness = row.get('choppiness', 100)
+        if choppiness > self.CHOP_THRESHOLD:
             return None
 
         vi_plus_col = f'vi_plus_{self.VI_PERIOD}'

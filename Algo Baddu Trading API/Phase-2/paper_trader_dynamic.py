@@ -142,7 +142,7 @@ def load_and_prepare_data(ema_period=13, vi_period=14):
     
     # Load NIFTY index data
     print(f"\n[1/2] Loading NIFTY index data...")
-    nifty_df = pd.read_csv(r"C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-2\nifty_5min_last_year.csv")
+    nifty_df = pd.read_csv(r"C:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-2\nifty_5min_last_year.csv")
     nifty_df['datetime'] = pd.to_datetime(nifty_df['datetime'])
     nifty_df['date'] = nifty_df['datetime'].dt.date
     print(f"✅ Loaded {len(nifty_df)} NIFTY candles")
@@ -182,9 +182,14 @@ def load_and_prepare_data(ema_period=13, vi_period=14):
     nifty_df[f'vi_plus_{vi_period}'] = vortex_df[f'VTXP_{vi_period}']
     nifty_df[f'vi_minus_{vi_period}'] = vortex_df[f'VTXM_{vi_period}']
 
-    # Remove choppiness if it exists
-    if 'choppiness' in nifty_df.columns:
-        nifty_df.drop(columns=['choppiness'], inplace=True)
+    # Calculate Choppiness Index
+    print(f"[INFO] Calculating Choppiness Index...")
+    chop_df = pd.DataFrame({
+        'high': nifty_df['index_high'],
+        'low': nifty_df['index_low'],
+        'close': nifty_df['index_close']
+    })
+    nifty_df['choppiness'] = choppiness_index(chop_df, period=14)
     
     nifty_df.dropna(inplace=True)
     nifty_df.reset_index(drop=True, inplace=True)
@@ -193,7 +198,7 @@ def load_and_prepare_data(ema_period=13, vi_period=14):
     # Load ATM options data
     print(f"\n[2/2] Loading ATM options data...")
     # ✅ CORRECT
-    options_file_path = r"C:\Users\sakth\Desktop\VSCODE\atm_daily_options_HYBRID_V3_ULTRA_FIXED.csv"
+    options_file_path = r"C:\Users\sakth\Desktop\VSCODE\extras\atm_daily_options_HYBRID_V3_ULTRA_FIXED.csv"
     if not os.path.exists(options_file_path):
         raise FileNotFoundError(f"Options data file not found at: {options_file_path}")
     options_df = pd.read_csv(options_file_path)
@@ -526,7 +531,7 @@ def generate_report(trades):
     
     # Save to CSV
     # ✅ CORRECT - Use hardcoded path
-    OUTPUT_DIR = r'C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-2\trade_logs_verification'
+    OUTPUT_DIR = r'C:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-2\trade_logs_verification'
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     output_file = os.path.join(OUTPUT_DIR, f"V27_Backtest_BUY_ONLY_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv")
     trade_df.to_csv(output_file, index=False)

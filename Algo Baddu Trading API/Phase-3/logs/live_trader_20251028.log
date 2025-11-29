@@ -1,0 +1,536 @@
+2025-10-28 13:43:14,713 | INFO | ======================================================================
+2025-10-28 13:43:14,718 | INFO | ======================================================================
+2025-10-28 13:43:14,722 | INFO | 
+======================================================================
+2025-10-28 13:43:14,726 | INFO | ======================================================================
+2025-10-28 13:43:14,727 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 13:43:14,727 | INFO | ======================================================================
+2025-10-28 13:43:14,735 | INFO | ======================================================================
+2025-10-28 13:43:16,305 | INFO |    CE: NSE_FO|58974
+2025-10-28 13:43:16,306 | INFO |    PE: NSE_FO|58997
+2025-10-28 13:43:16,310 | INFO |    Strike: 25900
+2025-10-28 13:43:16,311 | INFO |    Expiry: 2025-10-28
+2025-10-28 13:43:16,314 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 13:43:16,319 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 13:43:16,325 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 13:43:16,330 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 13:43:16,331 | INFO |    Lot Size: 75
+2025-10-28 13:43:16,331 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 13:43:16,336 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 13:43:16,339 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 13:43:16,347 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 13:43:16,353 | INFO | 
+======================================================================
+2025-10-28 13:43:16,356 | INFO | ======================================================================
+2025-10-28 13:43:16,357 | INFO | 
+======================================================================
+2025-10-28 13:43:16,359 | INFO | ======================================================================
+2025-10-28 13:43:16,361 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 13:43:16,361 | INFO | 
+======================================================================
+2025-10-28 13:43:16,363 | INFO | ======================================================================
+2025-10-28 13:43:16,363 | INFO | ======================================================================
+2025-10-28 13:43:16,366 | INFO | ======================================================================
+2025-10-28 13:43:16,662 | ERROR | Handshake status 410 Gone -+-+- {'date': 'Tue, 28 Oct 2025 08:13:14 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '535743dc-6633-48fb-a6c7-45295f9b2de8', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'requestid': '2cd2b468-3465-408b-8550-482070d5343d', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate', 'pragma': 'no-cache', 'expires': '0', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=.iV.vkXHphfmfARXu.1uK7JHvNrG9knKQSHnf67BJ_M-1761639194-1.0.1.1-gpOmMXDs_EghxhC.d_Z4_T8DFaiSLWzknFr7A4EsQLAcuLbbmavG9NNkj8ZWyhOE; path=/; expires=Tue, 28-Oct-25 08:43:14 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=ib.irts4F2hwtWivJUQxEyBR2jeTuSIgP_Sfai_fLX0-1761639194635-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9958f9056f369a9b-NAG', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:43:21,685 | INFO | ======================================================================
+2025-10-28 13:43:21,690 | INFO | ======================================================================
+2025-10-28 13:43:22,332 | ERROR | Handshake status 410 Gone -+-+- {'date': 'Tue, 28 Oct 2025 08:13:20 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '0461c373-d605-4ea2-8876-bfe9f1b7e93f', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'requestid': 'fc19fd5e-d6f6-414a-8311-49a2cac25395', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate', 'pragma': 'no-cache', 'expires': '0', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=lVRsnsMDE8H492CUR9JhkjWOIBHsltGGtZI6R6SYDJk-1761639200-1.0.1.1-_lF1QF.EcXJUGcNpfohoJMNzfSUDPKfXqEzyPG_LtGVUI3PKXdny9GhOAeIkjkD0; path=/; expires=Tue, 28-Oct-25 08:43:20 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=orRX41ep21YsEmL3hx.OiuhhG7d7.d7Ykh.D6ta1zu4-1761639200232-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9958f926fbd89a89-NAG', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:46:48,191 | INFO | ======================================================================
+2025-10-28 13:46:48,197 | INFO | ======================================================================
+2025-10-28 13:46:48,200 | INFO | 
+======================================================================
+2025-10-28 13:46:48,202 | INFO | ======================================================================
+2025-10-28 13:46:48,203 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 13:46:48,203 | INFO | ======================================================================
+2025-10-28 13:46:48,208 | INFO | ======================================================================
+2025-10-28 13:46:49,730 | INFO |    CE: NSE_FO|58970
+2025-10-28 13:46:49,730 | INFO |    PE: NSE_FO|58973
+2025-10-28 13:46:49,734 | INFO |    Strike: 25850
+2025-10-28 13:46:49,734 | INFO |    Expiry: 2025-10-28
+2025-10-28 13:46:49,737 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 13:46:49,739 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 13:46:49,741 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 13:46:49,745 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 13:46:49,745 | INFO |    Lot Size: 75
+2025-10-28 13:46:49,745 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 13:46:49,747 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 13:46:49,749 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 13:46:49,755 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 13:46:49,761 | INFO | 
+======================================================================
+2025-10-28 13:46:49,764 | INFO | ======================================================================
+2025-10-28 13:46:49,765 | INFO | 
+======================================================================
+2025-10-28 13:46:49,767 | INFO | ======================================================================
+2025-10-28 13:46:49,769 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 13:46:49,770 | INFO | 
+======================================================================
+2025-10-28 13:46:49,772 | INFO | ======================================================================
+2025-10-28 13:46:49,772 | INFO | ======================================================================
+2025-10-28 13:46:49,775 | INFO | ======================================================================
+2025-10-28 13:46:50,240 | ERROR | Handshake status 410 Gone -+-+- {'date': 'Tue, 28 Oct 2025 08:16:48 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '10c8293b-9f64-4469-9873-ae35db10667a', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'requestid': '73e9d529-c84b-4918-ad85-1906d7c9033a', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate', 'pragma': 'no-cache', 'expires': '0', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=.cf7EFXRUPBXx9Cq8zD2x8VGMzhH241EPBmAjTnhag8-1761639408-1.0.1.1-n7MSR7nttjPI8G6JEei0xKRajwbIYc02u9ZLMgHWw2buol5nRZ69b5lsh.3Ej1cm; path=/; expires=Tue, 28-Oct-25 08:46:48 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=QTbNj2cxGalSDWsvqN0oRQq.ArHIIStuK9sNclPZxMQ-1761639408210-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9958fe3b1b068b0b-BOM', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:46:55,259 | INFO | ======================================================================
+2025-10-28 13:46:55,274 | INFO | ======================================================================
+2025-10-28 13:46:56,043 | ERROR | Handshake status 410 Gone -+-+- {'date': 'Tue, 28 Oct 2025 08:16:53 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '877eade4-66bf-4db3-8ccb-7b41894a3c28', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'requestid': 'dd245b03-f870-43a4-bfb2-af91e745117b', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'cache-control': 'no-cache, no-store, max-age=0, must-revalidate', 'pragma': 'no-cache', 'expires': '0', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=1LgGFswO1NISFJHUkUiVW8QlBX9dBP0DfHhPGmNY3tY-1761639413-1.0.1.1-cc5dqu54AyD3AgfyVfUx6UWJa_svDrfpX3SNW5jPKRbKCAUK69FqiAZpBrwnqPRT; path=/; expires=Tue, 28-Oct-25 08:46:53 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=TCRWae8wc.DyoboRSsJfPHveu8FIOd2SiNbLHDKU6Dw-1761639413947-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9958fe5eab109a83-NAG', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:53:31,326 | INFO | ======================================================================
+2025-10-28 13:53:31,326 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-10-28 13:53:31,327 | INFO | ======================================================================
+2025-10-28 13:53:31,327 | INFO | ✅ Access token loaded
+2025-10-28 13:53:31,327 | INFO | 
+======================================================================
+2025-10-28 13:53:31,328 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-10-28 13:53:31,328 | INFO | ======================================================================
+2025-10-28 13:53:31,328 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 13:53:31,328 | INFO | ======================================================================
+2025-10-28 13:53:31,328 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-10-28 13:53:31,328 | INFO | ======================================================================
+2025-10-28 13:53:31,835 | INFO | ✅ NIFTY Spot: 25873.65
+2025-10-28 13:53:31,836 | INFO | 🎯 Spot: 25873.65 → ATM: 25850
+2025-10-28 13:53:32,293 | INFO | 📅 Nearest Expiry: 2025-10-28
+2025-10-28 13:53:32,661 | INFO | ✅ ATM Instruments Found!
+2025-10-28 13:53:32,662 | INFO |    CE: NSE_FO|58970
+2025-10-28 13:53:32,662 | INFO |    PE: NSE_FO|58973
+2025-10-28 13:53:32,664 | INFO | ✅ ATM Selection Complete!
+2025-10-28 13:53:32,664 | INFO |    Strike: 25850
+2025-10-28 13:53:32,665 | INFO |    Expiry: 2025-10-28
+2025-10-28 13:53:32,666 | INFO | ✅ ATM Selector ready
+2025-10-28 13:53:32,666 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 13:53:32,666 | INFO | ✅ Indicator Calculator ready
+2025-10-28 13:53:32,667 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 13:53:32,667 | INFO | ✅ Position Tracker ready
+2025-10-28 13:53:32,667 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 13:53:32,668 | INFO | ✅ Trade Logger ready
+2025-10-28 13:53:32,668 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 13:53:32,669 | INFO |    Lot Size: 75
+2025-10-28 13:53:32,669 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 13:53:32,669 | INFO | ✅ Strategy V27 ready
+2025-10-28 13:53:32,669 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 13:53:32,669 | INFO | ✅ Paper Order Manager ready
+2025-10-28 13:53:32,669 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 13:53:32,669 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-10-28 13:53:32,670 | INFO | ✅ Signal Scanner ready
+2025-10-28 13:53:32,670 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 13:53:32,670 | INFO | ✅ Live Data Streamer initialized
+2025-10-28 13:53:32,670 | INFO | ✅ Data Streamer ready
+2025-10-28 13:53:32,670 | INFO | 
+======================================================================
+2025-10-28 13:53:32,670 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-10-28 13:53:32,670 | INFO | ======================================================================
+2025-10-28 13:53:32,670 | INFO | 
+======================================================================
+2025-10-28 13:53:32,671 | INFO | 📊 WARMING UP INDICATORS
+2025-10-28 13:53:32,671 | INFO | ======================================================================
+2025-10-28 13:53:32,671 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-10-28 13:53:32,671 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 13:53:32,671 | INFO | 
+======================================================================
+2025-10-28 13:53:32,671 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-10-28 13:53:32,671 | INFO | ======================================================================
+2025-10-28 13:53:32,672 | INFO | ======================================================================
+2025-10-28 13:53:32,672 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET
+2025-10-28 13:53:32,672 | INFO | ======================================================================
+2025-10-28 13:53:32,820 | ERROR | 💥 WebSocket Error: Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 28 Oct 2025 08:23:30 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': 'ae55148d-44bc-495d-b67f-00e3fe148619', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=M2.XayEi8QwFCmtdQvBJoj7dXFAjTGCyJnOMYxYdM9o-1761639810-1.0.1.1-whmBEWmi.w.B0tKgGneLDUkfRDvfhvdeMUi2shcioc4d3RR2ZNAvFbv3hMxJekks; path=/; expires=Tue, 28-Oct-25 08:53:30 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=2yWAYx_yALBhF4Bw_Hd5BF9_QqNtOuDU66t6QufsT8E-1761639810774-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '995908111837ff64-BOM', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None
+2025-10-28 13:53:32,821 | ERROR | Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 28 Oct 2025 08:23:30 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': 'ae55148d-44bc-495d-b67f-00e3fe148619', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=M2.XayEi8QwFCmtdQvBJoj7dXFAjTGCyJnOMYxYdM9o-1761639810-1.0.1.1-whmBEWmi.w.B0tKgGneLDUkfRDvfhvdeMUi2shcioc4d3RR2ZNAvFbv3hMxJekks; path=/; expires=Tue, 28-Oct-25 08:53:30 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=2yWAYx_yALBhF4Bw_Hd5BF9_QqNtOuDU66t6QufsT8E-1761639810774-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '995908111837ff64-BOM', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:53:32,822 | WARNING | 🔌 WebSocket closed: None - None
+2025-10-28 13:53:32,822 | INFO | 🔄 Attempting to reconnect in 5 seconds...
+2025-10-28 13:53:37,824 | INFO | ======================================================================
+2025-10-28 13:53:37,825 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET
+2025-10-28 13:53:37,826 | INFO | ======================================================================
+2025-10-28 13:53:38,180 | ERROR | 💥 WebSocket Error: Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 28 Oct 2025 08:23:36 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '7651cb1f-93b3-4845-9f53-fbca13654a11', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=aNZWGt_kGe4.a726mhgQmVDKZMPzXHRfdmUVhQtHWP0-1761639816-1.0.1.1-7tahA5Q28BNa5iX4n7zJusYGYPI9l3Kd5Ft2px3XSKbZdwiG2OvYV.dTjP9Zqi3U; path=/; expires=Tue, 28-Oct-25 08:53:36 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=aKGYzJagaTuRHc1qOlHHbGfg2Y2r.nHg1RYYzaE_m8Q-1761639816095-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '995908326e0147cb-BOM', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None
+2025-10-28 13:53:38,181 | ERROR | Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 28 Oct 2025 08:23:36 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '7651cb1f-93b3-4845-9f53-fbca13654a11', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=aNZWGt_kGe4.a726mhgQmVDKZMPzXHRfdmUVhQtHWP0-1761639816-1.0.1.1-7tahA5Q28BNa5iX4n7zJusYGYPI9l3Kd5Ft2px3XSKbZdwiG2OvYV.dTjP9Zqi3U; path=/; expires=Tue, 28-Oct-25 08:53:36 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=aKGYzJagaTuRHc1qOlHHbGfg2Y2r.nHg1RYYzaE_m8Q-1761639816095-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '995908326e0147cb-BOM', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-10-28 13:53:38,182 | WARNING | 🔌 WebSocket closed: None - None
+2025-10-28 13:53:38,182 | INFO | 🔄 Attempting to reconnect in 5 seconds...
+2025-10-28 13:53:42,713 | ERROR | ❌ WebSocket connection failed!
+2025-10-28 13:53:42,714 | ERROR | ❌ Failed to connect to WebSocket!
+2025-10-28 15:57:11,008 | INFO | ======================================================================
+2025-10-28 15:57:11,008 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-10-28 15:57:11,009 | INFO | ======================================================================
+2025-10-28 15:57:11,010 | INFO | ✅ Access token loaded
+2025-10-28 15:57:11,011 | INFO | 
+======================================================================
+2025-10-28 15:57:11,011 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-10-28 15:57:11,011 | INFO | ======================================================================
+2025-10-28 15:57:11,011 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 15:57:11,011 | INFO | ======================================================================
+2025-10-28 15:57:11,011 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-10-28 15:57:11,012 | INFO | ======================================================================
+2025-10-28 15:57:11,276 | INFO | ✅ NIFTY Spot: 25936.2
+2025-10-28 15:57:11,278 | INFO | 🎯 Spot: 25936.2 → ATM: 25950
+2025-10-28 15:57:11,475 | INFO | 📅 Nearest Expiry: 2025-10-28
+2025-10-28 15:57:11,683 | INFO | ✅ ATM Instruments Found!
+2025-10-28 15:57:11,683 | INFO |    CE: NSE_FO|58998
+2025-10-28 15:57:11,686 | INFO |    PE: NSE_FO|59003
+2025-10-28 15:57:11,687 | INFO | ✅ ATM Selection Complete!
+2025-10-28 15:57:11,688 | INFO |    Strike: 25950
+2025-10-28 15:57:11,688 | INFO |    Expiry: 2025-10-28
+2025-10-28 15:57:11,688 | INFO | ✅ ATM Selector ready
+2025-10-28 15:57:11,689 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 15:57:11,689 | INFO | ✅ Indicator Calculator ready
+2025-10-28 15:57:11,689 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 15:57:11,690 | INFO | ✅ Position Tracker ready
+2025-10-28 15:57:11,690 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 15:57:11,692 | INFO | ✅ Trade Logger ready
+2025-10-28 15:57:11,692 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 15:57:11,692 | INFO |    Lot Size: 75
+2025-10-28 15:57:11,693 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 15:57:11,693 | INFO | ✅ Strategy V27 ready
+2025-10-28 15:57:11,693 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 15:57:11,693 | INFO | ✅ Paper Order Manager ready
+2025-10-28 15:57:11,693 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 15:57:11,694 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-10-28 15:57:11,694 | INFO | ✅ Signal Scanner ready
+2025-10-28 15:57:11,694 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 15:57:11,694 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-10-28 15:57:11,694 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-10-28 15:57:11,695 | INFO | ✅ Data Streamer ready
+2025-10-28 15:57:11,695 | INFO | 
+======================================================================
+2025-10-28 15:57:11,696 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-10-28 15:57:11,696 | INFO | ======================================================================
+2025-10-28 15:57:11,697 | INFO | 
+======================================================================
+2025-10-28 15:57:11,697 | INFO | 📊 WARMING UP INDICATORS
+2025-10-28 15:57:11,698 | INFO | ======================================================================
+2025-10-28 15:57:11,698 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-10-28 15:57:11,699 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 15:57:11,700 | INFO | 
+======================================================================
+2025-10-28 15:57:11,700 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-10-28 15:57:11,701 | INFO | ======================================================================
+2025-10-28 15:57:11,701 | INFO | ======================================================================
+2025-10-28 15:57:11,702 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-10-28 15:57:11,702 | INFO | ======================================================================
+2025-10-28 15:57:11,703 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-10-28 15:57:11,972 | INFO | ✅ WebSocket auth URL received
+2025-10-28 15:57:11,974 | ERROR | 
+💥 FATAL ERROR: 'LiveDataStreamer' object has no attribute '_on_error'
+2025-10-28 15:58:46,563 | INFO | ======================================================================
+2025-10-28 15:58:46,563 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-10-28 15:58:46,564 | INFO | ======================================================================
+2025-10-28 15:58:46,564 | INFO | ✅ Access token loaded
+2025-10-28 15:58:46,564 | INFO | 
+======================================================================
+2025-10-28 15:58:46,564 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-10-28 15:58:46,564 | INFO | ======================================================================
+2025-10-28 15:58:46,564 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 15:58:46,565 | INFO | ======================================================================
+2025-10-28 15:58:46,565 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-10-28 15:58:46,565 | INFO | ======================================================================
+2025-10-28 15:58:46,746 | INFO | ✅ NIFTY Spot: 25936.2
+2025-10-28 15:58:46,748 | INFO | 🎯 Spot: 25936.2 → ATM: 25950
+2025-10-28 15:58:46,945 | INFO | 📅 Nearest Expiry: 2025-10-28
+2025-10-28 15:58:47,094 | INFO | ✅ ATM Instruments Found!
+2025-10-28 15:58:47,095 | INFO |    CE: NSE_FO|58998
+2025-10-28 15:58:47,095 | INFO |    PE: NSE_FO|59003
+2025-10-28 15:58:47,096 | INFO | ✅ ATM Selection Complete!
+2025-10-28 15:58:47,097 | INFO |    Strike: 25950
+2025-10-28 15:58:47,097 | INFO |    Expiry: 2025-10-28
+2025-10-28 15:58:47,097 | INFO | ✅ ATM Selector ready
+2025-10-28 15:58:47,097 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 15:58:47,097 | INFO | ✅ Indicator Calculator ready
+2025-10-28 15:58:47,098 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 15:58:47,098 | INFO | ✅ Position Tracker ready
+2025-10-28 15:58:47,098 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 15:58:47,099 | INFO | ✅ Trade Logger ready
+2025-10-28 15:58:47,100 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 15:58:47,100 | INFO |    Lot Size: 75
+2025-10-28 15:58:47,101 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 15:58:47,101 | INFO | ✅ Strategy V27 ready
+2025-10-28 15:58:47,101 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 15:58:47,102 | INFO | ✅ Paper Order Manager ready
+2025-10-28 15:58:47,102 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 15:58:47,102 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-10-28 15:58:47,102 | INFO | ✅ Signal Scanner ready
+2025-10-28 15:58:47,103 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 15:58:47,103 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-10-28 15:58:47,103 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-10-28 15:58:47,103 | INFO | ✅ Data Streamer ready
+2025-10-28 15:58:47,103 | INFO | 
+======================================================================
+2025-10-28 15:58:47,104 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-10-28 15:58:47,104 | INFO | ======================================================================
+2025-10-28 15:58:47,104 | INFO | 
+======================================================================
+2025-10-28 15:58:47,104 | INFO | 📊 WARMING UP INDICATORS
+2025-10-28 15:58:47,105 | INFO | ======================================================================
+2025-10-28 15:58:47,105 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-10-28 15:58:47,106 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 15:58:47,106 | INFO | 
+======================================================================
+2025-10-28 15:58:47,107 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-10-28 15:58:47,107 | INFO | ======================================================================
+2025-10-28 15:58:47,108 | INFO | ======================================================================
+2025-10-28 15:58:47,109 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-10-28 15:58:47,109 | INFO | ======================================================================
+2025-10-28 15:58:47,110 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-10-28 15:58:47,251 | INFO | ✅ WebSocket auth URL received
+2025-10-28 15:58:47,363 | INFO | Websocket connected
+2025-10-28 15:58:47,364 | INFO | 🔓 WebSocket connection opened!
+2025-10-28 15:58:47,365 | INFO | 📡 Subscribing to instruments:
+2025-10-28 15:58:47,365 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-10-28 15:58:47,365 | INFO |    CE:    NSE_FO|58998
+2025-10-28 15:58:47,365 | INFO |    PE:    NSE_FO|59003
+2025-10-28 15:58:47,366 | INFO | ✅ Subscription request sent
+2025-10-28 15:58:47,455 | INFO | ✅ WebSocket connected successfully!
+2025-10-28 15:58:47,456 | INFO | 
+✅ LIVE TRADING SESSION ACTIVE!
+2025-10-28 15:58:47,456 | INFO |    Press Ctrl+C to stop
+
+2025-10-28 15:58:47,457 | INFO | 🔔 Market closed - ending session
+2025-10-28 15:58:47,457 | INFO | 
+======================================================================
+2025-10-28 15:58:47,457 | INFO | 🔌 SHUTTING DOWN TRADING SESSION
+2025-10-28 15:58:47,458 | INFO | ======================================================================
+2025-10-28 15:58:47,458 | INFO | 🔌 Disconnecting WebSocket...
+2025-10-28 15:58:47,482 | WARNING | 🔌 WebSocket closed: None - None
+2025-10-28 15:58:47,482 | INFO | ✅ WebSocket disconnected
+2025-10-28 15:58:47,483 | INFO | 
+💾 Saving logs...
+2025-10-28 15:58:47,484 | ERROR | 
+💥 FATAL ERROR: 'charmap' codec can't encode character '\u20b9' in position 770: character maps to <undefined>
+2025-10-28 15:58:47,490 | INFO | 🔌 Disconnecting WebSocket...
+2025-10-28 15:58:47,490 | INFO | ✅ WebSocket disconnected
+2025-10-28 16:09:47,413 | INFO | ======================================================================
+2025-10-28 16:09:47,414 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-10-28 16:09:47,414 | INFO | ======================================================================
+2025-10-28 16:09:47,415 | INFO | ✅ Access token loaded
+2025-10-28 16:09:47,415 | INFO | 
+======================================================================
+2025-10-28 16:09:47,415 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-10-28 16:09:47,416 | INFO | ======================================================================
+2025-10-28 16:09:47,416 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 16:09:47,416 | INFO | ======================================================================
+2025-10-28 16:09:47,416 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-10-28 16:09:47,416 | INFO | ======================================================================
+2025-10-28 16:09:47,669 | INFO | ✅ NIFTY Spot: 25936.2
+2025-10-28 16:09:47,671 | INFO | 🎯 Spot: 25936.2 → ATM: 25950
+2025-10-28 16:09:47,853 | INFO | 📅 Nearest Expiry: 2025-10-28
+2025-10-28 16:09:48,002 | INFO | ✅ ATM Instruments Found!
+2025-10-28 16:09:48,002 | INFO |    CE: NSE_FO|58998
+2025-10-28 16:09:48,002 | INFO |    PE: NSE_FO|59003
+2025-10-28 16:09:48,003 | INFO | ✅ ATM Selection Complete!
+2025-10-28 16:09:48,004 | INFO |    Strike: 25950
+2025-10-28 16:09:48,004 | INFO |    Expiry: 2025-10-28
+2025-10-28 16:09:48,004 | INFO | ✅ ATM Selector ready
+2025-10-28 16:09:48,004 | INFO | 
+[2/8] Initializing Indicator Calculator...
+2025-10-28 16:09:48,005 | INFO | ✅ Indicator Calculator ready
+2025-10-28 16:09:48,005 | INFO | 
+[3/8] Initializing Position Tracker...
+2025-10-28 16:09:48,005 | INFO | ✅ Position Tracker ready
+2025-10-28 16:09:48,005 | INFO | 
+[4/8] Initializing Trade Logger...
+2025-10-28 16:09:48,005 | INFO | ✅ Trade Logger ready
+2025-10-28 16:09:48,006 | INFO | 
+[5/8] Initializing Strategy V27...
+2025-10-28 16:09:48,006 | INFO |    Lot Size: 75
+2025-10-28 16:09:48,006 | INFO |    CE TP1: 15 | PE TP1: 10
+2025-10-28 16:09:48,006 | INFO | ✅ Strategy V27 ready
+2025-10-28 16:09:48,006 | INFO | 
+[6/8] Initializing Paper Order Manager...
+2025-10-28 16:09:48,006 | INFO | ✅ Paper Order Manager ready
+2025-10-28 16:09:48,006 | INFO | 
+[7/8] Initializing Live Signal Scanner...
+2025-10-28 16:09:48,007 | INFO | ✅ Live Signal Scanner initialized with Strategy V27
+2025-10-28 16:09:48,007 | INFO | ✅ Signal Scanner ready
+2025-10-28 16:09:48,007 | INFO | 
+[8/8] Initializing Live Data Streamer...
+2025-10-28 16:09:48,007 | INFO | ✅ Instrument mapping set: 3 instruments
+2025-10-28 16:09:48,007 | INFO | ✅ Live Data Streamer initialized (V3 + Protobuf)
+2025-10-28 16:09:48,007 | INFO | ✅ Data Streamer ready
+2025-10-28 16:09:48,007 | INFO | 
+======================================================================
+2025-10-28 16:09:48,007 | INFO | ✅ ALL COMPONENTS INITIALIZED SUCCESSFULLY!
+2025-10-28 16:09:48,007 | INFO | ======================================================================
+2025-10-28 16:09:48,007 | INFO | 
+======================================================================
+2025-10-28 16:09:48,007 | INFO | 📊 WARMING UP INDICATORS
+2025-10-28 16:09:48,007 | INFO | ======================================================================
+2025-10-28 16:09:48,007 | INFO | ⚠️  Warmup skipped - indicators will build live
+2025-10-28 16:09:48,007 | INFO |    (Need ~10-15 candles for full indicator readiness)
+2025-10-28 16:09:48,007 | INFO | 
+======================================================================
+2025-10-28 16:09:48,007 | INFO | 🚀 STARTING LIVE TRADING SESSION
+2025-10-28 16:09:48,008 | INFO | ======================================================================
+2025-10-28 16:09:48,008 | INFO | ======================================================================
+2025-10-28 16:09:48,008 | INFO | 📡 CONNECTING TO UPSTOX WEBSOCKET (V3 + PROTOBUF)
+2025-10-28 16:09:48,008 | INFO | ======================================================================
+2025-10-28 16:09:48,008 | INFO | 🔑 Requesting WebSocket auth URL (V3)...
+2025-10-28 16:09:48,149 | INFO | ✅ WebSocket auth URL received
+2025-10-28 16:09:48,272 | INFO | Websocket connected
+2025-10-28 16:09:48,273 | INFO | 🔓 WebSocket connection opened!
+2025-10-28 16:09:48,274 | INFO | 📡 Subscribing to instruments:
+2025-10-28 16:09:48,274 | INFO |    NIFTY: NSE_INDEX|Nifty 50
+2025-10-28 16:09:48,275 | INFO |    CE:    NSE_FO|58998
+2025-10-28 16:09:48,275 | INFO |    PE:    NSE_FO|59003
+2025-10-28 16:09:48,275 | INFO | ✅ Subscription request sent
+2025-10-28 16:09:48,355 | INFO | ✅ WebSocket connected successfully!
+2025-10-28 16:09:48,355 | INFO | 
+✅ LIVE TRADING SESSION ACTIVE!
+2025-10-28 16:09:48,356 | INFO |    Press Ctrl+C to stop
+
+2025-10-28 16:09:48,356 | INFO | 🔔 Market closed - ending session
+2025-10-28 16:09:48,357 | INFO | 
+======================================================================
+2025-10-28 16:09:48,358 | INFO | 🔌 SHUTTING DOWN TRADING SESSION
+2025-10-28 16:09:48,359 | INFO | ======================================================================
+2025-10-28 16:09:48,359 | INFO | 🔌 Disconnecting WebSocket...
+2025-10-28 16:09:48,380 | WARNING | 🔌 WebSocket closed: None - None
+2025-10-28 16:09:48,381 | INFO | ✅ WebSocket disconnected
+2025-10-28 16:09:48,382 | INFO | 
+💾 Saving logs...
+2025-10-28 16:09:48,383 | INFO | ✅ Summary saved to: C:\Users\sakth\Desktop\VSCODE\TB DHAN API ALGO\Phase-3\trade_logs\summary_20251028.txt
+2025-10-28 16:09:48,383 | INFO | ✅ All logs saved successfully!
+2025-10-28 16:09:48,384 | INFO | 
+======================================================================
+2025-10-28 16:09:48,384 | INFO | ✅ SHUTDOWN COMPLETE!
+2025-10-28 16:09:48,384 | INFO | ======================================================================
+2025-10-28 22:52:44,427 | INFO | ======================================================================
+2025-10-28 22:52:44,428 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-10-28 22:52:44,428 | INFO | ======================================================================
+2025-10-28 22:52:44,429 | INFO | ✅ Access token loaded
+2025-10-28 22:52:44,429 | INFO | 
+======================================================================
+2025-10-28 22:52:44,429 | INFO | ⚙️  INITIALIZING COMPONENTS
+2025-10-28 22:52:44,430 | INFO | ======================================================================
+2025-10-28 22:52:44,430 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-10-28 22:52:44,430 | INFO | ======================================================================
+2025-10-28 22:52:44,430 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-10-28 22:52:44,431 | INFO | ======================================================================
+2025-10-28 22:52:46,040 | ERROR | ❌ Failed to get NIFTY spot: <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en-US"> <!--<![endif]-->
+<head>
+<title>Attention Required! | Cloudflare</title>
+<meta charset="UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<link rel="stylesheet" id="cf_styles-css" href="/cdn-cgi/styles/cf.errors.css" />
+<!--[if lt IE 9]><link rel="stylesheet" id='cf_styles-ie-css' href="/cdn-cgi/styles/cf.errors.ie.css" /><![endif]-->
+<style>body{margin:0;padding:0}</style>
+
+
+<!--[if gte IE 10]><!-->
+<script>
+  if (!navigator.cookieEnabled) {
+    window.addEventListener('DOMContentLoaded', function () {
+      var cookieEl = document.getElementById('cookie-alert');
+      cookieEl.style.display = 'block';
+    })
+  }
+</script>
+<!--<![endif]-->
+
+
+</head>
+<body>
+  <div id="cf-wrapper">
+    <div class="cf-alert cf-alert-error cf-cookie-error" id="cookie-alert" data-translate="enable_cookies">Please enable cookies.</div>
+    <div id="cf-error-details" class="cf-error-details-wrapper">
+      <div class="cf-wrapper cf-header cf-error-overview">
+        <h1 data-translate="block_headline">Sorry, you have been blocked</h1>
+        <h2 class="cf-subheadline"><span data-translate="unable_to_access">You are unable to access</span> upstox.com</h2>
+      </div><!-- /.header -->
+
+      <div class="cf-section cf-highlight">
+        <div class="cf-wrapper">
+          <div class="cf-screenshot-container cf-screenshot-full">
+            
+              <span class="cf-no-screenshot error"></span>
+            
+          </div>
+        </div>
+      </div><!-- /.captcha-container -->
+
+      <div class="cf-section cf-wrapper">
+        <div class="cf-columns two">
+          <div class="cf-column">
+            <h2 data-translate="blocked_why_headline">Why have I been blocked?</h2>
+
+            <p data-translate="blocked_why_detail">This website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including submitting a certain word or phrase, a SQL command or malformed data.</p>
+          </div>
+
+          <div class="cf-column">
+            <h2 data-translate="blocked_resolve_headline">What can I do to resolve this?</h2>
+
+            <p data-translate="blocked_resolve_detail">You can email the site owner to let them know you were blocked. Please include what you were doing when this page came up and the Cloudflare Ray ID found at the bottom of this page.</p>
+          </div>
+        </div>
+      </div><!-- /.section -->
+
+      <div class="cf-error-footer cf-wrapper w-240 lg:w-full py-10 sm:py-4 sm:px-8 mx-auto text-center sm:text-left border-solid border-0 border-t border-gray-300">
+  <p class="text-13">
+    <span class="cf-footer-item sm:block sm:mb-1">Cloudflare Ray ID: <strong class="font-semibold">995c1df8d857c9e4</strong></span>
+    <span class="cf-footer-separator sm:hidden">&bull;</span>
+    <span id="cf-footer-item-ip" class="cf-footer-item hidden sm:block sm:mb-1">
+      Your IP:
+      <button type="button" id="cf-footer-ip-reveal" class="cf-footer-ip-reveal-btn">Click to reveal</button>
+      <span class="hidden" id="cf-footer-ip">146.70.246.102</span>
+      <span class="cf-footer-separator sm:hidden">&bull;</span>
+    </span>
+    <span class="cf-footer-item sm:block sm:mb-1"><span>Performance &amp; security by</span> <a rel="noopener noreferrer" href="https://www.cloudflare.com/5xx-error-landing" id="brand_link" target="_blank">Cloudflare</a></span>
+    
+  </p>
+  <script>(function(){function d(){var b=a.getElementById("cf-footer-item-ip"),c=a.getElementById("cf-footer-ip-reveal");b&&"classList"in b&&(b.classList.remove("hidden"),c.addEventListener("click",function(){c.classList.add("hidden");a.getElementById("cf-footer-ip").classList.remove("hidden")}))}var a=document;document.addEventListener&&a.addEventListener("DOMContentLoaded",d)})();</script>
+</div><!-- /.error-footer -->
+
+
+    </div><!-- /#cf-error-details -->
+  </div><!-- /#cf-wrapper -->
+
+  <script>
+  window._cf_translation = {};
+  
+  
+</script>
+
+</body>
+</html>
+
+2025-10-28 22:52:46,043 | ERROR | ❌ ATM initialization failed!

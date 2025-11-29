@@ -1,0 +1,15 @@
+2025-11-23 15:37:24,851 | INFO | ======================================================================
+2025-11-23 15:37:24,851 | INFO | 🔥 TRADER-BADDU LIVE PAPER TRADER - PHASE 3
+2025-11-23 15:37:24,851 | INFO | ======================================================================
+2025-11-23 15:37:24,872 | INFO | ✅ Access token loaded and API client configured.
+2025-11-23 15:37:24,872 | INFO | 
+======================================================================
+⚙️  INITIALIZING COMPONENTS
+======================================================================
+2025-11-23 15:37:24,872 | INFO | 
+[1/8] Initializing ATM Selector...
+2025-11-23 15:37:24,872 | INFO | ======================================================================
+2025-11-23 15:37:24,872 | INFO | 🎯 INITIALIZING ATM STRIKE SELECTOR
+2025-11-23 15:37:24,873 | INFO | ======================================================================
+2025-11-23 15:37:25,342 | ERROR | ❌ Failed to get NIFTY spot: {"status":"error","errors":[{"errorCode":"UDAPI100050","message":"Invalid token used to access API","propertyPath":null,"invalidValue":null,"error_code":"UDAPI100050","property_path":null,"invalid_value":null}]}
+2025-11-23 15:37:25,346 | ERROR | ❌ ATM initialization failed!

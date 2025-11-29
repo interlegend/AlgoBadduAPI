@@ -1,0 +1,9 @@
+{
+  "python.defaultInterpreterPath": "C:\\Users\\sakth\\miniconda3\\envs\\dhan\\python.exe",
+  "python.analysis.extraPaths": [
+    "C:\\Users\\sakth\\miniconda3\\envs\\dhan\\Lib\\site-packages"
+  ],
+  "python.analysis.typeCheckingMode": "off",
+  "python.analysis.diagnosticMode": "workspace",
+  "python.languageServer": "Pylance"
+}
