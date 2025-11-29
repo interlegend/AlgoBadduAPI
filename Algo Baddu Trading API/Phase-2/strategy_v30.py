@@ -42,7 +42,7 @@ class StrategyV30:
         # === CORE CONFIGURATION ===
         self.LOT_SIZE = 75
         self.ATR_PERIOD = 14
-        self.MAX_SL_POINTS = 26.67 # Max loss = ₹2000 (₹2000/75)
+        self.MAX_SL_POINTS = 25 # Max loss = ₹2000 (₹2000/75)
         
         # === TIME WINDOWS ===
         self.ENTRY_START = time(9, 30)
