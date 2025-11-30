@@ -453,7 +453,9 @@ def run_backtest(nifty_df, options_df, ema_period=21, vi_period=21, sl_multiplie
                             'Initial_SL': position['initial_sl'],
                             'TP1_Hit': position['tp1_hit'],
                             'PnL_Points': pnl_data['pnl_points'],
-                            'PnL_INR': pnl_data['pnl_inr']
+                            'PnL_INR': pnl_data['pnl_inr'],
+                            'Gross_PnL': pnl_data['gross_pnl'],
+                            'Costs': pnl_data['cost']
                         })
 
                         day_trades += 1
@@ -505,6 +507,10 @@ def generate_report(trades):
     drawdown = cumulative_pnl - running_max
     max_drawdown = drawdown.min()
     
+    # Cost Analysis
+    total_gross_pnl = trade_df['Gross_PnL'].sum()
+    total_costs = trade_df['Costs'].sum()
+
     # TP1 hit rate
     tp1_hit_count = trade_df['TP1_Hit'].sum()
     tp1_hit_rate = (tp1_hit_count / total_trades * 100) if total_trades > 0 else 0
@@ -523,9 +529,13 @@ def generate_report(trades):
     print(f"{'='*70}")
     print(f"Avg Slippage:        {avg_slippage:.1f} seconds")
     print(f"Max Slippage:        {max_slippage} seconds")
-    print(f"\n💰 P&L BREAKDOWN:")
+    print(f"\n💰 P&L BREAKDOWN (FINANCIAL REALISM):")
     print(f"{'='*70}")
-    print(f"Total P&L:           ₹{total_pnl:,.2f}")
+    print(f"GROSS P&L:           ₹{total_gross_pnl:,.2f}  (Strategy Profit)")
+    print(f"CHARGES:             -₹{total_costs:,.2f}  (Brokerage & Slippage)")
+    print(f"{'-'*70}")
+    print(f"NET P&L:             ₹{total_pnl:,.2f}  (Realized Profit)")
+    print(f"{'-'*70}")
     print(f"Total Profit:        ₹{total_profit:,.2f}")
     print(f"Total Loss:          ₹{total_loss:,.2f}")
     print(f"Average P&L:         ₹{avg_pnl:,.2f}")

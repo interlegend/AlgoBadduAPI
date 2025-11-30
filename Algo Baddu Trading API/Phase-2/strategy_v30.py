@@ -148,10 +148,23 @@ class StrategyV30:
         return current_time >= self.EOD_EXIT_TIME
     
     def calculate_pnl(self, side, entry_price, exit_price):
-        """Calculate profit/loss for the trade"""
+        """Calculate profit/loss for the trade with Slippage & Brokerage"""
         pnl_points = exit_price - entry_price
-        pnl_inr = pnl_points * self.LOT_SIZE
-        return {'pnl_points': round(pnl_points, 2), 'pnl_inr': round(pnl_inr, 2)}
+        
+        # --- FINANCIAL REALISM ---
+        # Slippage: 0.5 pts (approx ₹37.50 for 75 qty)
+        # Brokerage & Taxes: ₹50.00
+        TOTAL_COST = 87.50 
+        
+        gross_pnl = pnl_points * self.LOT_SIZE
+        net_pnl = gross_pnl - TOTAL_COST
+        
+        return {
+            'pnl_points': round(pnl_points, 2), 
+            'pnl_inr': round(net_pnl, 2),
+            'gross_pnl': round(gross_pnl, 2),
+            'cost': TOTAL_COST
+        }
     
     def get_config(self):
         """Return strategy configuration for logging/display"""
