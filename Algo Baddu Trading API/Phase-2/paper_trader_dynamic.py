@@ -577,12 +577,12 @@ def main():
     """Main execution function for the final, optimized strategy."""
     print("\n" + "🔥"*35)
     print("   OPERATION TRADER-BADDU: FINAL CHAMPION RUN")
-    print("   Strategy V30 (EMA=21, VI=21, SL=2.0, TP=10, Trail=0.5)")
+    print("   Strategy V30 (EMA=21, VI=34, SL=2.0, TP=10, Trail=0.5)")
     print("🔥"*35 + "\n")
 
     # --- Final Winning Parameters ---
     ema_period = 21
-    vi_period = 21
+    vi_period = 34  # THE GOLDEN RATIO
     sl_multiplier = 2.0
     tp_points = 10
     trail_atr = 1.0

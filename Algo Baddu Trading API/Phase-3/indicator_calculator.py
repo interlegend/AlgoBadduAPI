@@ -1,18 +1,20 @@
 """
-Real-time Indicator Calculator
-Maintains rolling buffer and calculates indicators
+Real-time Indicator Calculator - FIXED VERSION
+Maintains rolling buffer and calculates indicators with STRICT stability gates
 """
 
 import pandas as pd
 import numpy as np
 from collections import deque
 import logging
+import pandas_ta as ta
 
 logger = logging.getLogger(__name__)
 
 class IndicatorCalculator:
-    def __init__(self, buffer_size=100):
+    def __init__(self, buffer_size=5000, strategy_params=None):
         self.buffer_size = buffer_size
+        self.params = strategy_params if strategy_params else {}
         
         # Data buffers
         self.nifty_buffer = deque(maxlen=buffer_size)
@@ -39,16 +41,24 @@ class IndicatorCalculator:
             self.pe_buffer.append(candle)
     
     def _buffer_to_df(self, buffer):
-        """Convert a deque buffer to a pandas DataFrame"""
+        """Convert a deque buffer to a pandas DataFrame and standardize timestamp column."""
         if not buffer:
             return pd.DataFrame()
         
         df = pd.DataFrame(list(buffer))
-        df['timestamp'] = pd.to_datetime(df['timestamp'])
+        
+        # Standardize the timestamp column to 'timestamp'
+        if 'datetime' in df.columns:
+            df['timestamp'] = pd.to_datetime(df['datetime'])
+            if 'datetime' in df.columns: 
+                df.drop(columns=['datetime'], inplace=True)
+        elif 'timestamp' in df.columns:
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            
         return df
     
     def EMA(self, series, period):
-        """Calculate Exponential Moving Average"""
+        """Calculate Exponential Moving Average - matches Phase 2"""
         return series.ewm(span=period, adjust=False).mean()
     
     def MACD(self, series, fast=12, slow=26, signal=9):
@@ -60,8 +70,8 @@ class IndicatorCalculator:
         macd_hist = macd - macd_signal
         return macd, macd_signal, macd_hist
     
-    def ATR(self, high, low, close, period=7):
-        """Calculate Average True Range"""
+    def ATR(self, high, low, close, period=14):
+        """Calculate Average True Range - simple rolling mean matching Phase 2"""
         tr1 = high - low
         tr2 = np.abs(high - close.shift())
         tr3 = np.abs(low - close.shift())
@@ -69,43 +79,86 @@ class IndicatorCalculator:
         return tr.rolling(period).mean()
 
     def Vortex(self, high, low, close, period=21):
-        """Calculate Vortex Indicator (VI+ and VI-)"""
-        tr = pd.concat([high - low, np.abs(high - close.shift()), np.abs(low - close.shift())], axis=1).max(axis=1)
-        atr_sum = tr.rolling(window=period).sum()
+        """Calculate Vortex Indicator using pandas_ta to match Phase 2"""
+        vortex_df = ta.vortex(high=high, low=low, close=close, length=period)
+        
+        if vortex_df is None or vortex_df.empty:
+            return pd.Series([np.nan]*len(close)), pd.Series([np.nan]*len(close))
 
-        vm_plus = np.abs(high - low.shift())
-        vm_minus = np.abs(low - high.shift())
-
-        vi_plus = vm_plus.rolling(window=period).sum() / atr_sum
-        vi_minus = vm_minus.rolling(window=period).sum() / atr_sum
-
-        return vi_plus, vi_minus
+        # Find column names dynamically (VTXP_21, VTXM_21 or VIP_21, VIM_21)
+        plus_col = [c for c in vortex_df.columns if c.startswith('VTXP') or c.startswith('VIP')][0]
+        minus_col = [c for c in vortex_df.columns if c.startswith('VTXM') or c.startswith('VIM')][0]
+        
+        return vortex_df[plus_col], vortex_df[minus_col]
 
     def calculate_nifty_indicators(self):
-        """Calculate all required indicators for the NIFTY index"""
-        if len(self.nifty_buffer) < 30:
-            logger.debug(f"Not enough NIFTY candles to calculate indicators: {len(self.nifty_buffer)}/{30}")
+        """
+        Calculate all required indicators for the NIFTY index.
+        CRITICAL STABILITY GATE: Requires minimum 50 candles to prevent cold-start hallucinations.
+        """
+        # === TASK A: STRICT STABILITY GATE ===
+        # This prevents the 09:30 Ghost Trade by blocking unstable indicator calculations
+        if len(self.nifty_buffer) < 50:
+            logger.debug(f"⏳ Stability Gate: Only {len(self.nifty_buffer)}/50 candles. Indicators blocked.")
             return False
+
+        ema_period = self.params.get('ema_period', 21)
+        vi_period = self.params.get('vi_period', 21)
+
+        # Additional safety: ensure we have enough data for the indicators
+        if len(self.nifty_buffer) < max(ema_period, vi_period):
+            logger.debug(f"⏳ Insufficient data for EMA({ema_period})/VI({vi_period})")
+            return False
+        
+        # === DAILY CANDLE COUNT GATE ===
+        # Block signals until we have at least 13 candles of the current trading day
+        # This prevents 09:15-10:00 false signals that Phase 2 doesn't generate
+        # 13 candles = 10:15 AM (matching Phase 2's first signal time on Nov 19/20)
+        df_temp = self._buffer_to_df(self.nifty_buffer)
+        if not df_temp.empty:
+            latest_date = df_temp.iloc[-1]['timestamp'].date()
+            today_candles = df_temp[df_temp['timestamp'].dt.date == latest_date]
+            if len(today_candles) < 13:
+                logger.info(f"⏳ Daily Candle Gate: Only {len(today_candles)}/13 candles today. Blocking early signals.")
+                return False
         
         df = self._buffer_to_df(self.nifty_buffer)
         
         # Calculate indicators
-        df['ema21'] = self.EMA(df['close'], 21)
+        df[f'ema{ema_period}'] = self.EMA(df['close'], ema_period)
         df['macd'], df['macd_signal'], df['macd_hist'] = self.MACD(df['close'])
-        df['vi_plus_21'], df['vi_minus_21'] = self.Vortex(df['high'], df['low'], df['close'], 21)
         
-        # Store the full DataFrame
+        # Vortex using pandas_ta (matches Phase 2)
+        vi_plus, vi_minus = self.Vortex(df['high'], df['low'], df['close'], vi_period)
+        df[f'vi_plus_{vi_period}'] = vi_plus
+        df[f'vi_minus_{vi_period}'] = vi_minus
+        
         self.nifty_df = df
         
-        # Store latest indicator values for quick access
         latest = df.iloc[-1]
+        
         self.nifty_indicators = {
             'close': latest['close'],
-            'ema21': latest['ema21'],
-            'vi_plus': latest['vi_plus_21'],
-            'vi_minus': latest['vi_minus_21'],
+            f'ema{ema_period}': latest[f'ema{ema_period}'],
+            f'vi_plus_{vi_period}': latest[f'vi_plus_{vi_period}'],
+            f'vi_minus_{vi_period}': latest[f'vi_minus_{vi_period}'],
+            'macd_hist': latest['macd_hist'],
             'timestamp': latest['timestamp']
         }
+        
+        # 🔍 DEBUG: Log 09:30 indicator values to compare with Phase 2
+        if latest['timestamp'].time().hour == 9 and latest['timestamp'].time().minute == 30:
+            logger.warning(f"🔍 09:30 DEBUG | Date: {latest['timestamp'].date()}")
+            logger.warning(f"   Buffer Size: {len(self.nifty_buffer)} candles")
+            logger.warning(f"   Close: {latest['close']:.2f} | EMA: {latest[f'ema{ema_period}']:.2f}")
+            logger.warning(f"   VI+: {latest[f'vi_plus_{vi_period}']:.4f} | VI-: {latest[f'vi_minus_{vi_period}']:.4f}")
+            
+            # Check previous candle for crossover detection
+            if len(df) >= 2:
+                prev = df.iloc[-2]
+                prev_gap = prev[f'vi_plus_{vi_period}'] - prev[f'vi_minus_{vi_period}']
+                curr_gap = latest[f'vi_plus_{vi_period}'] - latest[f'vi_minus_{vi_period}']
+                logger.warning(f"   Prev Gap: {prev_gap:.4f} | Curr Gap: {curr_gap:.4f} | Widening: {curr_gap > prev_gap}")
         
         return True
     
@@ -113,13 +166,16 @@ class IndicatorCalculator:
         """Calculate all required indicators for CE or PE options"""
         buffer = self.ce_buffer if option_type == 'CE' else self.pe_buffer
         
-        if len(buffer) < 10:
+        atr_period = self.params.get('atr_period', 14)
+        
+        # Ensure enough data for ATR calculation
+        if len(buffer) < atr_period:
             return False
         
         df = self._buffer_to_df(buffer)
         
-        # Calculate indicators
-        df['atr'] = self.ATR(df['high'], df['low'], df['close'], period=7)
+        # Calculate ATR
+        df['atr'] = self.ATR(df['high'], df['low'], df['close'], period=atr_period)
         
         # Store the full DataFrame
         if option_type == 'CE':
@@ -133,6 +189,7 @@ class IndicatorCalculator:
             'close': latest['close'],
             'high': latest['high'],
             'low': latest['low'],
+            'open': latest['open'],
             'atr': latest['atr'],
             'timestamp': latest['timestamp']
         }
@@ -167,3 +224,13 @@ class IndicatorCalculator:
             'ce': len(self.ce_buffer),
             'pe': len(self.pe_buffer)
         }
+
+    def reset_option_buffers(self):
+        """Reset option buffers for daily cold start simulation (matches Phase 2)"""
+        self.ce_buffer.clear()
+        self.pe_buffer.clear()
+        self.ce_df = pd.DataFrame()
+        self.pe_df = pd.DataFrame()
+        self.ce_indicators = {}
+        self.pe_indicators = {}
+        logger.info("🧹 Option buffers cleared for new day (Cold Start).")

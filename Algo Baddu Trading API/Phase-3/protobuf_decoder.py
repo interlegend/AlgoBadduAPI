@@ -42,12 +42,28 @@ class UpstoxProtobufDecoder:
             feed_response.ParseFromString(binary_data)
             
             # Build response structure
+            # Use getattr or defaults if enum values are missing in the generated pb file
+            initial_feed_val = getattr(pb, 'FeedType_initial_feed', 0) # Often 0 or 1
+            live_feed_val = getattr(pb, 'FeedType_live_feed', 1)
+            market_info_val = getattr(pb, 'FeedType_market_info', 2) # Example
+            
+            # Actually, inspecting the error 'has no attribute FeedType_initial_feed', it seems the enum is nested or named differently.
+            # In standard python protobuf, enums are top level or inside the message class.
+            # Let's try to use the FeedResponse.FeedType enum wrapper if available, or just use the raw values if we can't find names.
+            # But for robust decoding, we just need to map the integer value `feed_response.feed_type` to a string.
+            
+            # If we can't find the constants, just use the integer value as key or 'unknown'
+            
+            # Better approach: Use the descriptor to find the name
+            try:
+                # The enum is top-level 'Type' in pb2
+                feed_type_name = pb.Type.Name(feed_response.type)
+            except:
+                # Fallback if direct access fails, use the integer value
+                feed_type_name = str(feed_response.type)
+
             response = {
-                'type': {
-                    pb.FeedType_initial_feed: 'initial_feed',
-                    pb.FeedType_live_feed: 'live_feed',
-                    pb.FeedType_market_info: 'market_info'
-                }.get(feed_response.feed_type, 'unknown'),
+                'type': feed_type_name,
                 'timestamp': feed_response.currentTs,
                 'feeds': {}
             }
@@ -73,15 +89,16 @@ class UpstoxProtobufDecoder:
     def _decode_feed(self, instrument_key, feed):
         """Decode individual Feed message"""
         
+        try:
+            # The enum is top-level 'RequestMode' in pb2
+            request_mode_name = pb.RequestMode.Name(feed.requestMode)
+        except:
+            request_mode_name = str(feed.requestMode)
+
         data = {
             'instrument_key': instrument_key,
             'instrument_name': self.instrument_map.get(instrument_key, 'UNKNOWN'),
-            'request_mode': {
-                pb.RequestMode_ltpc: 'ltpc',
-                pb.RequestMode_full_d5: 'full_d5',
-                pb.RequestMode_option_greeks: 'option_greeks',
-                pb.RequestMode_full_d30: 'full_d30'
-            }.get(feed.requestMode, 'unknown'),
+            'request_mode': request_mode_name,
         }
         
         # Check which feed type we have (oneof FeedUnion)

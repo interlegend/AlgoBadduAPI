@@ -156,11 +156,52 @@ class ATMSelector:
             logger.error("❌ ATM Selection Failed!")
             return False
     
-    def get_current_config(self):
-        """Return current ATM configuration"""
-        return {
-            'strike': self.current_strike,
-            'expiry': self.expiry_date,
-            'ce_key': self.ce_instrument_key,
-            'pe_key': self.pe_instrument_key
-        }
+        def get_current_config(self):
+            """Return current ATM configuration"""
+            return {
+                'strike': self.current_strike,
+                'expiry': self.expiry_date,
+                'ce_key': self.ce_instrument_key,
+                'pe_key': self.pe_instrument_key
+            }
+    
+        def get_atm_keys(self, spot_price):
+            """
+            Get ATM strike and keys for a given spot price.
+            Returns: (atm_strike, ce_key, pe_key)
+            """
+            if not spot_price:
+                spot_price = self.get_nifty_spot()
+            
+            if not spot_price:
+                return None, None, None
+                
+            atm_strike = self.calculate_atm_strike(spot_price)
+            expiry_date = self.get_nearest_expiry()
+            
+            if not expiry_date:
+                return atm_strike, None, None
+                
+            ce_key, pe_key = self.get_atm_instruments(atm_strike, expiry_date)
+            
+            return atm_strike, ce_key, pe_key    
+    def get_atm_keys(self, spot_price=None):
+        """
+        Get ATM strike and instrument keys for a given spot price.
+        Returns: (atm_strike, ce_key, pe_key)
+        """ 
+        if spot_price is None:
+            spot_price = self.get_nifty_spot()
+            if spot_price is None:
+                logger.error("❌ Could not fetch NIFTY spot price.")
+                return None, None, None
+
+        atm_strike = self.calculate_atm_strike(spot_price)
+        
+        expiry_date = self.get_nearest_expiry()
+        if not expiry_date:
+            return atm_strike, None, None
+            
+        ce_key, pe_key = self.get_atm_instruments(atm_strike, expiry_date)
+        
+        return atm_strike, ce_key, pe_key

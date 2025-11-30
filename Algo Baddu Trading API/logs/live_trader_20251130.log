@@ -1,0 +1,60 @@
+2025-11-30 23:14:59,519 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:14:59,520 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:19:37,732 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:19:37,732 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:19:38,635 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:19:38,636 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:19:39,803 [INFO] Websocket connected
+2025-11-30 23:19:39,822 [ERROR] Error decoding protobuf: module 'upstox_client.feeder.proto.MarketDataFeedV3_pb2' has no attribute 'FeedType_initial_feed'
+2025-11-30 23:25:08,508 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:25:08,509 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:25:09,505 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:25:09,506 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:25:10,508 [INFO] Websocket connected
+2025-11-30 23:25:10,522 [ERROR] Error decoding protobuf: module 'upstox_client.feeder.proto.MarketDataFeedV3_pb2' has no attribute 'FeedType_initial_feed'
+2025-11-30 23:27:23,132 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:27:23,132 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:27:24,060 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:27:24,060 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:27:24,857 [INFO] Websocket connected
+2025-11-30 23:27:24,873 [ERROR] Error decoding protobuf: 'FeedResponse' object has no attribute 'feed_type'
+2025-11-30 23:29:40,890 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:29:40,890 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:29:41,993 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:29:41,993 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:29:42,997 [INFO] Websocket connected
+2025-11-30 23:29:43,021 [ERROR] Error decoding protobuf: 'FeedResponse' object has no attribute 'feed_type'
+2025-11-30 23:35:41,841 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:35:41,841 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:35:42,845 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:35:42,846 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:35:43,670 [INFO] Websocket connected
+2025-11-30 23:36:42,675 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:36:42,675 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:36:43,581 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:36:43,581 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:36:44,311 [INFO] Websocket connected
+2025-11-30 23:37:35,843 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-11-30 23:37:35,844 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-11-30 23:37:35,844 [INFO]    EOD Exit: 15:25:00
+2025-11-30 23:37:36,071 [INFO] ✅ Current NIFTY Spot: 26202.95
+2025-11-30 23:37:36,072 [INFO] 🎯 Spot: 26202.95 → ATM: 26200
+2025-11-30 23:37:36,407 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-11-30 23:37:36,667 [INFO] ✅ ATM Instruments Found!
+2025-11-30 23:37:36,668 [INFO]    CE: NSE_FO|46803
+2025-11-30 23:37:36,669 [INFO]    PE: NSE_FO|46804
+2025-11-30 23:37:36,672 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-11-30 23:37:36,673 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-11-30 23:37:36,673 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-11-30 23:37:36,674 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY data...
+2025-11-30 23:37:37,018 [INFO] ✅ Fetched 300 historical candles for Warm-Up.
+2025-11-30 23:37:37,127 [INFO] 📥 Feeding 300 sorted candles to Calculator...
+2025-11-30 23:37:37,128 [INFO] ✅ Warm-Up Complete. Indicators are ready.
+2025-11-30 23:37:37,130 [INFO] 🚀 Starting WebSocket streamer...
+2025-11-30 23:37:37,722 [INFO] Websocket connected
+2025-11-30 23:37:37,723 [INFO] 🔓 WebSocket connection opened!
+2025-11-30 23:37:37,723 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-11-30 23:37:37,725 [INFO] ✅ Subscription request sent
+2025-11-30 23:37:37,737 [INFO] ✅ WebSocket connected successfully!
+2025-11-30 23:37:37,737 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-11-30 23:37:37,739 [INFO] 🌙 Market Closed (Time > 15:35). Shutting down.

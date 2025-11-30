@@ -27,7 +27,7 @@ class StrategyV30:
     The version of the strategy with MACD histogram filter removed from entry.
     """
     
-    def __init__(self, ema_period=21, vi_period=21, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
+    def __init__(self, ema_period=21, vi_period=34, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
         # === TUNABLE INDICATOR PARAMETERS ===
         self.EMA_PERIOD = ema_period
         self.VI_PERIOD = vi_period

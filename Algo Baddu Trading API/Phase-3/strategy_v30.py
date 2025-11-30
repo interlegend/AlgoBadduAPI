@@ -27,7 +27,7 @@ class StrategyV30:
     The version of the strategy with MACD histogram filter removed from entry.
     """
     
-    def __init__(self, ema_period=21, vi_period=21, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
+    def __init__(self, ema_period=21, vi_period=34, sl_multiplier=2.0, tp_points=10, trail_atr_multiplier=0.5):
         # === TUNABLE INDICATOR PARAMETERS ===
         self.EMA_PERIOD = ema_period
         self.VI_PERIOD = vi_period
@@ -36,11 +36,13 @@ class StrategyV30:
         self.SL_MULTIPLIER = sl_multiplier
         self.TP1_POINTS = tp_points
         self.TRAIL_ATR_MULTIPLIER = trail_atr_multiplier
+        
+        self.CHOP_THRESHOLD = 57
 
         # === CORE CONFIGURATION ===
         self.LOT_SIZE = 75
         self.ATR_PERIOD = 14
-        self.MAX_SL_POINTS = 26.67 # Max loss = ₹2000 (₹2000/75)
+        self.MAX_SL_POINTS = 25 # Max loss = ₹2000 (₹2000/75)
         
         # === TIME WINDOWS ===
         self.ENTRY_START = time(9, 30)
@@ -58,9 +60,14 @@ class StrategyV30:
         row = df.iloc[idx]
         prev_row = df.iloc[idx - 1]
         prev2_row = df.iloc[idx - 2]
-        current_time = row['timestamp'].time()
+        current_time = row['datetime'].time()
         
         if not (self.ENTRY_START <= current_time <= self.ENTRY_END):
+            return None
+
+        # FILTER: If market is choppy, DO NOT TRADE
+        choppiness = row.get('choppiness', 100)
+        if choppiness > self.CHOP_THRESHOLD:
             return None
 
         vi_plus_col = f'vi_plus_{self.VI_PERIOD}'
@@ -86,7 +93,7 @@ class StrategyV30:
                 is_bearish_vortex = True
 
         if is_bullish_vortex or is_bearish_vortex:
-            close = row['close']
+            close = row['index_close']
             ema_col = f'ema{self.EMA_PERIOD}'
             ema = row[ema_col]
             
@@ -141,10 +148,23 @@ class StrategyV30:
         return current_time >= self.EOD_EXIT_TIME
     
     def calculate_pnl(self, side, entry_price, exit_price):
-        """Calculate profit/loss for the trade"""
+        """Calculate profit/loss for the trade with Slippage & Brokerage"""
         pnl_points = exit_price - entry_price
-        pnl_inr = pnl_points * self.LOT_SIZE
-        return {'pnl_points': round(pnl_points, 2), 'pnl_inr': round(pnl_inr, 2)}
+        
+        # --- FINANCIAL REALISM ---
+        # Slippage: 0.5 pts (approx ₹37.50 for 75 qty)
+        # Brokerage & Taxes: ₹50.00
+        TOTAL_COST = 87.50 
+        
+        gross_pnl = pnl_points * self.LOT_SIZE
+        net_pnl = gross_pnl - TOTAL_COST
+        
+        return {
+            'pnl_points': round(pnl_points, 2), 
+            'pnl_inr': round(net_pnl, 2),
+            'gross_pnl': round(gross_pnl, 2),
+            'cost': TOTAL_COST
+        }
     
     def get_config(self):
         """Return strategy configuration for logging/display"""
