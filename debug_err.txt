@@ -1,0 +1,7 @@
+INFO:DEBUG_WS:\U0001f511 AUTH RESPONSE: 200 {"status":"success","data":{"authorizedRedirectUri":"wss://wsfeeder-api.upstox.com/market-data-feeder/v3/upstox-developer-api/feeds?requestId=e725c11e-d3c7-41ee-81a2-404073af7c7d&code=XQBDJ-e6bc0485-c83b-49af-9ff3-29cbbd9b886a","authorized_redirect_uri":"wss://wsfeeder-api.upstox.com/market-data-feeder/v3/upstox-developer-api/feeds?requestId=e725c11e-d3c7-41ee-81a2-404073af7c7d&code=XQBDJ-e6bc0485-c83b-49af-9ff3-29cbbd9b886a"}}
+INFO:websocket:Websocket connected
+INFO:DEBUG_WS:\U0001f513 OPENED
+INFO:DEBUG_WS:\U0001f4e4 SENDING SUB: {"guid": "debug-uuid", "method": "sub", "data": {"mode": "full", "instrumentKeys": ["NSE_INDEX|Nifty 50"]}}
+INFO:DEBUG_WS:\u2705 RECEIVED BINARY DATA (165 bytes)
+INFO:DEBUG_WS:\U0001f6d1 TIME UP. Closing...
+INFO:DEBUG_WS:\U0001f50c CLOSED: None - None

@@ -52,59 +52,58 @@ class LiveDataStreamer:
     
     def initialize_warmup(self, days=5):
         """
-        Fetches historical data for NIFTY to warm up indicators.
+        Fetches historical data for NIFTY, CE, and PE to warm up indicators.
         Prevents the '09:30 Ghost Trade' by ensuring EMA/VI are stable.
         """
-        logger.info(f"🔥 STARTING WARM-UP: Fetching last {days} days of NIFTY data...")
+        logger.info(f"🔥 STARTING WARM-UP: Fetching last {days} days of NIFTY & ATM Options...")
         
-        nifty_key = self.instrument_keys['nifty']
+        # Define instruments to warm up
+        instruments_to_fetch = [
+            ('NIFTY', self.instrument_keys['nifty']),
+            ('CE', self.instrument_keys['ce']),
+            ('PE', self.instrument_keys['pe'])
+        ]
         
-        # Calculate date range
         to_date = datetime.now().date()
         from_date = to_date - timedelta(days=days)
         
-        # Fetch data using Upstox Historical API V3
-        # Format: /v3/historical-candle/{instrumentKey}/{unit}/{interval}/{to_date}/{from_date}
-        
-        encoded_key = urllib.parse.quote(nifty_key, safe='')
-        # V3 URL Construction
-        url = f"https://api.upstox.com/v3/historical-candle/{encoded_key}/minutes/5/{to_date}/{from_date}"
-        
         headers = {"Authorization": f"Bearer {self.access_token}", "Accept": "application/json"}
-        
-        try:
-            response = requests.get(url, headers=headers, timeout=15)
-            if response.status_code == 200:
-                data = response.json().get("data", {})
-                candles = data.get("candles", [])
-                
-                if candles:
-                    logger.info(f"✅ Fetched {len(candles)} historical candles for Warm-Up.")
-                    self._process_historical_candles(candles)
-                else:
-                    logger.warning("⚠️ Warm-up warning: No candles returned from API.")
-            else:
-                logger.error(f"❌ Warm-up failed! Status: {response.status_code}, Response: {response.text}")
-                
-        except Exception as e:
-            logger.error(f"💥 Exception during Warm-Up: {e}", exc_info=True)
 
-    def _process_historical_candles(self, candles):
+        for type_label, key in instruments_to_fetch:
+            if not key:
+                logger.warning(f"⚠️ Skipping Warm-Up for {type_label} (No Key)")
+                continue
+
+            encoded_key = urllib.parse.quote(key, safe='')
+            url = f"https://api.upstox.com/v3/historical-candle/{encoded_key}/minutes/5/{to_date}/{from_date}"
+            
+            try:
+                # logger.info(f"   Fetching history for {type_label}...")
+                response = requests.get(url, headers=headers, timeout=15)
+                if response.status_code == 200:
+                    data = response.json().get("data", {})
+                    candles = data.get("candles", [])
+                    
+                    if candles:
+                        logger.info(f"✅ {type_label}: Fetched {len(candles)} historical candles.")
+                        self._process_historical_candles(candles, type_label)
+                    else:
+                        logger.warning(f"⚠️ {type_label}: No historical candles found.")
+                else:
+                    logger.error(f"❌ {type_label} Warm-up failed! Status: {response.status_code}")
+                    
+            except Exception as e:
+                logger.error(f"💥 Exception during {type_label} Warm-Up: {e}", exc_info=True)
+
+    def _process_historical_candles(self, candles, instrument_type):
         """
         Feeds historical candles into the IndicatorCalculator.
         Upstox Format: [timestamp, open, high, low, close, volume, oi]
         """
-        # Sort by timestamp (ascending) just in case
-        # Upstox usually returns descending or ascending?
-        # We need ascending for deque.
-        # Let's sort them to be safe.
-        # Timestamp is usually ISO8601 string.
-        
         parsed_candles = []
         for c in candles:
             try:
                 ts = pd.to_datetime(c[0])
-                # Basic validation
                 if pd.isna(ts): continue
                 
                 parsed_candles.append({
@@ -121,14 +120,12 @@ class LiveDataStreamer:
         # Sort ascending (oldest first)
         parsed_candles.sort(key=lambda x: x['timestamp'])
         
-        logger.info(f"📥 Feeding {len(parsed_candles)} sorted candles to Calculator...")
+        # logger.info(f"   Feeding {len(parsed_candles)} candles to {instrument_type} buffer...")
         
         for candle in parsed_candles:
-            # Feed to NIFTY buffer ONLY (we don't strictly need options history for simple ATM logic yet, 
-            # primarily NIFTY indicators drive the strategy)
-            self.indicator_calculator.add_candle('NIFTY', candle)
+            self.indicator_calculator.add_candle(instrument_type, candle)
             
-        logger.info("✅ Warm-Up Complete. Indicators are ready.")
+        # logger.info(f"✅ {instrument_type} Buffer Ready.")
 
     # ==============================================================================
     #  PART 2: WEBSOCKET LIVE STREAMING
@@ -200,28 +197,43 @@ class LiveDataStreamer:
         # Filter out None keys just in case
         instruments = [i for i in instruments if i]
         
-        subscribe_message = {"guid": "someguid", "method": "sub", "data": {"mode": "full", "instrumentKeys": instruments}}
-        logger.info(f"📡 Subscribing to instruments: {instruments}")
+        # Try LTPC mode first if FULL is failing
+        subscribe_message = {"guid": "someguid", "method": "sub", "data": {"mode": "ltpc", "instrumentKeys": instruments}}
+        logger.info(f"📡 Subscribing to instruments: {instruments} (Mode: LTPC)")
         self.ws.send(json.dumps(subscribe_message))
         logger.info("✅ Subscription request sent")
     
     def _on_message(self, ws, message):
         try:
+            # RAW DEBUG
+            # logger.info(f"📥 RAW MSG: Type={type(message)} Len={len(message) if isinstance(message, bytes) else len(str(message))}")
+            
             if isinstance(message, bytes):
                 response = self.decoder.decode_feed_response(message)
+                
                 if response and 'feeds' in response:
-                    for feed_data in response['feeds'].values():
-                        self._process_feed_data(feed_data)
+                    feeds = response['feeds']
+                    if feeds:
+                        for feed_data in feeds.values():
+                            self._process_feed_data(feed_data)
+                # Silently ignore empty feeds (like initial market_info)
             else:
-                # logger.info(f"📨 JSON Message: {json.loads(message)}")
-                pass
+                msg_json = json.loads(message)
+                logger.info(f"📨 WebSocket Message: {msg_json}")
         except Exception as e:
             logger.error(f"💥 Error in _on_message: {e}", exc_info=True)
     
     def _process_feed_data(self, feed_data):
         instrument_name = feed_data.get('instrument_name', 'UNKNOWN')
         ltp = feed_data.get('ltp')
-        if ltp is None: return
+        
+        # DEBUG: Print EVERY tick details to debug missing LTP
+        logger.info(f"🔍 TICK RECEIVED: Name={instrument_name} | LTP={ltp} | Mode={feed_data.get('request_mode')} | Keys={list(feed_data.keys())}")
+        
+        if ltp is None: 
+            # Try to find LTP in other fields if structure is different
+            # logger.warning(f"⚠️ LTP is None for {instrument_name}. Data: {feed_data}")
+            return
 
         # Try to get OHLC data if available (mode=full)
         ohlc = next((o for o in feed_data.get('ohlc_data', []) if o.get('interval') in ['1m', 'I1', 'I5']), None)

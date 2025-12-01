@@ -1,0 +1,101 @@
+[
+  {
+    "timestamp": "2025-12-01T09:32:31.924723",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_PE 25950",
+    "data": {
+      "order_id": "961cddc0",
+      "new_sl": 96.3
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:35.240413",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25950",
+    "data": {
+      "order_id": "3e91ca3c",
+      "new_sl": 48.6
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:35.977907",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25950",
+    "data": {
+      "order_id": "f8e60604",
+      "new_sl": 66.4
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:36.930594",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_PE 25950",
+    "data": {
+      "order_id": "01f02ce6",
+      "new_sl": 33.25
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:39.546705",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "c1fb5a11",
+      "new_sl": 226.5
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:41.961544",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "6604b62a",
+      "new_sl": 278.65
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:42.521119",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 25850",
+    "data": {
+      "order_id": "6f38d310",
+      "new_sl": 302.6
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:44.438282",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "2fc73dad",
+      "new_sl": 159.45
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:45.853815",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "8d83ccec",
+      "new_sl": 175.0
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:46.724076",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "87966959",
+      "new_sl": 186.0
+    }
+  },
+  {
+    "timestamp": "2025-12-01T09:32:47.008650",
+    "type": "TP1_HIT",
+    "message": "TP1 hit for BUY_CE 26100",
+    "data": {
+      "order_id": "63b89209",
+      "new_sl": 210.85
+    }
+  }
+]

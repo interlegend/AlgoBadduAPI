@@ -60,7 +60,12 @@ class StrategyV30:
         row = df.iloc[idx]
         prev_row = df.iloc[idx - 1]
         prev2_row = df.iloc[idx - 2]
-        current_time = row['datetime'].time()
+        
+        # COMPATIBILITY: Handle both 'datetime' (backtest) and 'timestamp' (live)
+        if 'datetime' in row:
+            current_time = row['datetime'].time()
+        else:
+            current_time = row['timestamp'].time()
         
         if not (self.ENTRY_START <= current_time <= self.ENTRY_END):
             return None
@@ -93,7 +98,9 @@ class StrategyV30:
                 is_bearish_vortex = True
 
         if is_bullish_vortex or is_bearish_vortex:
-            close = row['index_close']
+            # COMPATIBILITY: Handle both 'index_close' (backtest) and 'close' (live)
+            close = row.get('index_close', row.get('close'))
+            
             ema_col = f'ema{self.EMA_PERIOD}'
             ema = row[ema_col]
             

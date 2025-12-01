@@ -1,0 +1,51 @@
+✅ Loaded Access Token from: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\UPSTOX-API\upstox_session.json
+======================================================================
+🚀 TRADER-BADDU LIVE TRADER (PHASE 3) - SYSTEM START
+======================================================================
+2025-12-01 12:59:17,641 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:59:17,642 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:59:17,643 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:59:17,857 [INFO] ✅ Current NIFTY Spot: 26184.6
+2025-12-01 12:59:17,859 [INFO] 🎯 Spot: 26184.6 → ATM: 26200
+2025-12-01 12:59:18,098 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:59:18,376 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:59:18,377 [INFO]    CE: NSE_FO|46803
+2025-12-01 12:59:18,378 [INFO]    PE: NSE_FO|46804
+2025-12-01 12:59:18,380 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 12:59:18,382 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:59:18,383 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+
+⏳ EXECUTING WARM-UP SEQUENCE (Getting the Time Machine ready)...
+2025-12-01 12:59:18,383 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:59:18,602 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:59:19,160 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:59:19,625 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:59:19,888 [INFO] 🔄 Calculating indicators on Warm-Up data...
+
+✨ WARM-UP COMPLETE. INITIAL DASHBOARD:
+
+==============================================================================
+=================== ⚡ PHASE 3: LIVE BATTLEFIELD (V30) ⚡ ===================
+==============================================================================
+⏰ CANDLE: 2025-11-28 15:25 | 💰 SPOT: 26204.55 | 🎯 ATM: 26200
+-----------------------------------------------------------------------------
+🕯️  RECENT MARKET HISTORY (Synced):
+   [NIFTY] [T-10min] O:26197.45 C:26198.95 | [CE] LTP:  110.15 | [PE] LTP:   68.80
+   [NIFTY] [T-05min] O:26199.25 C:26199.75 | [CE] LTP:  112.00 | [PE] LTP:   67.45
+   [NIFTY] [CURRENT] (SIGNAL CANDLE) O:26200.85 C:26204.55 | [CE] LTP:  113.85 | [PE] LTP:   63.85
+-----------------------------------------------------------------------------
+📊 INDICATORS: EMA(21): 26208.00 | Vortex(34): 0.9329 / 1.0575
+🚥 SIGNAL CHECK: WAITING...
+=============================================================================
+
+
+🔌 CONNECTING TO LIVE WEBSOCKET...
+2025-12-01 12:59:19,984 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:59:20,338 [INFO] Websocket connected
+2025-12-01 12:59:20,368 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:59:20,369 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-12-01 12:59:20,371 [INFO] ✅ Subscription request sent
+2025-12-01 12:59:20,372 [WARNING] ⚠️ Msg Type market_info: Feeds dict is EMPTY!
+2025-12-01 12:59:20,410 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:59:20,412 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+                                                                                                                        📡 [LIVE] 12:59:22 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:23 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:24 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:25 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:26 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:27 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:28 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:29 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:30 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:31 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:32 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:33 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...                                                                                                                        📡 [LIVE] 12:59:34 | NIFTY: 26204.55 (LC) | CE: 113.85 (LC) | PE:  63.85 (LC) | EMA:  26208.0 | VI: 0.933/1.057 | SIGNAL: WAITING...

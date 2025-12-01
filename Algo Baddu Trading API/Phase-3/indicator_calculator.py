@@ -234,3 +234,55 @@ class IndicatorCalculator:
         self.ce_indicators = {}
         self.pe_indicators = {}
         logger.info("🧹 Option buffers cleared for new day (Cold Start).")
+
+    def calculate_live_indicators(self, instrument_type, live_candle):
+        """
+        Calculate indicators for a forming candle (Real-Time).
+        Does NOT update the permanent buffer. Returns snapshot dict.
+        """
+        if instrument_type != 'NIFTY':
+            return {}
+
+        # Quick check for buffer size
+        if len(self.nifty_buffer) < 50:
+            return {}
+
+        # Create temp buffer: history + live_candle
+        # We only need the tail to calculate EMA/VI to save time, but EMA depends on history.
+        # Converting full deque to DF is fast enough for 500 items.
+        
+        # Copy buffer to list and append live candle
+        temp_data = list(self.nifty_buffer)
+        temp_data.append(live_candle)
+        
+        df = pd.DataFrame(temp_data)
+        
+        # Standardize timestamp
+        if 'datetime' in df.columns:
+            df['timestamp'] = pd.to_datetime(df['datetime'])
+            df.drop(columns=['datetime'], inplace=True)
+        elif 'timestamp' in df.columns:
+            df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+        ema_period = self.params.get('ema_period', 21)
+        vi_period = self.params.get('vi_period', 21)
+        
+        # 1. Calculate EMA
+        # We only strictly need the last value, but pandas ewm is vectorized.
+        ema_series = self.EMA(df['close'], ema_period)
+        
+        # 2. Calculate Vortex
+        vi_plus_series, vi_minus_series = self.Vortex(df['high'], df['low'], df['close'], vi_period)
+        
+        # Get latest values
+        latest_idx = -1
+        latest_ema = ema_series.iloc[latest_idx]
+        latest_vi_plus = vi_plus_series.iloc[latest_idx]
+        latest_vi_minus = vi_minus_series.iloc[latest_idx]
+        
+        return {
+            f'ema{ema_period}': latest_ema,
+            f'vi_plus_{vi_period}': latest_vi_plus,
+            f'vi_minus_{vi_period}': latest_vi_minus,
+            'timestamp': df.iloc[latest_idx]['timestamp']
+        }

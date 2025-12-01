@@ -50,3 +50,515 @@
 2025-12-01 00:27:52,445 [INFO] ✅ WebSocket disconnected.
 2025-12-01 00:27:52,447 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
 2025-12-01 00:27:52,447 [INFO] ✅ All logs saved successfully!
+2025-12-01 09:19:23,655 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 09:19:23,656 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 09:19:23,656 [INFO]    EOD Exit: 15:25:00
+2025-12-01 09:19:23,866 [ERROR] ❌ Failed to fetch NIFTY spot for ATM selection.
+2025-12-01 09:19:23,870 [ERROR] ❌ CRITICAL: Could not determine ATM keys. Exiting.
+2025-12-01 09:22:27,318 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 09:22:27,318 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 09:22:27,319 [INFO]    EOD Exit: 15:25:00
+2025-12-01 09:22:27,471 [INFO] ✅ Current NIFTY Spot: 26291.45
+2025-12-01 09:22:27,471 [INFO] 🎯 Spot: 26291.45 → ATM: 26300
+2025-12-01 09:22:27,687 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 09:22:27,826 [INFO] ✅ ATM Instruments Found!
+2025-12-01 09:22:27,827 [INFO]    CE: NSE_FO|46809
+2025-12-01 09:22:27,827 [INFO]    PE: NSE_FO|46812
+2025-12-01 09:22:27,830 [INFO] 🎯 Selected ATM Strike: 26300 | CE: NSE_FO|46809 | PE: NSE_FO|46812
+2025-12-01 09:22:27,834 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 09:22:27,834 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 09:22:27,835 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY data...
+2025-12-01 09:22:27,999 [INFO] ✅ Fetched 225 historical candles for Warm-Up.
+2025-12-01 09:22:28,104 [INFO] 📥 Feeding 225 sorted candles to Calculator...
+2025-12-01 09:22:28,104 [INFO] ✅ Warm-Up Complete. Indicators are ready.
+2025-12-01 09:22:28,106 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 09:22:28,388 [INFO] Websocket connected
+2025-12-01 09:22:28,389 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 09:22:28,390 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46809', 'NSE_FO|46812']
+2025-12-01 09:22:28,394 [INFO] ✅ Subscription request sent
+2025-12-01 09:22:28,443 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 09:22:28,443 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 09:23:28,533 [WARNING] ⚠️ No data received for 60s. Market likely closed or connection dead.
+2025-12-01 09:38:27,096 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 09:38:27,097 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 09:38:27,097 [INFO]    EOD Exit: 15:25:00
+2025-12-01 09:38:27,326 [INFO] ✅ Current NIFTY Spot: 26304.45
+2025-12-01 09:38:27,327 [INFO] 🎯 Spot: 26304.45 → ATM: 26300
+2025-12-01 09:38:27,543 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 09:38:27,699 [INFO] ✅ ATM Instruments Found!
+2025-12-01 09:38:27,699 [INFO]    CE: NSE_FO|46809
+2025-12-01 09:38:27,699 [INFO]    PE: NSE_FO|46812
+2025-12-01 09:38:27,700 [INFO] 🎯 Selected ATM Strike: 26300 | CE: NSE_FO|46809 | PE: NSE_FO|46812
+2025-12-01 09:38:27,703 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 09:38:27,703 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 09:38:27,704 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY data...
+2025-12-01 09:38:27,886 [INFO] ✅ Fetched 225 historical candles for Warm-Up.
+2025-12-01 09:38:27,996 [INFO] 📥 Feeding 225 sorted candles to Calculator...
+2025-12-01 09:38:27,996 [INFO] ✅ Warm-Up Complete. Indicators are ready.
+2025-12-01 09:38:27,997 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 09:38:28,263 [INFO] Websocket connected
+2025-12-01 09:38:28,263 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 09:38:28,263 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46809', 'NSE_FO|46812']
+2025-12-01 09:38:28,264 [INFO] ✅ Subscription request sent
+2025-12-01 09:38:28,341 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 09:38:28,342 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 09:39:28,393 [WARNING] ⚠️ No data received for 60s. Is the market open?
+2025-12-01 09:51:35,696 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 09:51:35,697 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 09:51:35,697 [INFO]    EOD Exit: 15:25:00
+2025-12-01 09:51:35,979 [INFO] ✅ Current NIFTY Spot: 26284.8
+2025-12-01 09:51:35,980 [INFO] 🎯 Spot: 26284.8 → ATM: 26300
+2025-12-01 09:51:36,213 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 09:51:36,401 [INFO] ✅ ATM Instruments Found!
+2025-12-01 09:51:36,403 [INFO]    CE: NSE_FO|46809
+2025-12-01 09:51:36,404 [INFO]    PE: NSE_FO|46812
+2025-12-01 09:51:36,406 [INFO] 🎯 Selected ATM Strike: 26300 | CE: NSE_FO|46809 | PE: NSE_FO|46812
+2025-12-01 09:51:36,407 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 09:51:36,407 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 09:51:36,408 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY data...
+2025-12-01 09:51:36,592 [INFO] ✅ Fetched 225 historical candles for Warm-Up.
+2025-12-01 09:51:36,678 [INFO] 📥 Feeding 225 sorted candles to Calculator...
+2025-12-01 09:51:36,679 [INFO] ✅ Warm-Up Complete. Indicators are ready.
+2025-12-01 09:51:36,680 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 09:54:21,723 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 09:54:21,723 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 09:54:21,723 [INFO]    EOD Exit: 15:25:00
+2025-12-01 09:54:22,021 [INFO] ✅ Current NIFTY Spot: 26272.55
+2025-12-01 09:54:22,022 [INFO] 🎯 Spot: 26272.55 → ATM: 26250
+2025-12-01 09:54:22,292 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 09:54:22,476 [INFO] ✅ ATM Instruments Found!
+2025-12-01 09:54:22,476 [INFO]    CE: NSE_FO|46807
+2025-12-01 09:54:22,476 [INFO]    PE: NSE_FO|46808
+2025-12-01 09:54:22,477 [INFO] 🎯 Selected ATM Strike: 26250 | CE: NSE_FO|46807 | PE: NSE_FO|46808
+2025-12-01 09:54:22,478 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 09:54:22,479 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 09:54:22,479 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY data...
+2025-12-01 09:54:22,687 [INFO] ✅ Fetched 225 historical candles for Warm-Up.
+2025-12-01 09:54:22,769 [INFO] 📥 Feeding 225 sorted candles to Calculator...
+2025-12-01 09:54:22,769 [INFO] ✅ Warm-Up Complete. Indicators are ready.
+2025-12-01 09:54:22,770 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 09:54:22,797 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 09:54:23,192 [INFO] Websocket connected
+2025-12-01 09:54:23,193 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 09:54:23,193 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46807', 'NSE_FO|46808']
+2025-12-01 09:54:23,198 [INFO] ✅ Subscription request sent
+2025-12-01 09:54:23,203 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 09:54:23,203 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 09:55:23,257 [WARNING] ⚠️ No data received for 60s. Is the market open?
+2025-12-01 10:15:03,523 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 10:15:03,524 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 10:15:03,524 [INFO]    EOD Exit: 15:25:00
+2025-12-01 10:15:03,906 [INFO] ✅ Current NIFTY Spot: 26285.55
+2025-12-01 10:15:03,906 [INFO] 🎯 Spot: 26285.55 → ATM: 26300
+2025-12-01 10:15:04,143 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 10:15:04,329 [INFO] ✅ ATM Instruments Found!
+2025-12-01 10:15:04,329 [INFO]    CE: NSE_FO|46809
+2025-12-01 10:15:04,330 [INFO]    PE: NSE_FO|46812
+2025-12-01 10:15:04,331 [INFO] 🎯 Selected ATM Strike: 26300 | CE: NSE_FO|46809 | PE: NSE_FO|46812
+2025-12-01 10:15:04,334 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 10:15:04,334 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 10:15:04,335 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 10:15:04,617 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 10:15:04,959 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 10:15:05,224 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 10:15:05,300 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 10:15:05,358 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 10:15:05,664 [INFO] Websocket connected
+2025-12-01 10:15:05,665 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 10:15:05,666 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46809', 'NSE_FO|46812']
+2025-12-01 10:15:05,669 [INFO] ✅ Subscription request sent
+2025-12-01 10:15:05,735 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 10:15:05,735 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 10:16:05,791 [WARNING] ⚠️ No data received for 60s. Is the market open?
+2025-12-01 10:46:32,593 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 10:46:32,594 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 10:46:32,595 [INFO]    EOD Exit: 15:25:00
+2025-12-01 10:46:32,824 [INFO] ✅ Current NIFTY Spot: 26253.7
+2025-12-01 10:46:32,824 [INFO] 🎯 Spot: 26253.7 → ATM: 26250
+2025-12-01 10:46:32,987 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 10:46:33,140 [INFO] ✅ ATM Instruments Found!
+2025-12-01 10:46:33,140 [INFO]    CE: NSE_FO|46807
+2025-12-01 10:46:33,140 [INFO]    PE: NSE_FO|46808
+2025-12-01 10:46:33,142 [INFO] 🎯 Selected ATM Strike: 26250 | CE: NSE_FO|46807 | PE: NSE_FO|46808
+2025-12-01 10:46:33,143 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 10:46:33,143 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 10:46:33,143 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 10:46:33,282 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 10:46:33,579 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 10:46:33,831 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 10:46:33,906 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 10:46:33,958 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 10:46:34,256 [INFO] Websocket connected
+2025-12-01 10:46:34,257 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 10:46:34,257 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46807', 'NSE_FO|46808']
+2025-12-01 10:46:34,259 [INFO] ✅ Subscription request sent
+2025-12-01 10:46:34,307 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 10:46:34,307 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 10:47:34,364 [WARNING] ⚠️ No data received for 60s. Is the market open?
+2025-12-01 11:06:31,671 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 11:06:31,671 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 11:06:31,672 [INFO]    EOD Exit: 15:25:00
+2025-12-01 11:06:31,936 [INFO] ✅ Current NIFTY Spot: 26228.1
+2025-12-01 11:06:31,936 [INFO] 🎯 Spot: 26228.1 → ATM: 26250
+2025-12-01 11:06:32,114 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 11:06:32,341 [INFO] ✅ ATM Instruments Found!
+2025-12-01 11:06:32,342 [INFO]    CE: NSE_FO|46807
+2025-12-01 11:06:32,343 [INFO]    PE: NSE_FO|46808
+2025-12-01 11:06:32,345 [INFO] 🎯 Selected ATM Strike: 26250 | CE: NSE_FO|46807 | PE: NSE_FO|46808
+2025-12-01 11:06:32,346 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 11:06:32,347 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 11:06:32,347 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 11:06:32,494 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 11:06:32,752 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 11:06:33,006 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 11:06:33,083 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 11:06:33,128 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 11:06:33,462 [INFO] Websocket connected
+2025-12-01 11:06:33,462 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 11:06:33,462 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46807', 'NSE_FO|46808']
+2025-12-01 11:06:33,463 [INFO] ✅ Subscription request sent
+2025-12-01 11:06:33,555 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 11:06:33,556 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 11:07:33,609 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:08:33,664 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:09:33,723 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:10:33,790 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:11:33,846 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:12:33,905 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:13:33,968 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:14:34,028 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:15:34,086 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:16:34,144 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:17:34,223 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:18:34,279 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:19:34,352 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:20:34,410 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:21:34,465 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:22:34,520 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:23:34,578 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:24:34,659 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:25:34,717 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:26:34,779 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:27:34,838 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:28:34,897 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:29:34,958 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:30:35,016 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:31:35,073 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:32:35,130 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:33:35,191 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:34:35,260 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:35:35,320 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:36:35,375 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:37:35,443 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:38:35,563 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 11:39:35,621 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 11:06:33
+2025-12-01 12:02:50,661 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:02:50,662 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:02:50,662 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:02:50,869 [INFO] ✅ Current NIFTY Spot: 26210.55
+2025-12-01 12:02:50,870 [INFO] 🎯 Spot: 26210.55 → ATM: 26200
+2025-12-01 12:02:51,047 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:02:51,183 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:02:51,183 [INFO]    CE: NSE_FO|46803
+2025-12-01 12:02:51,183 [INFO]    PE: NSE_FO|46804
+2025-12-01 12:02:51,186 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 12:02:51,189 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:02:51,189 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:02:51,190 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:02:51,348 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:02:51,584 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:02:51,867 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:02:51,957 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:02:52,006 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:02:52,295 [INFO] Websocket connected
+2025-12-01 12:02:52,296 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:02:52,296 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-12-01 12:02:52,298 [INFO] ✅ Subscription request sent
+2025-12-01 12:02:52,381 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:02:52,382 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:03:54,395 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:02:54
+2025-12-01 12:04:54,397 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:02:54
+2025-12-01 12:05:54,400 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:02:54
+2025-12-01 12:06:54,406 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:02:54
+2025-12-01 12:07:54,409 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:02:54
+2025-12-01 12:08:23,871 [INFO] 🔌 Disconnecting WebSocket...
+2025-12-01 12:08:23,901 [WARNING] 🔌 WebSocket closed: None - None
+2025-12-01 12:08:23,904 [INFO] ✅ WebSocket disconnected.
+2025-12-01 12:08:23,909 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 12:08:23,910 [INFO] ✅ All logs saved successfully!
+2025-12-01 12:08:28,769 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:08:28,769 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:08:28,770 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:08:29,112 [INFO] ✅ Current NIFTY Spot: 26190.8
+2025-12-01 12:08:29,113 [INFO] 🎯 Spot: 26190.8 → ATM: 26200
+2025-12-01 12:08:29,544 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:08:29,712 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:08:29,713 [INFO]    CE: NSE_FO|46803
+2025-12-01 12:08:29,713 [INFO]    PE: NSE_FO|46804
+2025-12-01 12:08:29,714 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 12:08:29,715 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:08:29,716 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:08:29,716 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:08:30,036 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:08:30,307 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:08:30,652 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:08:30,723 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:08:30,752 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:08:31,315 [INFO] Websocket connected
+2025-12-01 12:08:31,316 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:08:31,317 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-12-01 12:08:31,318 [INFO] ✅ Subscription request sent
+2025-12-01 12:08:31,344 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:08:31,344 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:09:33,413 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:10:33,482 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:11:33,552 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:12:33,623 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:13:33,709 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:14:33,792 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:15:33,866 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:16:33,939 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:08:33
+2025-12-01 12:16:38,567 [INFO] 🔌 Disconnecting WebSocket...
+2025-12-01 12:16:38,591 [WARNING] 🔌 WebSocket closed: None - None
+2025-12-01 12:16:38,593 [INFO] ✅ WebSocket disconnected.
+2025-12-01 12:16:38,595 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 12:16:38,596 [INFO] ✅ All logs saved successfully!
+2025-12-01 12:27:32,300 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:27:32,301 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:27:32,301 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:27:32,508 [INFO] ✅ Current NIFTY Spot: 26181.4
+2025-12-01 12:27:32,509 [INFO] 🎯 Spot: 26181.4 → ATM: 26200
+2025-12-01 12:27:32,679 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:27:32,846 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:27:32,846 [INFO]    CE: NSE_FO|46803
+2025-12-01 12:27:32,847 [INFO]    PE: NSE_FO|46804
+2025-12-01 12:27:32,848 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 12:27:32,849 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:27:32,850 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:27:32,850 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:27:33,010 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:27:33,270 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:27:33,481 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:27:33,554 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:27:33,586 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:27:33,883 [INFO] Websocket connected
+2025-12-01 12:27:33,883 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:27:33,883 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-12-01 12:27:33,884 [INFO] ✅ Subscription request sent
+2025-12-01 12:27:33,970 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:27:33,971 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:27:42,011 [INFO] 🔌 Disconnecting WebSocket...
+2025-12-01 12:27:42,050 [WARNING] 🔌 WebSocket closed: None - None
+2025-12-01 12:27:42,051 [INFO] ✅ WebSocket disconnected.
+2025-12-01 12:27:42,055 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 12:27:42,056 [INFO] ✅ All logs saved successfully!
+2025-12-01 12:35:46,994 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:35:46,994 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:35:46,994 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:35:47,274 [INFO] ✅ Current NIFTY Spot: 26167.9
+2025-12-01 12:35:47,274 [INFO] 🎯 Spot: 26167.9 → ATM: 26150
+2025-12-01 12:35:47,491 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:35:48,021 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:35:48,021 [INFO]    CE: NSE_FO|46801
+2025-12-01 12:35:48,022 [INFO]    PE: NSE_FO|46802
+2025-12-01 12:35:48,024 [INFO] 🎯 Selected ATM Strike: 26150 | CE: NSE_FO|46801 | PE: NSE_FO|46802
+2025-12-01 12:35:48,026 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:35:48,026 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:35:48,027 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:35:48,260 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:35:48,672 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:35:49,084 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:35:49,157 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:35:49,200 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:35:49,522 [INFO] Websocket connected
+2025-12-01 12:35:49,523 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:35:49,523 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46801', 'NSE_FO|46802']
+2025-12-01 12:35:49,524 [INFO] ✅ Subscription request sent
+2025-12-01 12:35:49,563 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:35:49,564 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:36:51,643 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:37:51,719 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:38:51,788 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:39:51,861 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:40:51,942 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:41:52,027 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:42:52,102 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:43:52,173 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:44:52,256 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:45:52,353 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:46:52,432 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:47:19,613 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:47:19,615 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:47:19,617 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:47:19,868 [INFO] ✅ Current NIFTY Spot: 26164.95
+2025-12-01 12:47:19,869 [INFO] 🎯 Spot: 26164.95 → ATM: 26150
+2025-12-01 12:47:20,082 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:47:20,268 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:47:20,270 [INFO]    CE: NSE_FO|46801
+2025-12-01 12:47:20,271 [INFO]    PE: NSE_FO|46802
+2025-12-01 12:47:20,274 [INFO] 🎯 Selected ATM Strike: 26150 | CE: NSE_FO|46801 | PE: NSE_FO|46802
+2025-12-01 12:47:20,277 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:47:20,280 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:47:20,281 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:47:20,439 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:47:20,866 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:47:21,270 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:47:21,541 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:47:21,620 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:47:21,937 [INFO] Websocket connected
+2025-12-01 12:47:21,938 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:47:21,938 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46801', 'NSE_FO|46802']
+2025-12-01 12:47:21,939 [INFO] ✅ Subscription request sent
+2025-12-01 12:47:22,011 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:47:22,013 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:47:52,571 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:48:52,637 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:49:52,707 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:50:52,782 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:51:52,854 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:52:52,912 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:53:52,999 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:54:53,110 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:55:53,202 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:56:15,574 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:56:15,577 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:56:15,579 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:56:15,759 [INFO] ✅ Current NIFTY Spot: 26169.9
+2025-12-01 12:56:15,760 [INFO] 🎯 Spot: 26169.9 → ATM: 26150
+2025-12-01 12:56:15,996 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:56:16,154 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:56:16,155 [INFO]    CE: NSE_FO|46801
+2025-12-01 12:56:16,156 [INFO]    PE: NSE_FO|46802
+2025-12-01 12:56:16,159 [INFO] 🎯 Selected ATM Strike: 26150 | CE: NSE_FO|46801 | PE: NSE_FO|46802
+2025-12-01 12:56:16,161 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:56:16,162 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:56:16,162 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:56:16,311 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:56:16,728 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:56:17,115 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:56:17,422 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:56:17,507 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:56:17,848 [INFO] Websocket connected
+2025-12-01 12:56:17,850 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:56:17,850 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46801', 'NSE_FO|46802']
+2025-12-01 12:56:17,852 [INFO] ✅ Subscription request sent
+2025-12-01 12:56:17,882 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:56:17,883 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:56:53,295 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:57:50,996 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:57:50,997 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:57:50,998 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:57:51,318 [INFO] ✅ Current NIFTY Spot: 26171.4
+2025-12-01 12:57:51,320 [INFO] 🎯 Spot: 26171.4 → ATM: 26150
+2025-12-01 12:57:51,599 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:57:51,811 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:57:51,813 [INFO]    CE: NSE_FO|46801
+2025-12-01 12:57:51,813 [INFO]    PE: NSE_FO|46802
+2025-12-01 12:57:51,817 [INFO] 🎯 Selected ATM Strike: 26150 | CE: NSE_FO|46801 | PE: NSE_FO|46802
+2025-12-01 12:57:51,820 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:57:51,821 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:57:51,822 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:57:52,014 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:57:52,442 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:57:52,844 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:57:53,064 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:57:53,113 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:57:53,358 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:57:53,408 [INFO] Websocket connected
+2025-12-01 12:57:53,410 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:57:53,412 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46801', 'NSE_FO|46802']
+2025-12-01 12:57:53,414 [INFO] ✅ Subscription request sent
+2025-12-01 12:57:53,415 [INFO] 📥 RAW MSG: Type=<class 'bytes'> Len=165
+2025-12-01 12:57:53,480 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:57:53,482 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:58:53,468 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 12:59:17,641 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 12:59:17,642 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 12:59:17,643 [INFO]    EOD Exit: 15:25:00
+2025-12-01 12:59:17,857 [INFO] ✅ Current NIFTY Spot: 26184.6
+2025-12-01 12:59:17,859 [INFO] 🎯 Spot: 26184.6 → ATM: 26200
+2025-12-01 12:59:18,098 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 12:59:18,376 [INFO] ✅ ATM Instruments Found!
+2025-12-01 12:59:18,377 [INFO]    CE: NSE_FO|46803
+2025-12-01 12:59:18,378 [INFO]    PE: NSE_FO|46804
+2025-12-01 12:59:18,380 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 12:59:18,382 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 12:59:18,383 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 12:59:18,383 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 12:59:18,602 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 12:59:19,160 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 12:59:19,625 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 12:59:19,888 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 12:59:19,984 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 12:59:20,338 [INFO] Websocket connected
+2025-12-01 12:59:20,368 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 12:59:20,369 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804']
+2025-12-01 12:59:20,371 [INFO] ✅ Subscription request sent
+2025-12-01 12:59:20,372 [WARNING] ⚠️ Msg Type market_info: Feeds dict is EMPTY!
+2025-12-01 12:59:20,410 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 12:59:20,412 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 12:59:53,560 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 13:00:37,851 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 13:00:37,852 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 13:00:37,852 [INFO]    EOD Exit: 15:25:00
+2025-12-01 13:00:38,411 [INFO] ✅ Current NIFTY Spot: 26175.95
+2025-12-01 13:00:38,415 [INFO] 🎯 Spot: 26175.95 → ATM: 26200
+2025-12-01 13:00:38,685 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 13:00:39,007 [INFO] ✅ ATM Instruments Found!
+2025-12-01 13:00:39,009 [INFO]    CE: NSE_FO|46803
+2025-12-01 13:00:39,009 [INFO]    PE: NSE_FO|46804
+2025-12-01 13:00:39,011 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 13:00:39,012 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 13:00:39,012 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 13:00:39,012 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 13:00:39,141 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 13:00:39,380 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 13:00:39,592 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 13:00:39,670 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 13:00:39,693 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 13:00:39,953 [INFO] Websocket connected
+2025-12-01 13:00:39,954 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 13:00:39,955 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50']
+2025-12-01 13:00:39,956 [INFO] ✅ Subscription request sent
+2025-12-01 13:00:39,956 [INFO] 📥 RAW MSG: Type=<class 'bytes'> Len=165
+2025-12-01 13:00:39,956 [WARNING] ⚠️ Msg Type market_info: Feeds dict is EMPTY!
+2025-12-01 13:00:40,038 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 13:00:40,038 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 13:00:53,638 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 13:01:53,770 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 12:35:51
+2025-12-01 13:02:27,890 [INFO] 🔌 Disconnecting WebSocket...
+2025-12-01 13:02:27,921 [WARNING] 🔌 WebSocket closed: None - None
+2025-12-01 13:02:27,939 [INFO] ✅ WebSocket disconnected.
+2025-12-01 13:02:27,944 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 13:02:27,945 [INFO] ✅ All logs saved successfully!
+2025-12-01 13:02:32,041 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 13:02:32,041 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 13:02:32,041 [INFO]    EOD Exit: 15:25:00
+2025-12-01 13:02:32,322 [INFO] ✅ Current NIFTY Spot: 26182.45
+2025-12-01 13:02:32,323 [INFO] 🎯 Spot: 26182.45 → ATM: 26200
+2025-12-01 13:02:32,506 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-01 13:02:32,680 [INFO] ✅ ATM Instruments Found!
+2025-12-01 13:02:32,681 [INFO]    CE: NSE_FO|46803
+2025-12-01 13:02:32,681 [INFO]    PE: NSE_FO|46804
+2025-12-01 13:02:32,683 [INFO] 🎯 Selected ATM Strike: 26200 | CE: NSE_FO|46803 | PE: NSE_FO|46804
+2025-12-01 13:02:32,684 [INFO] ✅ Instrument mapping set: 3 instruments
+2025-12-01 13:02:32,684 [INFO] ✅ Live Data Streamer (Hybrid V3) initialized.
+2025-12-01 13:02:32,685 [INFO] 🔥 STARTING WARM-UP: Fetching last 5 days of NIFTY & ATM Options...
+2025-12-01 13:02:32,817 [INFO] ✅ NIFTY: Fetched 225 historical candles.
+2025-12-01 13:02:33,042 [INFO] ✅ CE: Fetched 225 historical candles.
+2025-12-01 13:02:33,304 [INFO] ✅ PE: Fetched 225 historical candles.
+2025-12-01 13:02:33,392 [INFO] 🔄 Calculating indicators on Warm-Up data...
+2025-12-01 13:02:33,422 [INFO] 🚀 Starting WebSocket streamer...
+2025-12-01 13:02:33,708 [INFO] Websocket connected
+2025-12-01 13:02:33,709 [INFO] 🔓 WebSocket connection opened!
+2025-12-01 13:02:33,709 [INFO] 📡 Subscribing to instruments: ['NSE_INDEX|Nifty 50', 'NSE_FO|46803', 'NSE_FO|46804'] (Mode: LTPC)
+2025-12-01 13:02:33,709 [INFO] ✅ Subscription request sent
+2025-12-01 13:02:33,776 [INFO] ✅ WebSocket connected successfully!
+2025-12-01 13:02:33,776 [INFO] ✅ SYSTEM LIVE. WAITING FOR TICKS...
+2025-12-01 13:03:35,833 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 13:02:35
+2025-12-01 13:04:35,923 [INFO] 💓 SYSTEM HEARTBEAT | Connected: True | Last Data: 13:02:35
+2025-12-01 13:04:56,057 [INFO] 🔌 Disconnecting WebSocket...
+2025-12-01 13:04:56,079 [WARNING] 🔌 WebSocket closed: None - None
+2025-12-01 13:04:56,082 [INFO] ✅ WebSocket disconnected.
+2025-12-01 13:04:56,086 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 13:04:56,087 [INFO] ✅ All logs saved successfully!
