@@ -49,11 +49,15 @@ class IndicatorCalculator:
         
         # Standardize the timestamp column to 'timestamp'
         if 'datetime' in df.columns:
-            df['timestamp'] = pd.to_datetime(df['datetime'])
+            df['timestamp'] = pd.to_datetime(df['datetime'], utc=True)
             if 'datetime' in df.columns: 
                 df.drop(columns=['datetime'], inplace=True)
         elif 'timestamp' in df.columns:
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df['timestamp'] = pd.to_datetime(df['timestamp'], utc=True)
+            
+        # Force TZ-naive to prevent mixing errors downstream
+        if 'timestamp' in df.columns:
+            df['timestamp'] = df['timestamp'].dt.tz_convert(None)
             
         return df
     
@@ -248,21 +252,21 @@ class IndicatorCalculator:
             return {}
 
         # Create temp buffer: history + live_candle
-        # We only need the tail to calculate EMA/VI to save time, but EMA depends on history.
-        # Converting full deque to DF is fast enough for 500 items.
-        
-        # Copy buffer to list and append live candle
         temp_data = list(self.nifty_buffer)
         temp_data.append(live_candle)
         
         df = pd.DataFrame(temp_data)
         
-        # Standardize timestamp
+        # Standardize timestamp and fix TZ mismatch
+        # Use utc=True to handle mixed aware/naive inputs safely
         if 'datetime' in df.columns:
-            df['timestamp'] = pd.to_datetime(df['datetime'])
+            df['timestamp'] = pd.to_datetime(df['datetime'], utc=True)
             df.drop(columns=['datetime'], inplace=True)
         elif 'timestamp' in df.columns:
-            df['timestamp'] = pd.to_datetime(df['timestamp'])
+            df['timestamp'] = pd.to_datetime(df['timestamp'], utc=True)
+            
+        # Convert back to naive to match strategy logic (if needed)
+        df['timestamp'] = df['timestamp'].dt.tz_convert(None)
 
         ema_period = self.params.get('ema_period', 21)
         vi_period = self.params.get('vi_period', 21)

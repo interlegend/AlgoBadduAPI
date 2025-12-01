@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-3\live_trader_main.py", line 467, in <module>
+    main()
+    ~~~~^^
+  File "c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-3\live_trader_main.py", line 433, in main
+    nifty_ind_live = indicator_calculator.calculate_live_indicators('NIFTY', live_nifty_candle)
+  File "c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-3\indicator_calculator.py", line 261, in calculate_live_indicators
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+                      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\sakth\miniconda3\Lib\site-packages\pandas\core\tools\datetimes.py", line 1072, in to_datetime
+    values = convert_listlike(arg._values, format)
+  File "C:\Users\sakth\miniconda3\Lib\site-packages\pandas\core\tools\datetimes.py", line 437, in _convert_listlike_datetimes
+    result, tz_parsed = objects_to_datetime64(
+                        ~~~~~~~~~~~~~~~~~~~~~^
+        arg,
+        ^^^^
+    ...<4 lines>...
+        allow_object=True,
+        ^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\sakth\miniconda3\Lib\site-packages\pandas\core\arrays\datetimes.py", line 2415, in objects_to_datetime64
+    result, tz_parsed = tslib.array_to_datetime(
+                        ~~~~~~~~~~~~~~~~~~~~~~~^
+        data,
+        ^^^^^
+    ...<4 lines>...
+        creso=abbrev_to_npy_unit(out_unit),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "pandas/_libs/tslib.pyx", line 412, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslib.pyx", line 596, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslib.pyx", line 504, in pandas._libs.tslib.array_to_datetime
+  File "pandas/_libs/tslibs/strptime.pyx", line 292, in pandas._libs.tslibs.strptime.DatetimeParseState.process_datetime
+ValueError: Cannot mix tz-aware with tz-naive values, at position 500

@@ -32,11 +32,20 @@ except Exception as e:
 # --- TRADING MODE ---
 MODE = "LIVE"
 
+# --- TRADING ASSET CONFIGURATION ---
+# Supported: 'NIFTY', 'CRUDEOIL', 'NATURALGAS'
+TRADING_ASSET = "NIFTY"  # Default, updated by main menu
+
 # --- TRADING PARAMETERS ---
-TRADING_INSTRUMENT = "NIFTY"
 PRODUCT_TYPE = "INTRADAY"
 ORDER_TYPE = "LIMIT"
 NIFTY_INDEX_KEY = "NSE_INDEX|Nifty 50"
+
+# Dynamic Keys (Populated at Runtime)
+MCX_KEYS = {
+    'CRUDEOIL': {'key': None, 'lot_size': 100},
+    'NATURALGAS': {'key': None, 'lot_size': 1250}
+}
 
 # --- LOGGING ---
 LOG_DIR = os.path.join(BASE_DIR, 'logs')

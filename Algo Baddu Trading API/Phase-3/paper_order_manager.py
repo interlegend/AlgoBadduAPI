@@ -11,7 +11,7 @@ import pandas as pd
 logger = logging.getLogger(__name__)
 
 class PaperOrderManager:
-    def __init__(self, strategy, position_tracker, trade_logger):
+    def __init__(self, strategy, position_tracker, trade_logger, asset_type='NIFTY'):
         """
         Initialize Paper Order Manager
         
@@ -19,11 +19,13 @@ class PaperOrderManager:
             strategy: StrategyV30 instance
             position_tracker: PositionTracker instance
             trade_logger: TradeLogger instance
+            asset_type: 'NIFTY', 'CRUDEOIL', 'NATURALGAS'
         """
         self.strategy = strategy
         self.position_tracker = position_tracker
         self.trade_logger = trade_logger
         self.config = strategy.get_config()
+        self.asset_type = asset_type
         
         # === T+1 EXECUTION SYSTEM ===
         # Store pending signal to execute on next candle (matches Phase 2 behavior)
@@ -34,10 +36,6 @@ class PaperOrderManager:
         """
         Called when a signal is detected at time T.
         Stores it for execution at T+1 (next candle).
-        
-        Args:
-            signal: 'BUY_CE' or 'BUY_PE'
-            signal_time: When signal fired
         """
         # Check if we already have an open position
         if self.position_tracker.get_open_position_count() >= 1:
@@ -56,45 +54,50 @@ class PaperOrderManager:
     
     def execute_pending_signal(self, ce_data, pe_data, current_time):
         """
-        Execute the pending signal at T+1 using OPEN price of current candle.
-        This matches Phase 2's behavior: Signal at T, Entry at T+1 open.
-        
-        CRITICAL FIX: Added check to ensure we're on NEXT candle (T+1), not same candle (T)
-        
-        Args:
-            ce_data: Current CE candle data (dict with 'open', 'close', 'high', 'low', 'atr')
-            pe_data: Current PE candle data
-            current_time: Current candle timestamp (T+1)
-        
-        Returns:
-            order_id or None
+        Execute pending signal. 
+        For NIFTY: Buy CE/PE Options.
+        For COMMODITIES: Buy/Sell Futures.
         """
         if not self.pending_signal:
             return None
         
         # 🔥 CRITICAL FIX: Only execute if we're on a FUTURE candle (T+1)
-        # This prevents same-candle execution (09:30 signal → 09:30 entry)
         if current_time <= self.pending_signal_time:
             logger.debug(f"⏳ Waiting for T+1... Current: {current_time.strftime('%H:%M')}, Signal: {self.pending_signal_time.strftime('%H:%M')}")
-            return None  # Wait for next candle!
+            return None
         
         signal = self.pending_signal
         signal_time = self.pending_signal_time
         
-        # Select correct option data based on signal
-        option_data = ce_data if signal == 'BUY_CE' else pe_data
-        
-        # Validate option data
+        # === ASSET SELECTION LOGIC ===
+        if self.asset_type == 'NIFTY':
+            # Option Logic
+            option_data = ce_data if signal == 'BUY_CE' else pe_data
+            strike = option_data.get('strike_price', 'N/A') if option_data else 'N/A'
+            instrument_label = f"{strike} {signal.split('_')[1]}"
+        else:
+            # Futures Logic (MCX)
+            # For Futures, we pass the Future Data as 'ce_data' (primary)
+            option_data = ce_data 
+            strike = "FUT"
+            instrument_label = f"{self.asset_type} FUT"
+            
+            # Map Signal to Direction
+            # BUY_CE -> LONG Future
+            # BUY_PE -> SHORT Future
+            # We keep the signal name 'BUY_CE'/'BUY_PE' for internal consistency 
+            # but treat them as Long/Short.
+
+        # Validate data
         if not option_data or pd.isna(option_data.get('open')) or pd.isna(option_data.get('atr')):
-            logger.warning(f"❌ Cannot execute {signal}: Missing option data at {current_time.strftime('%H:%M')}")
+            logger.warning(f"❌ Cannot execute {signal}: Missing data at {current_time.strftime('%H:%M')}")
             self.pending_signal = None
             self.pending_signal_time = None
             return None
         
-        # === CRITICAL: USE OPEN PRICE + SLIPPAGE (matches Phase 2) ===
+        # === ENTRY EXECUTION ===
         entry_price = option_data['open'] + 0.5  # 0.5 point slippage
         option_atr = option_data['atr']
-        strike = option_data.get('strike_price', 'N/A')
         
         # Calculate entry levels
         levels = self.strategy.calculate_entry_levels(signal, entry_price, option_atr)
@@ -102,12 +105,12 @@ class PaperOrderManager:
         # Open position
         order_id = self.position_tracker.open_position(
             side=signal,
-            strike=strike,
+            strike=instrument_label,
             entry_price=entry_price,
             sl=levels['sl'],
             tp1=levels['tp1'],
-            entry_time=current_time,  # T+1 (execution time)
-            signal_time=signal_time   # T (signal time)
+            entry_time=current_time,
+            signal_time=signal_time
         )
         
         # Log trade entry
@@ -116,7 +119,7 @@ class PaperOrderManager:
         
         # Calculate slippage
         slippage_seconds = (current_time - signal_time).total_seconds()
-        logger.info(f"✅ ENTRY EXECUTED: {signal} @ ₹{entry_price:.2f} | SL: {levels['sl']:.2f} | TP1: {levels['tp1']:.2f} | Slippage: {int(slippage_seconds)}s")
+        logger.info(f"✅ ENTRY EXECUTED ({self.asset_type}): {signal} @ {entry_price:.2f} | SL: {levels['sl']:.2f} | TP1: {levels['tp1']:.2f}")
         
         # Clear pending signal
         self.pending_signal = None
