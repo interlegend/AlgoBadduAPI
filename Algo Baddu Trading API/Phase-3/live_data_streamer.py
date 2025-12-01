@@ -46,15 +46,15 @@ class LiveDataStreamer:
 
     # ==============================================================================
     #  PART 1: HISTORICAL WARM-UP (THE "TIME MACHINE")
-    #  (Logic preserved as per directives)
+    #  (Updated to include Intraday for Gap Filling)
     # ==============================================================================
     
     def initialize_warmup(self, days=5):
         """
         Fetches historical data for NIFTY, CE, and PE to warm up indicators.
-        Uses the access_token from api_client configuration.
+        Merges 'Historical' (Past Days) + 'Intraday' (Today) to ensure no gaps.
         """
-        logger.info(f"🔥 STARTING WARM-UP: Fetching last {days} days of NIFTY & ATM Options...")
+        logger.info(f"🔥 STARTING WARM-UP: Fetching last {days} days + TODAY'S Intraday Data...")
         
         # Define instruments to warm up
         instruments_to_fetch = [
@@ -63,48 +63,77 @@ class LiveDataStreamer:
             ('PE', self.instrument_keys['pe'])
         ]
         
+        # 1. Historical Range (Up to Yesterday)
+        # We use 'today' as to_date because Upstox Historical is exclusive/end-of-day logic mostly.
+        # Actually, to be safe, we rely on the deduplication logic.
         to_date = datetime.now().date()
         from_date = to_date - timedelta(days=days)
         
-        # Extract token from ApiClient
+        # Extract token
         access_token = self.api_client.configuration.access_token
         headers = {"Authorization": f"Bearer {access_token}", "Accept": "application/json"}
 
         for type_label, key in instruments_to_fetch:
             if not key:
-                logger.warning(f"⚠️ Skipping Warm-Up for {type_label} (No Key)")
                 continue
 
             encoded_key = urllib.parse.quote(key, safe='')
-            url = f"https://api.upstox.com/v3/historical-candle/{encoded_key}/minutes/5/{to_date}/{from_date}"
-            
-            try:
-                response = requests.get(url, headers=headers, timeout=15)
-                if response.status_code == 200:
-                    data = response.json().get("data", {})
-                    candles = data.get("candles", [])
-                    
-                    if candles:
-                        logger.info(f"✅ {type_label}: Fetched {len(candles)} historical candles.")
-                        self._process_historical_candles(candles, type_label)
-                    else:
-                        logger.warning(f"⚠️ {type_label}: No historical candles found.")
-                else:
-                    logger.error(f"❌ {type_label} Warm-up failed! Status: {response.status_code}")
-                    
-            except Exception as e:
-                logger.error(f"💥 Exception during {type_label} Warm-Up: {e}", exc_info=True)
+            combined_candles = []
 
-    def _process_historical_candles(self, candles, instrument_type):
+            # --- A. Fetch Historical (Past Days) ---
+            url_hist = f"https://api.upstox.com/v3/historical-candle/{encoded_key}/minutes/5/{to_date}/{from_date}"
+            try:
+                res = requests.get(url_hist, headers=headers, timeout=15)
+                if res.status_code == 200:
+                    data = res.json().get("data", {})
+                    candles = data.get("candles", [])
+                    if candles:
+                        combined_candles.extend(candles)
+                        logger.info(f"   📄 {type_label} Historical: {len(candles)} candles")
+            except Exception as e:
+                logger.error(f"   ❌ {type_label} Historical Fetch Failed: {e}")
+
+            # --- B. Fetch Intraday (Today) ---
+            # V3 Format: /historical-candle/intraday/{instrumentKey}/{unit}/{interval}
+            url_intra = f"https://api.upstox.com/v3/historical-candle/intraday/{encoded_key}/minutes/5"
+            try:
+                res = requests.get(url_intra, headers=headers, timeout=15)
+                if res.status_code == 200:
+                    data = res.json().get("data", {})
+                    candles = data.get("candles", [])
+                    if candles:
+                        combined_candles.extend(candles)
+                        logger.info(f"   ☀️ {type_label} Intraday: {len(candles)} candles")
+                    else:
+                        logger.warning(f"   ⚠️ {type_label} Intraday: No candles found (Market Closed?)")
+            except Exception as e:
+                logger.error(f"   ❌ {type_label} Intraday Fetch Failed: {e}")
+
+            # --- C. Merge & Deduplicate ---
+            if combined_candles:
+                self._process_historical_candles_merged(combined_candles, type_label)
+            else:
+                logger.warning(f"⚠️ {type_label}: No data fetched (Historical + Intraday empty).")
+
+    def _process_historical_candles_merged(self, candles, instrument_type):
         """
-        Feeds historical candles into the IndicatorCalculator.
-        Upstox Format: [timestamp, open, high, low, close, volume, oi]
+        Parses, Sorts, and Deduplicates candles before feeding to calculator.
         """
         parsed_candles = []
+        seen_timestamps = set()
+        
         for c in candles:
             try:
-                ts = pd.to_datetime(c[0])
+                # Upstox: [timestamp, open, high, low, close, vol, oi]
+                ts_str = c[0]
+                ts = pd.to_datetime(ts_str)
+                
                 if pd.isna(ts): continue
+                
+                # Deduplicate by Timestamp
+                if ts in seen_timestamps:
+                    continue
+                seen_timestamps.add(ts)
                 
                 parsed_candles.append({
                     'timestamp': ts,
@@ -114,14 +143,22 @@ class LiveDataStreamer:
                     'close': float(c[4]),
                     'volume': int(c[5])
                 })
-            except Exception as e:
+            except Exception:
                 continue
         
         # Sort ascending (oldest first)
         parsed_candles.sort(key=lambda x: x['timestamp'])
         
+        logger.info(f"✅ {instrument_type}: Loaded {len(parsed_candles)} unique candles into Calculator.")
+        
+        # Feed to Calculator
         for candle in parsed_candles:
             self.indicator_calculator.add_candle(instrument_type, candle)
+            
+    # _process_historical_candles is replaced by _process_historical_candles_merged
+    # keeping old one or removing? I'll remove the old one by overwriting or just unused.
+    # The replace tool replaces exact text. I should be careful.
+    # I will replace the OLD initialize_warmup AND _process_historical_candles with the NEW versions.
 
     # ==============================================================================
     #  PART 2: SDK V3 STREAMING (THE "SPACE AGE" ENGINE)
@@ -293,13 +330,22 @@ class LiveDataStreamer:
             candle['low'] = min(candle['low'], ltp)
             candle['close'] = ltp
             candle['volume'] = vtt
+            
+            # PROOF OF TICK AGGREGATION (Removed for Cleanliness)
+            # if instrument_name == 'NIFTY':
+            #    logger.info(f"⚡ TICK AGGREGATED: {ltp} -> 5-Min Candle [H:{candle['high']} L:{candle['low']} C:{candle['close']}]")
 
     def _close_candles(self):
         """Push completed 5-min candles to the Calculator."""
         logger.info(f"🔔 5-Min Candle Closed @ {self.current_candle_start.strftime('%H:%M')}")
         
+        # Push NIFTY first
         if self.current_candles['NIFTY']:
-            self.indicator_calculator.add_candle('NIFTY', self.current_candles['NIFTY'])
+            candle = self.current_candles['NIFTY']
+            logger.info(f"   [DEBUG] 5-Min OHLC for MAIN ASSET: O:{candle['open']} H:{candle['high']} L:{candle['low']} C:{candle['close']}")
+            self.indicator_calculator.add_candle('NIFTY', candle)
+        
+        # Then Options
         if self.current_candles['CE']:
             self.indicator_calculator.add_candle('CE', self.current_candles['CE'])
         if self.current_candles['PE']:

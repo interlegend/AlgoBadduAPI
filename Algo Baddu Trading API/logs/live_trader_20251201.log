@@ -2573,3 +2573,208 @@
 2025-12-01 18:53:25,864 [INFO] 🔌 Disconnecting SDK Streamer...
 2025-12-01 18:53:25,865 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
 2025-12-01 18:53:25,866 [INFO] ✅ All logs saved successfully!
+2025-12-01 19:15:15,697 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 19:15:15,698 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 19:15:15,699 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 19:15:15,699 [INFO]    EOD Exit: 15:25:00
+2025-12-01 19:15:15,699 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 19:15:15,972 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 19:15:15,975 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 19:15:15,975 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 19:15:15,995 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 19:15:15,995 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days of NIFTY & ATM Options...
+2025-12-01 19:15:16,280 [INFO] ✅ NIFTY: Fetched 1074 historical candles.
+2025-12-01 19:15:16,628 [WARNING] ⚠️ Skipping Warm-Up for CE (No Key)
+2025-12-01 19:15:16,628 [WARNING] ⚠️ Skipping Warm-Up for PE (No Key)
+2025-12-01 19:15:16,630 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 19:15:16,675 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 19:15:16,676 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 19:15:17,113 [INFO] Websocket connected
+2025-12-01 19:15:17,114 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 19:15:17,115 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 19:15:17,946 [INFO] ⚡ TICK AGGREGATED: 5289.0 -> 5-Min Candle [H:5289.0 L:5289.0 C:5289.0]
+2025-12-01 19:15:18,845 [INFO] ⚡ TICK AGGREGATED: 5289.0 -> 5-Min Candle [H:5289.0 L:5289.0 C:5289.0]
+2025-12-01 19:15:20,100 [INFO] ⚡ TICK AGGREGATED: 5289.0 -> 5-Min Candle [H:5289.0 L:5289.0 C:5289.0]
+2025-12-01 19:15:21,021 [INFO] ⚡ TICK AGGREGATED: 5289.0 -> 5-Min Candle [H:5289.0 L:5289.0 C:5289.0]
+2025-12-01 19:15:22,044 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:23,069 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:24,130 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:25,173 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:26,245 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:27,395 [INFO] ⚡ TICK AGGREGATED: 5291.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5291.0]
+2025-12-01 19:15:28,495 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:15:29,494 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:15:30,694 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:15:31,444 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:15:32,495 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:15:33,616 [INFO] ⚡ TICK AGGREGATED: 5290.0 -> 5-Min Candle [H:5291.0 L:5289.0 C:5290.0]
+2025-12-01 19:20:44,924 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 19:20:44,929 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 19:20:44,930 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 19:20:44,931 [INFO]    EOD Exit: 15:25:00
+2025-12-01 19:20:44,931 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 19:20:45,239 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 19:20:45,241 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 19:20:45,241 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 19:20:45,264 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 19:20:45,264 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days of NIFTY & ATM Options...
+2025-12-01 19:20:45,369 [INFO] ✅ NIFTY: Fetched 1074 historical candles.
+2025-12-01 19:20:45,712 [WARNING] ⚠️ Skipping Warm-Up for CE (No Key)
+2025-12-01 19:20:45,713 [WARNING] ⚠️ Skipping Warm-Up for PE (No Key)
+2025-12-01 19:20:45,716 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 19:20:45,766 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 19:20:45,766 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 19:20:46,179 [INFO] Websocket connected
+2025-12-01 19:20:46,180 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 19:20:46,181 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 19:21:48,754 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:21:47
+2025-12-01 19:22:49,497 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:22:48
+2025-12-01 19:23:50,519 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:23:49
+2025-12-01 19:24:50,568 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:24:49
+2025-12-01 19:25:00,548 [INFO] 🔔 5-Min Candle Closed @ 19:20
+2025-12-01 19:25:00,549 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5293.0 H:5298.0 L:5290.0 C:5294.0
+2025-12-01 19:25:00,586 [INFO] ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-12-01 19:25:50,570 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:25:49
+2025-12-01 19:26:50,623 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:26:49
+2025-12-01 19:27:50,647 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:27:49
+2025-12-01 19:28:50,670 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 19:28:49
+2025-12-01 19:29:41,438 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-01 19:29:41,442 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 19:29:41,444 [INFO] ✅ All logs saved successfully!
+2025-12-01 20:25:43,338 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 20:25:43,342 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 20:25:43,343 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 20:25:43,343 [INFO]    EOD Exit: 15:25:00
+2025-12-01 20:25:43,343 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 20:25:43,682 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 20:25:43,685 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 20:25:43,685 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 20:25:43,707 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 20:25:43,707 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days of NIFTY & ATM Options...
+2025-12-01 20:25:43,976 [INFO] ✅ NIFTY: Fetched 1074 historical candles.
+2025-12-01 20:25:44,291 [WARNING] ⚠️ Skipping Warm-Up for CE (No Key)
+2025-12-01 20:25:44,294 [WARNING] ⚠️ Skipping Warm-Up for PE (No Key)
+2025-12-01 20:25:44,296 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 20:25:44,358 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 20:25:44,359 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 20:25:44,649 [INFO] Websocket connected
+2025-12-01 20:25:44,649 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 20:25:44,649 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 20:26:06,118 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-01 20:26:06,119 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 20:26:06,120 [INFO] ✅ All logs saved successfully!
+2025-12-01 22:41:23,399 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 22:41:23,406 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 22:41:23,407 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 22:41:23,407 [INFO]    EOD Exit: 15:25:00
+2025-12-01 22:41:23,408 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 22:41:23,794 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 22:41:23,797 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 22:41:23,797 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 22:41:23,821 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 22:41:23,821 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days of NIFTY & ATM Options...
+2025-12-01 22:41:24,070 [INFO] ✅ NIFTY: Fetched 1074 historical candles.
+2025-12-01 22:41:24,378 [WARNING] ⚠️ Skipping Warm-Up for CE (No Key)
+2025-12-01 22:41:24,381 [WARNING] ⚠️ Skipping Warm-Up for PE (No Key)
+2025-12-01 22:41:24,382 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 22:41:24,436 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 22:41:24,437 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 22:41:24,733 [INFO] Websocket connected
+2025-12-01 22:41:24,733 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 22:41:24,734 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 22:42:27,108 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:42:26
+2025-12-01 22:43:27,911 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:43:26
+2025-12-01 22:44:28,914 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:44:27
+2025-12-01 22:45:00,650 [INFO] 🔔 5-Min Candle Closed @ 22:40
+2025-12-01 22:45:00,651 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5328.0 H:5333.0 L:5326.0 C:5333.0
+2025-12-01 22:45:00,663 [INFO] ⏳ Daily Candle Gate: Only 1/13 candles today. Blocking early signals.
+2025-12-01 22:45:29,451 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:45:28
+2025-12-01 22:46:30,004 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:46:28
+2025-12-01 22:47:30,601 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:47:29
+2025-12-01 22:48:31,145 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:48:30
+2025-12-01 22:49:31,928 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:49:30
+2025-12-01 22:50:00,011 [INFO] 🔔 5-Min Candle Closed @ 22:45
+2025-12-01 22:50:00,012 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5333.0 H:5339.0 L:5330.0 C:5331.0
+2025-12-01 22:50:00,032 [INFO] ⏳ Daily Candle Gate: Only 2/13 candles today. Blocking early signals.
+2025-12-01 22:50:31,929 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:50:30
+2025-12-01 22:51:32,898 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:51:31
+2025-12-01 22:52:33,893 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:52:32
+2025-12-01 22:53:34,673 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:53:33
+2025-12-01 22:54:35,268 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:54:34
+2025-12-01 22:55:00,849 [INFO] 🔔 5-Min Candle Closed @ 22:50
+2025-12-01 22:55:00,850 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5331.0 H:5331.0 L:5326.0 C:5327.0
+2025-12-01 22:55:00,860 [INFO] ⏳ Daily Candle Gate: Only 3/13 candles today. Blocking early signals.
+2025-12-01 22:55:35,856 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:55:34
+2025-12-01 22:56:35,871 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:56:34
+2025-12-01 22:57:36,464 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:57:35
+2025-12-01 22:58:37,034 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:58:36
+2025-12-01 22:59:37,649 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 22:59:36
+2025-12-01 23:00:01,064 [INFO] 🔔 5-Min Candle Closed @ 22:55
+2025-12-01 23:00:01,064 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5327.0 H:5329.0 L:5326.0 C:5326.0
+2025-12-01 23:00:01,073 [INFO] ⏳ Daily Candle Gate: Only 4/13 candles today. Blocking early signals.
+2025-12-01 23:00:38,239 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:00:37
+2025-12-01 23:01:29,064 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 23:01:29,065 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 23:01:29,065 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 23:01:29,065 [INFO]    EOD Exit: 15:25:00
+2025-12-01 23:01:29,065 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 23:01:29,308 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 23:01:29,309 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 23:01:29,309 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 23:01:29,332 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 23:01:29,332 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days + TODAY'S Intraday Data...
+2025-12-01 23:01:29,664 [INFO]    📄 NIFTY Historical: 1074 candles
+2025-12-01 23:01:29,879 [INFO]    ☀️ NIFTY Intraday: 169 candles
+2025-12-01 23:01:30,253 [INFO] ✅ NIFTY: Loaded 1243 unique candles into Calculator.
+2025-12-01 23:01:30,254 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 23:01:30,283 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 23:01:30,283 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 23:01:31,106 [INFO] Websocket connected
+2025-12-01 23:01:31,107 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 23:01:31,107 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 23:01:38,795 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:01:37
+2025-12-01 23:02:39,393 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:02:38
+2025-12-01 23:03:39,950 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:03:38
+2025-12-01 23:04:40,561 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:04:39
+2025-12-01 23:05:00,614 [INFO] 🔔 5-Min Candle Closed @ 23:00
+2025-12-01 23:05:00,615 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5326.0 H:5329.0 L:5326.0 C:5329.0
+2025-12-01 23:05:00,621 [INFO] ⏳ Daily Candle Gate: Only 5/13 candles today. Blocking early signals.
+2025-12-01 23:05:16,670 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-01 23:05:16,679 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 23:05:16,679 [INFO] ✅ All logs saved successfully!
+2025-12-01 23:05:28,162 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-01 23:05:28,164 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-01 23:05:28,165 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-01 23:05:28,166 [INFO]    EOD Exit: 15:25:00
+2025-12-01 23:05:28,167 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-01 23:05:28,426 [INFO] ✅ Loaded 23744 MCX instruments. Filtering for CRUDEOIL...
+2025-12-01 23:05:28,429 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-01 23:05:28,429 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-01 23:05:28,450 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-01 23:05:28,451 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days + TODAY'S Intraday Data...
+2025-12-01 23:05:28,807 [INFO]    📄 NIFTY Historical: 1074 candles
+2025-12-01 23:05:29,086 [INFO]    ☀️ NIFTY Intraday: 169 candles
+2025-12-01 23:05:29,437 [INFO] ✅ NIFTY: Loaded 1243 unique candles into Calculator.
+2025-12-01 23:05:29,439 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-01 23:05:29,480 [INFO] 🚀 Starting SDK Streamer...
+2025-12-01 23:05:29,481 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-01 23:05:30,008 [INFO] Websocket connected
+2025-12-01 23:05:30,009 [INFO] 🔓 SDK Streamer Connected!
+2025-12-01 23:05:30,010 [INFO] 📡 Subscribing to: ['MCX_FO|462523']
+2025-12-01 23:06:32,236 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:06:31
+2025-12-01 23:07:32,804 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:07:31
+2025-12-01 23:08:33,326 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:08:32
+2025-12-01 23:09:33,894 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:09:32
+2025-12-01 23:10:00,764 [INFO] 🔔 5-Min Candle Closed @ 23:05
+2025-12-01 23:10:00,764 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5329.0 H:5332.0 L:5328.0 C:5331.0
+2025-12-01 23:10:34,448 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:10:33
+2025-12-01 23:11:34,979 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:11:33
+2025-12-01 23:12:35,515 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:12:34
+2025-12-01 23:13:36,123 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:13:35
+2025-12-01 23:14:36,721 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:14:35
+2025-12-01 23:15:00,164 [INFO] 🔔 5-Min Candle Closed @ 23:10
+2025-12-01 23:15:00,165 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:5331.0 H:5334.0 L:5326.0 C:5326.0
+2025-12-01 23:15:37,358 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 23:15:36
+2025-12-01 23:15:40,253 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-01 23:15:40,256 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251201.txt
+2025-12-01 23:15:40,257 [INFO] ✅ All logs saved successfully!
