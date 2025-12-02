@@ -31,6 +31,7 @@ class StrategyV30:
         # === TUNABLE INDICATOR PARAMETERS ===
         self.EMA_PERIOD = ema_period
         self.VI_PERIOD = vi_period
+        self.CHOP_PERIOD = 14 # EXPLICITLY SETTING CHOP PERIOD
 
         # === TUNABLE RISK PARAMETERS ===
         self.SL_MULTIPLIER = sl_multiplier
@@ -179,6 +180,7 @@ class StrategyV30:
             'version': 'V30 - MACD Filter Removed',
             'ema_period': self.EMA_PERIOD,
             'vi_period': self.VI_PERIOD,
+            'chop_period': self.CHOP_PERIOD,
             'sl_multiplier': self.SL_MULTIPLIER,
             'tp1_points': self.TP1_POINTS,
             'trail_atr_multiplier': self.TRAIL_ATR_MULTIPLIER,

@@ -207,8 +207,8 @@ export const Dashboard: React.FC = () => {
 
               <div className="text-right text-slate-500 font-mono">Choppiness:</div>
               <div className={`text-left font-bold font-mono ${
-                (botData?.indicators?.chop || 0) > 61.8 ? 'text-orange-400' :
-                (botData?.indicators?.chop || 0) < 38.2 ? 'text-emerald-400' : ''
+                (botData?.indicators?.chop || 0) > 57 ? 'text-orange-400' : // Choppy Market
+                (botData?.indicators?.chop || 0) < 38.2 ? 'text-emerald-400' : '' // Trending Market
               }`}>
                 {botData?.indicators?.chop ? botData.indicators.chop.toFixed(1) : '---'}
               </div>
