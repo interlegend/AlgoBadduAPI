@@ -364,15 +364,12 @@ class LiveDataStreamer:
         """Disconnects the SDK Streamer."""
         logger.info("🔌 Disconnecting SDK Streamer...")
         try:
-            # Note: The SDK might not have a straightforward 'close' if not running?
-            # But usually it does.
-            # self.streamer.disconnect() # Check SDK method? 
-            # Documentation implies simple connect/disconnect logic usually exists or we just let script exit.
-            # For safety, just log. The script exit kills threads.
-            pass
-        except:
-            pass
-        self.is_connected = False
+            if self.streamer:
+                self.streamer.disconnect()
+        except Exception as e:
+            logger.error(f"Error on disconnect: {e}")
+        finally:
+            self.is_connected = False
 
     def get_current_prices(self):
         return self.latest_prices

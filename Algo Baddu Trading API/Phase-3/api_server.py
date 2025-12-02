@@ -114,9 +114,20 @@ class TradingBot:
             
         # Get Indicators
         indicators = {}
-        if self.indicator_calculator:
+        if self.indicator_calculator and self.data_streamer:
+            # Get latest closed candle indicators
             nifty_ind = self.indicator_calculator.get_nifty_indicators()
-            # Extract relevant values (hardcoded for V30 strategy: EMA21, VI34)
+            
+            # Calculate LIVE indicators on the forming candle for real-time feel
+            live_candle = self.data_streamer.current_candles.get('NIFTY')
+            if live_candle:
+                live_ind = self.indicator_calculator.calculate_live_indicators('NIFTY', live_candle)
+                # If live calculation is successful, it returns a dict. Update our base indicators.
+                if live_ind:
+                    nifty_ind.update(live_ind)
+
+            # Extract relevant values for the UI
+            # Assuming strategy_v30 uses EMA 21 and VI 34
             indicators = {
                 'ema': nifty_ind.get('ema21', 0),
                 'vi_plus': nifty_ind.get('vi_plus_34', 0),
