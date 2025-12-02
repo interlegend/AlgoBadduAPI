@@ -95,137 +95,23 @@ class TradingBot:
         if self.data_streamer:
             self.data_streamer.disconnect()
         
-        # Additional cleanup can be added here
         self.status = "STOPPED"
+        # Force broadcast status one last time so UI knows we stopped
+        asyncio.run(self.broadcast_status())
+        
         logger.info("Bot has been stopped.")
         return {"status": "SUCCESS", "message": "Bot stopped."}
-
+    
     def get_status(self):
-        # Collects all relevant data for the UI
-        positions = self.position_tracker.get_all_open_positions() if self.position_tracker else []
-        
-        # Get Prices and Rename keys for UI if needed
-        prices = self.data_streamer.get_current_prices() if self.data_streamer else {}
-        ui_prices = prices.copy()
-        if self.asset_type and self.asset_type != 'NIFTY' and 'NIFTY' in ui_prices:
-            ui_prices[self.asset_type] = ui_prices.pop('NIFTY')
-            
-        # Get Indicators
-        indicators = {}
-        if self.indicator_calculator:
-            nifty_ind = self.indicator_calculator.get_nifty_indicators()
-            # Extract relevant values (hardcoded for V30 strategy: EMA21, VI34)
-            indicators = {
-                'ema': nifty_ind.get('ema21', 0),
-                'vi_plus': nifty_ind.get('vi_plus_34', 0),
-                'vi_minus': nifty_ind.get('vi_minus_34', 0)
-            }
+        # ... (existing code) ...
 
-        return {
-            "bot_status": self.status,
-            "asset": self.asset_type,
-            "timestamp": datetime.now().isoformat(),
-            "positions": positions,
-            "live_prices": ui_prices,
-            "indicators": indicators,
-            "ui_state": self.ui_state
-        }
-        
     def _run_bot_logic(self):
-        """The main entry point for the bot thread."""
-        try:
-            logger.info("Initializing bot components...")
-            # 1. Initialize Components
-            trade_logger = TradeLogger(os.path.join(PROJECT_ROOT, "trade_logs"))
-            self.position_tracker = PositionTracker()
-            
-            from strategy_v30 import StrategyV30
-            strategy = StrategyV30()
-            
-            if self.asset_type == 'CRUDEOIL': strategy.LOT_SIZE = 100
-            elif self.asset_type == 'NATURALGAS': strategy.LOT_SIZE = 1250
-
-            self.indicator_calculator = IndicatorCalculator(buffer_size=500, strategy_params=strategy.get_config())
-            signal_scanner = LiveSignalScanner(self.indicator_calculator, self.position_tracker)
-            self.order_manager = PaperOrderManager(strategy, self.position_tracker, trade_logger, asset_type=self.asset_type)
-
-            # 2. Setup API Client
-            configuration = upstox_client.Configuration()
-            configuration.access_token = UPSTOX_ACCESS_TOKEN
-            self.api_client = upstox_client.ApiClient(configuration)
-
-            # 3. Get Instrument Keys
-            keys = self._get_instrument_keys()
-            if not keys.get('nifty'): # Nifty is the primary key for both asset types
-                 raise RuntimeError("Failed to get primary instrument key.")
-
-            # 4. Initialize Data Streamer
-            self.data_streamer = LiveDataStreamer(
-                api_client=self.api_client,
-                instrument_keys=keys,
-                indicator_calculator=self.indicator_calculator,
-                on_candle_closed_callback=lambda candle_type: self._signal_handler_callback(signal_scanner, candle_type)
-            )
-
-            # 5. WARM-UP
-            logger.info("Starting data warm-up...")
-            self.data_streamer.initialize_warmup(days=10)
-            self.indicator_calculator.calculate_nifty_indicators()
-            if keys.get('ce'): self.indicator_calculator.calculate_option_indicators('CE')
-            if keys.get('pe'): self.indicator_calculator.calculate_option_indicators('PE')
-            logger.info("Warm-up complete.")
-
-            # 6. START LIVE STREAM
-            logger.info("Starting WebSocket data streamer...")
-            self.data_streamer.start_websocket()
-            self.status = "RUNNING"
-            
-            # 7. MAIN LOOP (for broadcasting status)
-            while self.status == "RUNNING":
-                # The main logic is now event-driven by the streamer's callbacks.
-                # This loop's job is to push status updates to the UI.
-                
-                # Update positions based on live prices
-                if self.order_manager and self.data_streamer:
-                    prices = self.data_streamer.get_current_prices()
-                    # Safe access to LTP
-                    ce_data = prices.get('CE')
-                    pe_data = prices.get('PE')
-                    ce_price = ce_data.get('ltp', 0) if ce_data else 0
-                    pe_price = pe_data.get('ltp', 0) if pe_data else 0
-                    
-                    # We need to pass the full data packets to update_positions for SL/Target logic
-                    if self.asset_type == 'NIFTY':
-                        if ce_data and pe_data:
-                             # Ensure ATR exists (simple hack if missing)
-                             if 'atr' not in ce_data: ce_data['atr'] = 0 
-                             if 'atr' not in pe_data: pe_data['atr'] = 0
-                             
-                             self.order_manager.update_positions(
-                                 ce_price, pe_price, 
-                                 ce_data.get('high', ce_price), pe_data.get('high', pe_price),
-                                 ce_data, pe_data,
-                                 self.indicator_calculator.get_nifty_indicators(),
-                                 datetime.now()
-                             )
-                    else:
-                        # MCX Logic (Future is mapped to 'NIFTY' key)
-                        main_data = prices.get('NIFTY')
-                        if main_data:
-                             if 'atr' not in main_data: main_data['atr'] = 0
-                             main_ltp = main_data.get('ltp', 0)
-                             self.order_manager.update_positions(
-                                 main_ltp, main_ltp,
-                                 main_data.get('high', main_ltp), main_data.get('high', main_ltp),
-                                 main_data, main_data,
-                                 self.indicator_calculator.get_nifty_indicators(),
-                                 datetime.now()
-                             )
+        # ... (existing code) ...
                 
                 # Broadcast the latest status to all connected websocket clients
                 asyncio.run(self.broadcast_status())
                 
-                time.sleep(1) # Broadcast every second
+                time.sleep(0.5) # Broadcast every 0.5 seconds for snappier UI
 
         except Exception as e:
             logger.error(f"Critical error in bot thread: {e}", exc_info=True)
