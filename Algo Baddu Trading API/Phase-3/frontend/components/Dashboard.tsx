@@ -204,6 +204,14 @@ export const Dashboard: React.FC = () => {
                  <span className="text-slate-600">/</span>
                  <span className="text-danger-red">{botData?.indicators?.vi_minus ? botData.indicators.vi_minus.toFixed(3) : '-'}</span>
               </div>
+
+              <div className="text-right text-slate-500 font-mono">Choppiness:</div>
+              <div className={`text-left font-bold font-mono ${
+                (botData?.indicators?.chop || 0) > 61.8 ? 'text-orange-400' :
+                (botData?.indicators?.chop || 0) < 38.2 ? 'text-emerald-400' : ''
+              }`}>
+                {botData?.indicators?.chop ? botData.indicators.chop.toFixed(1) : '---'}
+              </div>
             </div>
           </div>
         </div>

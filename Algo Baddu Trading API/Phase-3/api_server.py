@@ -134,10 +134,12 @@ class TradingBot:
                 if live_ind:
                     nifty_ind.update(live_ind)
 
+            # Assuming strategy_v30 uses EMA 21, VI 34, CHOP 14
             indicators = {
                 'ema': nifty_ind.get('ema21', 0),
                 'vi_plus': nifty_ind.get('vi_plus_34', 0),
-                'vi_minus': nifty_ind.get('vi_minus_34', 0)
+                'vi_minus': nifty_ind.get('vi_minus_34', 0),
+                'chop': nifty_ind.get('CHOP_14', 0)
             }
 
         return {

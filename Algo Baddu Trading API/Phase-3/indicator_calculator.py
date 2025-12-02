@@ -136,6 +136,10 @@ class IndicatorCalculator:
         vi_plus, vi_minus = self.Vortex(df['high'], df['low'], df['close'], vi_period)
         df[f'vi_plus_{vi_period}'] = vi_plus
         df[f'vi_minus_{vi_period}'] = vi_minus
+
+        # Calculate Choppiness Index
+        chop_period = self.params.get('chop_period', 14)
+        df.ta.chop(length=chop_period, append=True)
         
         self.nifty_df = df
         
@@ -147,6 +151,7 @@ class IndicatorCalculator:
             f'vi_plus_{vi_period}': latest[f'vi_plus_{vi_period}'],
             f'vi_minus_{vi_period}': latest[f'vi_minus_{vi_period}'],
             'macd_hist': latest['macd_hist'],
+            f'CHOP_{chop_period}': latest.get(f'CHOP_{chop_period}', 0), # Safely get chop value
             'timestamp': latest['timestamp']
         }
         
@@ -278,15 +283,21 @@ class IndicatorCalculator:
         # 2. Calculate Vortex
         vi_plus_series, vi_minus_series = self.Vortex(df['high'], df['low'], df['close'], vi_period)
         
+        # 3. Calculate Choppiness
+        chop_period = self.params.get('chop_period', 14)
+        chop_series = df.ta.chop(length=chop_period)
+
         # Get latest values
         latest_idx = -1
         latest_ema = ema_series.iloc[latest_idx]
         latest_vi_plus = vi_plus_series.iloc[latest_idx]
         latest_vi_minus = vi_minus_series.iloc[latest_idx]
+        latest_chop = chop_series.iloc[latest_idx]
         
         return {
             f'ema{ema_period}': latest_ema,
             f'vi_plus_{vi_period}': latest_vi_plus,
             f'vi_minus_{vi_period}': latest_vi_minus,
+            f'CHOP_{chop_period}': latest_chop,
             'timestamp': df.iloc[latest_idx]['timestamp']
         }
