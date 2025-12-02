@@ -4,6 +4,7 @@ import json
 import sys
 import os
 import threading
+import time
 from datetime import datetime
 import pandas as pd
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
@@ -101,15 +102,32 @@ class TradingBot:
 
     def get_status(self):
         # Collects all relevant data for the UI
-        positions = self.position_tracker.get_all_positions() if self.position_tracker else []
-        prices = self.data_streamer.get_current_prices() if self.data_streamer else {}
+        positions = self.position_tracker.get_all_open_positions() if self.position_tracker else []
         
+        # Get Prices and Rename keys for UI if needed
+        prices = self.data_streamer.get_current_prices() if self.data_streamer else {}
+        ui_prices = prices.copy()
+        if self.asset_type and self.asset_type != 'NIFTY' and 'NIFTY' in ui_prices:
+            ui_prices[self.asset_type] = ui_prices.pop('NIFTY')
+            
+        # Get Indicators
+        indicators = {}
+        if self.indicator_calculator:
+            nifty_ind = self.indicator_calculator.get_nifty_indicators()
+            # Extract relevant values (hardcoded for V30 strategy: EMA21, VI34)
+            indicators = {
+                'ema': nifty_ind.get('ema21', 0),
+                'vi_plus': nifty_ind.get('vi_plus_34', 0),
+                'vi_minus': nifty_ind.get('vi_minus_34', 0)
+            }
+
         return {
             "bot_status": self.status,
             "asset": self.asset_type,
             "timestamp": datetime.now().isoformat(),
             "positions": positions,
-            "live_prices": prices,
+            "live_prices": ui_prices,
+            "indicators": indicators,
             "ui_state": self.ui_state
         }
         
@@ -170,9 +188,39 @@ class TradingBot:
                 # Update positions based on live prices
                 if self.order_manager and self.data_streamer:
                     prices = self.data_streamer.get_current_prices()
-                    ce_ltp = prices.get('CE', {}).get('ltp', 0)
-                    pe_ltp = prices.get('PE', {}).get('ltp', 0)
-                    # Add more logic here if needed for position updates
+                    # Safe access to LTP
+                    ce_data = prices.get('CE')
+                    pe_data = prices.get('PE')
+                    ce_price = ce_data.get('ltp', 0) if ce_data else 0
+                    pe_price = pe_data.get('ltp', 0) if pe_data else 0
+                    
+                    # We need to pass the full data packets to update_positions for SL/Target logic
+                    if self.asset_type == 'NIFTY':
+                        if ce_data and pe_data:
+                             # Ensure ATR exists (simple hack if missing)
+                             if 'atr' not in ce_data: ce_data['atr'] = 0 
+                             if 'atr' not in pe_data: pe_data['atr'] = 0
+                             
+                             self.order_manager.update_positions(
+                                 ce_price, pe_price, 
+                                 ce_data.get('high', ce_price), pe_data.get('high', pe_price),
+                                 ce_data, pe_data,
+                                 self.indicator_calculator.get_nifty_indicators(),
+                                 datetime.now()
+                             )
+                    else:
+                        # MCX Logic (Future is mapped to 'NIFTY' key)
+                        main_data = prices.get('NIFTY')
+                        if main_data:
+                             if 'atr' not in main_data: main_data['atr'] = 0
+                             main_ltp = main_data.get('ltp', 0)
+                             self.order_manager.update_positions(
+                                 main_ltp, main_ltp,
+                                 main_data.get('high', main_ltp), main_data.get('high', main_ltp),
+                                 main_data, main_data,
+                                 self.indicator_calculator.get_nifty_indicators(),
+                                 datetime.now()
+                             )
                 
                 # Broadcast the latest status to all connected websocket clients
                 asyncio.run(self.broadcast_status())
@@ -188,7 +236,7 @@ class TradingBot:
         if self.asset_type == "NIFTY":
             logger.info("Detecting NIFTY ATM strikes...")
             selector = ATMSelector(UPSTOX_ACCESS_TOKEN)
-            nifty_ltp = selector.get_nifty_spot_price()
+            nifty_ltp = selector.get_nifty_spot()
             if nifty_ltp:
                 atm_strike, ce_key, pe_key = selector.get_atm_keys(nifty_ltp)
                 self.ui_state["atm_strike"] = atm_strike

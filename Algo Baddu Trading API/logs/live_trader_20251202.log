@@ -131,3 +131,60 @@
 2025-12-02 11:52:12,237 [INFO] 🔌 Disconnecting SDK Streamer...
 2025-12-02 11:52:12,250 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
 2025-12-02 11:52:12,251 [INFO] ✅ All logs saved successfully!
+2025-12-02 15:26:37,443 [INFO] ✅ Selected Asset: NIFTY
+2025-12-02 15:26:37,445 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-02 15:26:37,445 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-02 15:26:37,445 [INFO]    EOD Exit: 15:25:00
+2025-12-02 15:26:37,706 [INFO] ✅ Current NIFTY Spot: 26055.75
+2025-12-02 15:26:37,706 [INFO] 🎯 Spot: 26055.75 → ATM: 26050
+2025-12-02 15:26:47,967 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-02 15:26:48,148 [INFO] ✅ ATM Instruments Found!
+2025-12-02 15:26:48,149 [INFO]    CE: NSE_FO|46797
+2025-12-02 15:26:48,149 [INFO]    PE: NSE_FO|46798
+2025-12-02 15:26:48,152 [INFO] 🎯 Selected ATM Strike: 26050 | CE: NSE_FO|46797 | PE: NSE_FO|46798
+2025-12-02 15:26:48,180 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-02 15:26:48,181 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days + TODAY'S Intraday Data...
+2025-12-02 15:26:48,298 [INFO]    📄 NIFTY Historical: 450 candles
+2025-12-02 15:26:48,565 [INFO]    ☀️ NIFTY Intraday: 75 candles
+2025-12-02 15:26:48,755 [INFO] ✅ NIFTY: Loaded 525 unique candles into Calculator.
+2025-12-02 15:26:48,981 [INFO]    📄 CE Historical: 450 candles
+2025-12-02 15:26:49,174 [INFO]    ☀️ CE Intraday: 75 candles
+2025-12-02 15:26:49,365 [INFO] ✅ CE: Loaded 525 unique candles into Calculator.
+2025-12-02 15:26:49,529 [INFO]    📄 PE Historical: 450 candles
+2025-12-02 15:26:49,624 [INFO]    ☀️ PE Intraday: 75 candles
+2025-12-02 15:26:49,779 [INFO] ✅ PE: Loaded 525 unique candles into Calculator.
+2025-12-02 15:26:49,781 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-02 15:26:49,841 [INFO] 🚀 Starting SDK Streamer...
+2025-12-02 15:26:49,842 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-02 15:26:50,196 [INFO] Websocket connected
+2025-12-02 15:26:50,197 [INFO] 🔓 SDK Streamer Connected!
+2025-12-02 15:26:50,198 [INFO] 📡 Subscribing to: ['NSE_INDEX|Nifty 50', 'NSE_FO|46797', 'NSE_FO|46798']
+2025-12-02 15:27:51,850 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:27:50
+2025-12-02 15:28:52,830 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:28:51
+2025-12-02 15:29:53,552 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:29:52
+2025-12-02 15:30:00,126 [INFO] 🔔 5-Min Candle Closed @ 15:25
+2025-12-02 15:30:00,127 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26054.95 H:26060.3 L:26051.25 C:26056.25
+2025-12-02 15:30:54,218 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:30:53
+2025-12-02 15:31:54,288 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:31:53
+2025-12-02 15:32:54,331 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:32:53
+2025-12-02 15:33:55,330 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:33:54
+2025-12-02 15:34:55,368 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:34:54
+2025-12-02 15:35:00,278 [INFO] 🔔 5-Min Candle Closed @ 15:30
+2025-12-02 15:35:00,279 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26055.65 H:26057.65 L:26032.2 C:26032.2
+2025-12-02 15:35:56,385 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:35:55
+2025-12-02 15:36:57,381 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:36:56
+2025-12-02 15:37:57,384 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:37:56
+2025-12-02 15:38:57,891 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 15:38:56
+2025-12-02 15:39:04,816 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-02 15:39:04,829 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
+2025-12-02 15:39:04,830 [INFO] ✅ All logs saved successfully!
+2025-12-02 15:40:00,327 [INFO] 🔔 5-Min Candle Closed @ 15:35
+2025-12-02 15:40:00,328 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26032.2 H:26032.2 L:26032.2 C:26032.2
+2025-12-02 15:45:00,370 [INFO] 🔔 5-Min Candle Closed @ 15:40
+2025-12-02 15:45:00,379 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26032.2 H:26032.2 L:26032.2 C:26032.2
+2025-12-02 15:50:00,282 [INFO] 🔔 5-Min Candle Closed @ 15:45
+2025-12-02 15:50:00,282 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26032.2 H:26032.2 L:26032.2 C:26032.2
+2025-12-02 15:55:00,543 [INFO] 🔔 5-Min Candle Closed @ 15:50
+2025-12-02 15:55:00,548 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26032.2 H:26032.2 L:26032.2 C:26032.2
+2025-12-02 16:00:00,375 [INFO] 🔔 5-Min Candle Closed @ 15:55
+2025-12-02 16:00:00,375 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26032.2 H:26032.2 L:26032.2 C:26032.2

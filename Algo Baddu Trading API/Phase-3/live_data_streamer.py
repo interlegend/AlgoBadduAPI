@@ -219,9 +219,9 @@ class LiveDataStreamer:
         """Event: Error Occurred."""
         logger.error(f"💥 SDK Streamer Error: {error}")
 
-    def on_close(self, message=None):
+    def on_close(self, *args, **kwargs):
         """Event: Connection Closed."""
-        logger.warning(f"🔌 SDK Streamer Closed: {message}")
+        logger.warning(f"🔌 SDK Streamer Closed. Args: {args}, Kwargs: {kwargs}")
         self.is_connected = False
 
     def _process_feed_data(self, instrument_key, feed_data):

@@ -2,7 +2,7 @@
 
 const API_BASE = 'http://localhost:8000';
 
-export const startBot = async (assetType: string = 'NIFTY') => {
+export const startBot = async (assetType: string) => {
   try {
     const response = await fetch(`${API_BASE}/start?asset_type=${assetType}`, {
       method: 'POST',

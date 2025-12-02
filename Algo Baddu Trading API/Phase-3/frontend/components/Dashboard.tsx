@@ -11,6 +11,7 @@ const WS_URL = 'ws://localhost:8000/ws';
 export const Dashboard: React.FC = () => {
   const [botData, setBotData] = useState<BotData | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const [selectedAsset, setSelectedAsset] = useState('NIFTY'); // STATE ADDED
 
   // Using react-use-websocket for robust WS handling
   const { lastJsonMessage, readyState } = useWebSocket<BotData>(WS_URL, {
@@ -37,7 +38,7 @@ export const Dashboard: React.FC = () => {
   const handleStart = async () => {
     try {
       setErrorMsg(null);
-      await startBot();
+      await startBot(selectedAsset); // FIXED: Passing selected asset
     } catch (e: any) {
       setErrorMsg("Failed to initiate sequence! Check backend.");
     }
@@ -68,6 +69,8 @@ export const Dashboard: React.FC = () => {
       default: return 'bg-slate-700 text-slate-300 border-slate-600';
     }
   };
+
+  const isRunning = botData?.bot_status === 'RUNNING' || botData?.bot_status === 'STARTING';
 
   return (
     <div className="min-h-screen bg-slate-900 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-800 via-slate-800 to-[#151f32] text-slate-200 font-sans p-4 md:p-8 relative overflow-hidden">
@@ -131,17 +134,28 @@ export const Dashboard: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
-               <button 
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* DROPDOWN ADDED */}
+              <select 
+                value={selectedAsset}
+                onChange={(e) => setSelectedAsset(e.target.value)}
+                disabled={isRunning}
+                className="col-span-1 bg-slate-800 border border-slate-700 rounded-md py-3 px-2 font-bold text-white focus:ring-2 focus:ring-anime-blue disabled:opacity-50"
+              >
+                <option value="NIFTY">NIFTY</option>
+                <option value="CRUDEOIL">CRUDEOIL</option>
+                <option value="NATURALGAS">NATURALGAS</option>
+              </select>
+              <button 
                 onClick={handleStart}
-                disabled={botData?.bot_status === 'RUNNING'}
+                disabled={isRunning}
                 className="flex items-center justify-center gap-2 bg-success-green text-slate-900 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed font-bold py-3 rounded transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(0,255,157,0.3)]">
                 <Play size={18} fill="currentColor" />
                 INITIATE
               </button>
               <button 
                 onClick={handleStop}
-                disabled={botData?.bot_status === 'STOPPED'}
+                disabled={!isRunning}
                 className="flex items-center justify-center gap-2 bg-danger-red text-white hover:bg-rose-600 disabled:opacity-50 disabled:cursor-not-allowed font-bold py-3 rounded transition-all hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(255,0,85,0.3)]">
                 <Square size={18} fill="currentColor" />
                 TERMINATE
@@ -169,6 +183,28 @@ export const Dashboard: React.FC = () => {
               {botData?.ui_state?.atm_strike || '---'}
             </p>
           </div>
+          
+           {/* Indicators Card - NEW */}
+           <div className="bg-slate-900/60 backdrop-blur-md rounded-xl p-6 border border-slate-800/60 shadow-lg flex flex-col justify-center items-center text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-2 opacity-5">
+              <Activity size={48} />
+            </div>
+            <h3 className="text-slate-400 text-xs uppercase font-bold mb-2 border-b border-slate-700/50 pb-1 w-full">Live Indicators</h3>
+            
+            <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm w-full">
+              <div className="text-right text-slate-500 font-mono">EMA (21):</div>
+              <div className="text-left text-anime-blue font-bold font-mono">
+                {botData?.indicators?.ema ? botData.indicators.ema.toFixed(1) : '---'}
+              </div>
+              
+              <div className="text-right text-slate-500 font-mono">VI + / - :</div>
+              <div className="text-left font-bold font-mono flex gap-1">
+                 <span className="text-success-green">{botData?.indicators?.vi_plus ? botData.indicators.vi_plus.toFixed(3) : '-'}</span>
+                 <span className="text-slate-600">/</span>
+                 <span className="text-danger-red">{botData?.indicators?.vi_minus ? botData.indicators.vi_minus.toFixed(3) : '-'}</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Live Prices Grid - Container Brightened */}
@@ -180,8 +216,10 @@ export const Dashboard: React.FC = () => {
           
           <div className="bg-slate-900/60 backdrop-blur-md rounded-xl p-6 border border-slate-800/60 shadow-xl">
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {botData?.live_prices && Object.entries(botData.live_prices).map(([symbol, data]) => (
-                <PriceCard key={symbol} symbol={symbol} data={data} />
+              {botData?.live_prices && Object.entries(botData.live_prices)
+                .filter(([_, data]) => data !== null && data !== undefined) // FILTER NULL DATA
+                .map(([symbol, data]) => (
+                  <PriceCard key={symbol} symbol={symbol} data={data} />
               ))}
               {(!botData?.live_prices || Object.keys(botData.live_prices).length === 0) && (
                 <div className="col-span-3 text-center py-8 text-slate-600 font-mono border border-slate-800 border-dashed rounded-lg">
