@@ -1,0 +1,34 @@
+
+======================================================================
+TRADER-BADDU LIVE PAPER TRADER - DAILY SUMMARY
+======================================================================
+Date: 2025-12-02
+Report Generated: 11:01:27
+
+======================================================================
+TRADING STATISTICS
+======================================================================
+Total Signals Generated:  0
+Total Trades Executed:    0
+Open Positions:           0
+
+Winning Trades:           0
+Losing Trades:            0
+Win Rate:                 0.0%
+
+======================================================================
+P&L SUMMARY
+======================================================================
+Realized P&L:             ₹0.00
+Unrealized P&L:           ₹0.00
+Total P&L:                ₹0.00
+
+======================================================================
+FILES GENERATED
+======================================================================
+Signals Log:  c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\signals_20251202.csv
+Trades Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\trades_20251202.csv
+Events Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\events_20251202.json
+Summary:      c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
+
+======================================================================

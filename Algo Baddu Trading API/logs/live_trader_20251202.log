@@ -1,0 +1,33 @@
+2025-12-02 10:56:41,698 [INFO] ✅ Selected Asset: NIFTY
+2025-12-02 10:56:41,703 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-02 10:56:41,703 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-02 10:56:41,704 [INFO]    EOD Exit: 15:25:00
+2025-12-02 10:56:42,158 [ERROR] ❌ Failed to fetch NIFTY spot for ATM selection.
+2025-12-02 10:56:42,162 [ERROR] ❌ CRITICAL: Could not determine ATM keys. Exiting.
+2025-12-02 10:56:54,206 [INFO] ✅ Selected Asset: CRUDEOIL
+2025-12-02 10:56:54,208 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-02 10:56:54,211 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-02 10:56:54,211 [INFO]    EOD Exit: 15:25:00
+2025-12-02 10:56:54,212 [INFO] 📥 Downloading MCX Master Contract list from Upstox...
+2025-12-02 10:56:54,526 [INFO] ✅ Loaded 25236 MCX instruments. Filtering for CRUDEOIL...
+2025-12-02 10:56:54,529 [INFO] ✅ Found Active Contract: CRUDEOIL FUT 18 DEC 25
+2025-12-02 10:56:54,530 [INFO]    Key: MCX_FO|462523 | Expiry: 2025-12-18 | Lot: 100
+2025-12-02 10:56:54,551 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-02 10:56:54,551 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days + TODAY'S Intraday Data...
+2025-12-02 10:56:54,771 [INFO]    📄 NIFTY Historical: 1074 candles
+2025-12-02 10:56:55,049 [INFO]    ☀️ NIFTY Intraday: 24 candles
+2025-12-02 10:56:55,432 [INFO] ✅ NIFTY: Loaded 1098 unique candles into Calculator.
+2025-12-02 10:56:55,433 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-02 10:56:55,491 [INFO] 🚀 Starting SDK Streamer...
+2025-12-02 10:56:55,491 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-02 10:56:55,916 [ERROR] 💥 SDK Streamer Error: Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 02 Dec 2025 05:26:54 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '7126d59e-4b34-48a8-9784-1c53e0219ebf', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=kFHMYyTI7sv5tGMyCmU.Il3SkIYKyxmIUpCLVsIYa7g-1764653214-1.0.1.1-BlSGd3RYbeqYTJyxMpv6nNjV9MN792iUMfS4WC.vhAk.jDesdUdbryzOO_WbI9IT; path=/; expires=Tue, 02-Dec-25 05:56:54 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=qTtTmud55bPYEOCUQhyiyhG0PUstTJvcGibgxQS7330-1764653214879-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9a7869802bf79a99-NAG', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None
+2025-12-02 10:56:55,917 [ERROR] Handshake status 401 Unauthorized -+-+- {'date': 'Tue, 02 Dec 2025 05:26:54 GMT', 'content-type': 'application/json', 'transfer-encoding': 'chunked', 'connection': 'keep-alive', 'reqid': '7126d59e-4b34-48a8-9784-1c53e0219ebf', 'x-content-type-options': 'nosniff', 'x-xss-protection': '0', 'pragma': 'no-cache', 'strict-transport-security': 'max-age=0; includeSubDomains', 'x-frame-options': 'DENY', 'cache-control': 'must-revalidate,no-cache,no-store', 'vary': 'Access-Control-Request-Headers', 'message': 'request failed', 'cf-cache-status': 'DYNAMIC', 'set-cookie': '__cf_bm=kFHMYyTI7sv5tGMyCmU.Il3SkIYKyxmIUpCLVsIYa7g-1764653214-1.0.1.1-BlSGd3RYbeqYTJyxMpv6nNjV9MN792iUMfS4WC.vhAk.jDesdUdbryzOO_WbI9IT; path=/; expires=Tue, 02-Dec-25 05:56:54 GMT; domain=.upstox.com; HttpOnly; Secure; _cfuvid=qTtTmud55bPYEOCUQhyiyhG0PUstTJvcGibgxQS7330-1764653214879-0.0.1.1-604800000; path=/; domain=.upstox.com; HttpOnly; Secure; SameSite=None', 'server': 'cloudflare', 'cf-ray': '9a7869802bf79a99-NAG', 'alt-svc': 'h3=":443"; ma=86400'} -+-+- None - goodbye
+2025-12-02 10:56:55,918 [ERROR] error from callback <bound method Streamer.handle_close of <upstox_client.feeder.market_data_streamer_v3.MarketDataStreamerV3 object at 0x0000022BE068B4D0>>: LiveDataStreamer.on_close() takes from 1 to 2 positional arguments but 3 were given
+2025-12-02 10:56:55,918 [ERROR] 💥 SDK Streamer Error: LiveDataStreamer.on_close() takes from 1 to 2 positional arguments but 3 were given
+2025-12-02 10:57:57,566 [INFO] 💓 SYSTEM HEALTH | Connected: False | Last Tick: 10:56:57
+2025-12-02 10:58:57,635 [INFO] 💓 SYSTEM HEALTH | Connected: False | Last Tick: 10:56:57
+2025-12-02 10:59:57,706 [INFO] 💓 SYSTEM HEALTH | Connected: False | Last Tick: 10:56:57
+2025-12-02 11:00:57,755 [INFO] 💓 SYSTEM HEALTH | Connected: False | Last Tick: 10:56:57
+2025-12-02 11:01:27,128 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-02 11:01:27,136 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
+2025-12-02 11:01:27,137 [INFO] ✅ All logs saved successfully!
