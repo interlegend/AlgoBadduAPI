@@ -31,3 +31,103 @@
 2025-12-02 11:01:27,128 [INFO] 🔌 Disconnecting SDK Streamer...
 2025-12-02 11:01:27,136 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
 2025-12-02 11:01:27,137 [INFO] ✅ All logs saved successfully!
+2025-12-02 11:01:37,315 [INFO] ✅ Selected Asset: NIFTY
+2025-12-02 11:01:37,319 [INFO] ✅ Live Signal Scanner initialized with Strategy V30
+2025-12-02 11:01:37,319 [INFO]    Entry Window: 09:30:00 to 15:10:00
+2025-12-02 11:01:37,320 [INFO]    EOD Exit: 15:25:00
+2025-12-02 11:01:37,507 [INFO] ✅ Current NIFTY Spot: 26088.1
+2025-12-02 11:01:37,507 [INFO] 🎯 Spot: 26088.1 → ATM: 26100
+2025-12-02 11:01:37,890 [INFO] 📅 Nearest Expiry: 2025-12-02
+2025-12-02 11:01:38,059 [INFO] ✅ ATM Instruments Found!
+2025-12-02 11:01:38,060 [INFO]    CE: NSE_FO|46799
+2025-12-02 11:01:38,060 [INFO]    PE: NSE_FO|46800
+2025-12-02 11:01:38,062 [INFO] 🎯 Selected ATM Strike: 26100 | CE: NSE_FO|46799 | PE: NSE_FO|46800
+2025-12-02 11:01:38,072 [INFO] ✅ Live Data Streamer (Space Age V3) initialized.
+2025-12-02 11:01:38,073 [INFO] 🔥 STARTING WARM-UP: Fetching last 10 days + TODAY'S Intraday Data...
+2025-12-02 11:01:38,282 [INFO]    📄 NIFTY Historical: 450 candles
+2025-12-02 11:01:38,418 [INFO]    ☀️ NIFTY Intraday: 22 candles
+2025-12-02 11:01:38,559 [INFO] ✅ NIFTY: Loaded 472 unique candles into Calculator.
+2025-12-02 11:01:38,693 [INFO]    📄 CE Historical: 450 candles
+2025-12-02 11:01:38,817 [INFO]    ☀️ CE Intraday: 22 candles
+2025-12-02 11:01:38,963 [INFO] ✅ CE: Loaded 472 unique candles into Calculator.
+2025-12-02 11:01:39,133 [INFO]    📄 PE Historical: 450 candles
+2025-12-02 11:01:39,280 [INFO]    ☀️ PE Intraday: 22 candles
+2025-12-02 11:01:39,430 [INFO] ✅ PE: Loaded 472 unique candles into Calculator.
+2025-12-02 11:01:39,432 [INFO] 🔄  Calculating indicators on Warm-Up data...
+2025-12-02 11:01:39,479 [INFO] 🚀 Starting SDK Streamer...
+2025-12-02 11:01:39,480 [INFO] ✅  UPLINK ESTABLISHED. SYSTEM LIVE.
+2025-12-02 11:01:39,833 [INFO] Websocket connected
+2025-12-02 11:01:39,834 [INFO] 🔓 SDK Streamer Connected!
+2025-12-02 11:01:39,835 [INFO] 📡 Subscribing to: ['NSE_INDEX|Nifty 50', 'NSE_FO|46799', 'NSE_FO|46800']
+2025-12-02 11:02:42,275 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:02:41
+2025-12-02 11:03:43,091 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:03:42
+2025-12-02 11:04:43,676 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:04:42
+2025-12-02 11:05:00,273 [INFO] 🔔 5-Min Candle Closed @ 11:00
+2025-12-02 11:05:00,274 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26087.95 H:26099.0 L:26083.85 C:26098.0
+2025-12-02 11:05:44,238 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:05:43
+2025-12-02 11:06:44,806 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:06:43
+2025-12-02 11:07:45,360 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:07:44
+2025-12-02 11:08:45,898 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:08:44
+2025-12-02 11:09:46,461 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:09:45
+2025-12-02 11:10:00,273 [INFO] 🔔 5-Min Candle Closed @ 11:05
+2025-12-02 11:10:00,274 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26098.25 H:26100.3 L:26091.25 C:26096.0
+2025-12-02 11:10:47,238 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:10:46
+2025-12-02 11:11:48,224 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:11:47
+2025-12-02 11:12:49,189 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:12:48
+2025-12-02 11:13:49,777 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:13:48
+2025-12-02 11:14:50,297 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:14:49
+2025-12-02 11:15:00,275 [INFO] 🔔 5-Min Candle Closed @ 11:10
+2025-12-02 11:15:00,275 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26096.65 H:26097.1 L:26079.3 C:26081.1
+2025-12-02 11:15:50,949 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:15:49
+2025-12-02 11:16:51,626 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:16:50
+2025-12-02 11:17:52,603 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:17:51
+2025-12-02 11:18:53,406 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:18:52
+2025-12-02 11:19:54,104 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:19:53
+2025-12-02 11:20:00,126 [INFO] 🔔 5-Min Candle Closed @ 11:15
+2025-12-02 11:20:00,126 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26080.25 H:26085.3 L:26074.55 C:26080.85
+2025-12-02 11:20:54,602 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:20:53
+2025-12-02 11:21:55,125 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:21:54
+2025-12-02 11:22:55,133 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:22:54
+2025-12-02 11:23:55,312 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:23:54
+2025-12-02 11:24:56,308 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:24:55
+2025-12-02 11:25:00,281 [INFO] 🔔 5-Min Candle Closed @ 11:20
+2025-12-02 11:25:00,282 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26080.85 H:26082.45 L:26070.0 C:26082.25
+2025-12-02 11:25:56,948 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:25:55
+2025-12-02 11:26:57,509 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:26:56
+2025-12-02 11:27:58,449 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:27:57
+2025-12-02 11:28:59,416 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:28:58
+2025-12-02 11:30:00,212 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:29:59
+2025-12-02 11:30:00,281 [INFO] 🔔 5-Min Candle Closed @ 11:25
+2025-12-02 11:30:00,282 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26082.1 H:26084.65 L:26067.55 C:26068.0
+2025-12-02 11:31:00,268 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:30:59
+2025-12-02 11:32:01,266 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:32:00
+2025-12-02 11:33:01,331 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:33:00
+2025-12-02 11:34:01,352 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:34:00
+2025-12-02 11:35:00,288 [INFO] 🔔 5-Min Candle Closed @ 11:30
+2025-12-02 11:35:00,289 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26068.05 H:26069.7 L:26065.7 C:26066.8
+2025-12-02 11:35:01,356 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:35:00
+2025-12-02 11:36:02,365 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:36:01
+2025-12-02 11:37:03,303 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:37:02
+2025-12-02 11:38:03,716 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:38:02
+2025-12-02 11:39:04,673 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:39:03
+2025-12-02 11:40:00,286 [INFO] 🔔 5-Min Candle Closed @ 11:35
+2025-12-02 11:40:00,287 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26066.6 H:26074.45 L:26063.9 C:26072.05
+2025-12-02 11:40:05,674 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:40:04
+2025-12-02 11:41:06,473 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:41:05
+2025-12-02 11:42:07,035 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:42:06
+2025-12-02 11:43:07,637 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:43:06
+2025-12-02 11:44:08,187 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:44:07
+2025-12-02 11:45:00,287 [INFO] 🔔 5-Min Candle Closed @ 11:40
+2025-12-02 11:45:00,290 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26072.05 H:26072.1 L:26062.3 C:26063.1
+2025-12-02 11:45:08,691 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:45:07
+2025-12-02 11:46:09,473 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:46:08
+2025-12-02 11:47:10,473 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:47:09
+2025-12-02 11:48:10,519 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:48:09
+2025-12-02 11:49:11,439 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:49:10
+2025-12-02 11:50:00,136 [INFO] 🔔 5-Min Candle Closed @ 11:45
+2025-12-02 11:50:00,137 [INFO]    [DEBUG] 5-Min OHLC for MAIN ASSET: O:26063.55 H:26069.75 L:26059.0 C:26069.25
+2025-12-02 11:50:12,437 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:50:11
+2025-12-02 11:51:13,446 [INFO] 💓 SYSTEM HEALTH | Connected: True | Last Tick: 11:51:12
+2025-12-02 11:52:12,237 [INFO] 🔌 Disconnecting SDK Streamer...
+2025-12-02 11:52:12,250 [INFO] ✅ Summary saved to: c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\trade_logs\summary_20251202.txt
+2025-12-02 11:52:12,251 [INFO] ✅ All logs saved successfully!

@@ -457,11 +457,11 @@ def main():
             if asset_type == 'NIFTY':
                 msg = (f"{status_icon} [LIVE] {current_time.strftime('%H:%M:%S')} | "
                        f"NIFTY: {display_ltp:>8.2f} | CE: {ce_ltp:>6.2f} | PE: {pe_ltp:>6.2f} | "
-                       f"EMA: {ema_val:>8.1f} | VI: {vi_plus:>5.3f}/{vi_minus:<5.3f} | {sig_status}")
+                       f"EMA: {ema_val:>8.2f} | VI: {vi_plus:>5.3f}/{vi_minus:<5.3f} | {sig_status}")
             else:
                 msg = (f"{status_icon} [MCX] {current_time.strftime('%H:%M:%S')} | "
                        f"{asset_type}: {display_ltp:>8.2f} {ltp_suffix} | "
-                       f"EMA: {ema_val:>8.1f} | VI: {vi_plus:>5.3f}/{vi_minus:<5.3f} | {sig_status}")
+                       f"EMA: {ema_val:>8.2f} | VI: {vi_plus:>5.3f}/{vi_minus:<5.3f} | {sig_status}")
             
             sys.stdout.write(msg)
             sys.stdout.flush()
