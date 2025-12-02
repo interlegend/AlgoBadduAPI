@@ -1,0 +1,5 @@
+{
+  "name": "Trader-Baddu Command Center",
+  "description": "A high-tech, dark-themed trading dashboard for the Trader-Baddu bot. Features live WebSocket data visualization, price tracking, and bot controls.",
+  "requestFramePermissions": []
+}

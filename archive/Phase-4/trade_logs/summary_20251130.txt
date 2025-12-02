@@ -2,8 +2,8 @@
 ======================================================================
 TRADER-BADDU LIVE PAPER TRADER - DAILY SUMMARY
 ======================================================================
-Date: 2025-12-01
-Report Generated: 09:32:48
+Date: 2025-11-30
+Report Generated: 13:20:21
 
 ======================================================================
 TRADING STATISTICS
@@ -26,9 +26,9 @@ Total P&L:                ₹6,150.75
 ======================================================================
 FILES GENERATED
 ======================================================================
-Signals Log:  c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\signals_20251201.csv
-Trades Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\trades_20251201.csv
-Events Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\events_20251201.json
-Summary:      c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\summary_20251201.txt
+Signals Log:  c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\signals_20251130.csv
+Trades Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\trades_20251130.csv
+Events Log:   c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\events_20251130.json
+Summary:      c:\Users\sakth\Desktop\VSCODE\Algo Baddu Trading API\Phase-4\trade_logs\summary_20251130.txt
 
 ======================================================================
