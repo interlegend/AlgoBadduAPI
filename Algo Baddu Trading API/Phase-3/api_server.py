@@ -49,6 +49,15 @@ class TradingBot:
         self.asset_type = None
         self.ui_state = {"last_signal": "WAITING...", "atm_strike": "N/A"}
         self.websocket_clients = []
+        self.broadcast_queue = asyncio.Queue()
+
+    def trigger_broadcast(self):
+        """Thread-safe method to request a UI update."""
+        try:
+            # This is called from the bot's thread.
+            self.broadcast_queue.put_nowait('UPDATE')
+        except asyncio.QueueFull:
+            pass  # An update is already pending, so we can skip this one.
 
     async def add_websocket_client(self, websocket: WebSocket):
         await websocket.accept()
@@ -57,77 +66,74 @@ class TradingBot:
     def remove_websocket_client(self, websocket: WebSocket):
         self.websocket_clients.remove(websocket)
 
-    async def broadcast_status(self):
-        # This will be the main method to push data to the UI
-        if not self.websocket_clients:
-            return
+    async def broadcast_manager(self):
+        """A dedicated async task that runs forever on the main event loop."""
+        logger.info("Broadcast Manager started.")
+        while True:
+            try:
+                await self.broadcast_queue.get() # Wait for a signal to update
+                
+                if not self.websocket_clients:
+                    continue
 
-        status_data = self.get_status()
-        message = json.dumps(status_data, default=str) # Use default=str for datetime objects
+                status_data = self.get_status()
+                message = json.dumps(status_data, default=str)
 
-        # Use asyncio.gather to send messages to all clients concurrently
-        await asyncio.gather(
-            *[client.send_text(message) for client in self.websocket_clients]
-        )
+                # Create a list of tasks to send messages to all connected clients
+                tasks = [client.send_text(message) for client in self.websocket_clients]
+                await asyncio.gather(*tasks, return_exceptions=True)
+
+            except Exception as e:
+                logger.error(f"Error in broadcast manager: {e}")
+                await asyncio.sleep(1)
 
     def start(self, asset_type: str):
-        if self.status == "RUNNING":
-            logger.warning("Bot is already running.")
+        if self.status == "RUNNING" or self.status == "STARTING":
+            logger.warning("Bot is already running or starting.")
             return {"status": "ERROR", "message": "Bot is already running."}
 
         self.asset_type = asset_type
         self.status = "STARTING"
+        self.trigger_broadcast()
         
-        # Run the main bot logic in a separate thread to not block the API
         self.bot_thread = threading.Thread(target=self._run_bot_logic)
         self.bot_thread.start()
         
-        logger.info(f"Trading bot thread started for asset: {self.asset_type}")
+        logger.info(f"Trading bot thread initiated for asset: {self.asset_type}")
         return {"status": "SUCCESS", "message": f"Bot is starting for {asset_type}..."}
 
     def stop(self):
-        if self.status != "RUNNING":
+        if self.status != "RUNNING" and self.status != "STARTING":
             logger.warning("Bot is not running.")
             return {"status": "ERROR", "message": "Bot is not running."}
 
         self.status = "STOPPING"
-        logger.info("Stopping data streamer...")
+        self.trigger_broadcast() # Immediately notify UI we are stopping
+        
         if self.data_streamer:
             self.data_streamer.disconnect()
+        # The _run_bot_logic loop will see the status change and exit gracefully.
         
-        self.status = "STOPPED"
-        # Force broadcast status one last time so UI knows we stopped
-        asyncio.run(self.broadcast_status())
-        
-        logger.info("Bot has been stopped.")
-        return {"status": "SUCCESS", "message": "Bot stopped."}
-    
+        logger.info("Bot stop signal sent.")
+        return {"status": "SUCCESS", "message": "Bot is stopping."}
+
     def get_status(self):
-        # Collects all relevant data for the UI
         positions = self.position_tracker.get_all_open_positions() if self.position_tracker else []
-        
-        # Get Prices and Rename keys for UI if needed
         prices = self.data_streamer.get_current_prices() if self.data_streamer else {}
+        
         ui_prices = prices.copy()
         if self.asset_type and self.asset_type != 'NIFTY' and 'NIFTY' in ui_prices:
             ui_prices[self.asset_type] = ui_prices.pop('NIFTY')
             
-        # Get Indicators
         indicators = {}
         if self.indicator_calculator and self.data_streamer:
-            # Get latest closed candle indicators
             nifty_ind = self.indicator_calculator.get_nifty_indicators()
-            
-            # Calculate LIVE indicators on the forming candle for real-time feel
             live_candle = self.data_streamer.current_candles.get('NIFTY')
             if live_candle:
                 live_ind = self.indicator_calculator.calculate_live_indicators('NIFTY', live_candle)
-                # If live calculation is successful, it returns a dict. Update our base indicators.
                 if live_ind:
                     nifty_ind.update(live_ind)
 
-            # Extract relevant values for the UI
-            # Assuming strategy_v30 uses EMA 21 and VI 34
             indicators = {
                 'ema': nifty_ind.get('ema21', 0),
                 'vi_plus': nifty_ind.get('vi_plus_34', 0),
@@ -145,10 +151,8 @@ class TradingBot:
         }
 
     def _run_bot_logic(self):
-        """The main entry point for the bot thread."""
         try:
-            logger.info("Initializing bot components...")
-            # 1. Initialize Components
+            logger.info("Initializing bot components in new thread.")
             trade_logger = TradeLogger(os.path.join(PROJECT_ROOT, "trade_logs"))
             self.position_tracker = PositionTracker()
             
@@ -162,26 +166,22 @@ class TradingBot:
             signal_scanner = LiveSignalScanner(self.indicator_calculator, self.position_tracker)
             self.order_manager = PaperOrderManager(strategy, self.position_tracker, trade_logger, asset_type=self.asset_type)
 
-            # 2. Setup API Client
             configuration = upstox_client.Configuration()
             configuration.access_token = UPSTOX_ACCESS_TOKEN
             self.api_client = upstox_client.ApiClient(configuration)
 
-            # 3. Get Instrument Keys
             keys = self._get_instrument_keys()
-            if not keys.get('nifty'): # Nifty is the primary key for both asset types
+            if not keys.get('nifty'):
                  raise RuntimeError("Failed to get primary instrument key.")
 
-            # 4. Initialize Data Streamer with REAL-TIME callback
             self.data_streamer = LiveDataStreamer(
                 api_client=self.api_client,
                 instrument_keys=keys,
                 indicator_calculator=self.indicator_calculator,
                 on_candle_closed_callback=lambda candle_type: self._signal_handler_callback(signal_scanner, candle_type),
-                on_tick_callback=lambda: asyncio.run(self.broadcast_status()) # REAL-TIME
+                on_tick_callback=self.trigger_broadcast
             )
 
-            # 5. WARM-UP
             logger.info("Starting data warm-up...")
             self.data_streamer.initialize_warmup(days=10)
             self.indicator_calculator.calculate_nifty_indicators()
@@ -189,44 +189,35 @@ class TradingBot:
             if keys.get('pe'): self.indicator_calculator.calculate_option_indicators('PE')
             logger.info("Warm-up complete.")
 
-            # 6. START LIVE STREAM
             logger.info("Starting WebSocket data streamer...")
             self.data_streamer.start_websocket()
             self.status = "RUNNING"
+            self.trigger_broadcast()
             
-            # 7. MAIN LOOP (Keep-Alive & Position Management)
             while self.status == "RUNNING":
-                # Broadcasting is now event-driven. This loop is for other tasks.
                 if self.order_manager and self.data_streamer:
                     prices = self.data_streamer.get_current_prices()
                     ce_data = prices.get('CE')
                     pe_data = prices.get('PE')
                     
                     if self.asset_type == 'NIFTY' and ce_data and pe_data:
-                         self.order_manager.update_positions(
-                             ce_data.get('ltp', 0), pe_data.get('ltp', 0), 
-                             ce_data.get('high', 0), pe_data.get('high', 0),
-                             ce_data, pe_data,
-                             self.indicator_calculator.get_nifty_indicators(),
-                             datetime.now()
-                         )
+                         self.order_manager.update_positions(ce_data.get('ltp', 0), pe_data.get('ltp', 0), ce_data.get('high', 0), pe_data.get('high', 0), ce_data, pe_data, self.indicator_calculator.get_nifty_indicators(), datetime.now())
                     elif self.asset_type != 'NIFTY':
-                        main_data = prices.get('NIFTY') # Future is mapped to NIFTY
+                        main_data = prices.get('NIFTY')
                         if main_data:
                              main_ltp = main_data.get('ltp', 0)
-                             self.order_manager.update_positions(
-                                 main_ltp, main_ltp,
-                                 main_data.get('high', 0), main_data.get('high', 0),
-                                 main_data, main_data,
-                                 self.indicator_calculator.get_nifty_indicators(),
-                                 datetime.now()
-                             )
+                             self.order_manager.update_positions(main_ltp, main_ltp, main_data.get('high', 0), main_data.get('high', 0), main_data, main_data, self.indicator_calculator.get_nifty_indicators(), datetime.now())
                 
-                time.sleep(1) # Keep thread alive, main broadcast is on_tick
+                time.sleep(0.2) # Loop for SL/TP management, sleeps for 200ms
 
         except Exception as e:
             logger.error(f"Critical error in bot thread: {e}", exc_info=True)
             self.status = "ERROR"
+        finally:
+            # Final status update
+            self.status = "STOPPED"
+            self.trigger_broadcast()
+            logger.info("Bot thread has finished execution.")
 
     def _get_instrument_keys(self):
         keys = {}
@@ -245,23 +236,13 @@ class TradingBot:
             fut_key, lot, expiry = comm_selector.get_current_future(self.asset_type)
             if fut_key and lot:
                 keys = {'nifty': fut_key, 'ce': None, 'pe': None}
-                # The strategy lot size is already set in _run_bot_logic
         return keys
         
     def _signal_handler_callback(self, signal_scanner, candle_type):
-        """Callback function passed to the data streamer."""
         if candle_type != 'NIFTY': return
-
         signal = signal_scanner.on_candle_closed(candle_type)
         self.ui_state["last_signal"] = signal if signal else "WAITING..."
-        logger.info(f"Signal Scan Result: {self.ui_state['last_signal']}")
-        
-        if signal and self.order_manager:
-            nifty_data = self.indicator_calculator.get_nifty_indicators()
-            signal_time = nifty_data.get('timestamp', datetime.now())
-            logger.info(f"Routing signal {signal} to Order Manager.")
-            self.order_manager.on_signal_detected(signal, signal_time)
-
+        self.trigger_broadcast()
 
 # ======================================================================================
 # FASTAPI APP AND ENDPOINTS
@@ -269,39 +250,35 @@ class TradingBot:
 app = FastAPI(
     title="Trader-Baddu API",
     description="The backend powerhouse for the Trader-Baddu live trading dashboard.",
-    version="0.1.0",
+    version="1.0.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
-)
+app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-# --- Global Bot Instance ---
 trading_bot = TradingBot()
 
+@app.on_event("startup")
+async def startup_event():
+    asyncio.create_task(trading_bot.broadcast_manager())
+
 @app.post("/start")
-async def start_bot(asset_type: str = "NIFTY"):
-    """Starts the trading bot for the specified asset (NIFTY, CRUDEOIL, NATURALGAS)."""
+async def start_bot_endpoint(asset_type: str = "NIFTY"):
     return trading_bot.start(asset_type)
 
 @app.post("/stop")
-async def stop_bot():
-    """Stops the trading bot."""
+async def stop_bot_endpoint():
     return trading_bot.stop()
 
 @app.get("/status")
-async def get_bot_status():
-    """Gets the current status of the bot, positions, and prices."""
+async def get_bot_status_endpoint():
     return trading_bot.get_status()
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    """WebSocket endpoint for real-time updates."""
     await trading_bot.add_websocket_client(websocket)
     try:
+        trading_bot.trigger_broadcast()
         while True:
-            # Keep the connection alive
             await websocket.receive_text()
     except WebSocketDisconnect:
         logger.info("WebSocket client disconnected.")
@@ -312,5 +289,4 @@ async def root():
     return {"status": "ONLINE", "message": "Welcome to the Trader-Baddu API Command Center!"}
 
 if __name__ == "__main__":
-    # To run this server: uvicorn api_server:app --reload --port 8000
     uvicorn.run(app, host="0.0.0.0", port=8000)
