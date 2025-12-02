@@ -48,6 +48,7 @@ export const Dashboard: React.FC = () => {
     try {
       setErrorMsg(null);
       await stopBot();
+      window.location.reload(); // Force a refresh for a clean state
     } catch (e: any) {
       setErrorMsg("Emergency stop failed! Pull the plug!");
     }
@@ -184,8 +185,8 @@ export const Dashboard: React.FC = () => {
             </p>
           </div>
           
-           {/* Indicators Card - NEW */}
-           <div className="bg-slate-900/60 backdrop-blur-md rounded-xl p-6 border border-slate-800/60 shadow-lg flex flex-col justify-center items-center text-center relative overflow-hidden">
+           {/* Indicators Card - NEW & WIDENED */}
+           <div className="md:col-span-2 bg-slate-900/60 backdrop-blur-md rounded-xl p-6 border border-slate-800/60 shadow-lg flex flex-col justify-center items-center text-center relative overflow-hidden">
             <div className="absolute top-0 right-0 p-2 opacity-5">
               <Activity size={48} />
             </div>

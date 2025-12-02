@@ -18,7 +18,7 @@ from upstox_client.feeder import MarketDataStreamerV3
 logger = logging.getLogger(__name__)
 
 class LiveDataStreamer:
-    def __init__(self, api_client, instrument_keys, indicator_calculator, on_candle_closed_callback):
+    def __init__(self, api_client, instrument_keys, indicator_calculator, on_candle_closed_callback, on_tick_callback=None):
         """
         Initialize Live Data Streamer with SDK V3.
         
@@ -27,11 +27,13 @@ class LiveDataStreamer:
             instrument_keys: Dict with 'nifty', 'ce', 'pe' keys.
             indicator_calculator: IndicatorCalculator instance.
             on_candle_closed_callback: Callback function.
+            on_tick_callback: Callback for every processed tick for real-time UI.
         """
         self.api_client = api_client
         self.instrument_keys = instrument_keys
         self.indicator_calculator = indicator_calculator
         self.on_candle_closed_callback = on_candle_closed_callback
+        self.on_tick_callback = on_tick_callback
         
         # Initialize SDK Streamer
         self.streamer = MarketDataStreamerV3(api_client)
@@ -295,6 +297,10 @@ class LiveDataStreamer:
         
         # Update Candle Aggregator
         self._update_candle_with_tick(instrument_name, ltp, vtt)
+
+        # Fire the on-tick callback if it exists to notify the UI
+        if self.on_tick_callback:
+            self.on_tick_callback()
 
     def _update_candle_with_tick(self, instrument_name, ltp, vtt):
         """Aggregates ticks into 5-minute candles."""
