@@ -88,7 +88,6 @@ export const Dashboard: React.FC = () => {
           <div>
             <h1 className="text-4xl font-extrabold tracking-tighter text-white drop-shadow-lg flex items-center gap-3">
               <span className="text-anime-blue">TRADER-BADDU</span> 
-              <span className="text-slate-600 text-2xl">CMD_CENTER</span>
             </h1>
             <p className="text-slate-500 font-mono text-sm mt-1 flex items-center gap-2">
               SYSTEM_MODE: <span className="text-dbz-orange font-bold">BRO_MODE_ON 👊</span>
