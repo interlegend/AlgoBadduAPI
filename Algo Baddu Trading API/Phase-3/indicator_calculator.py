@@ -82,18 +82,59 @@ class IndicatorCalculator:
         tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
         return tr.rolling(period).mean()
 
-    def Vortex(self, high, low, close, period=21):
-        """Calculate Vortex Indicator using pandas_ta to match Phase 2"""
-        vortex_df = ta.vortex(high=high, low=low, close=close, length=period)
-        
-        if vortex_df is None or vortex_df.empty:
-            return pd.Series([np.nan]*len(close)), pd.Series([np.nan]*len(close))
+    def _calculate_true_range(self, high, low, close):
+        """Helper to calculate True Range Series"""
+        tr1 = high - low
+        tr2 = np.abs(high - close.shift())
+        tr3 = np.abs(low - close.shift())
+        tr = pd.concat([tr1, tr2, tr3], axis=1).max(axis=1)
+        return tr
 
-        # Find column names dynamically (VTXP_21, VTXM_21 or VIP_21, VIM_21)
-        plus_col = [c for c in vortex_df.columns if c.startswith('VTXP') or c.startswith('VIP')][0]
-        minus_col = [c for c in vortex_df.columns if c.startswith('VTXM') or c.startswith('VIM')][0]
+    def Vortex(self, high, low, close, period=21):
+        """
+        Calculate Vortex Indicator MANUALLY to match TradingView/Groww EXACTLY.
+        Formula:
+        VI+ = Sum(Abs(High - Low[1]), n) / Sum(TR, n)
+        VI- = Sum(Abs(Low - High[1]), n) / Sum(TR, n)
+        """
+        tr = self._calculate_true_range(high, low, close)
         
-        return vortex_df[plus_col], vortex_df[minus_col]
+        # Vortex Movements
+        vm_plus = np.abs(high - low.shift(1))
+        vm_minus = np.abs(low - high.shift(1))
+        
+        # Sum over period
+        sum_tr = tr.rolling(period).sum()
+        sum_vm_plus = vm_plus.rolling(period).sum()
+        sum_vm_minus = vm_minus.rolling(period).sum()
+        
+        # Calculate VI
+        vi_plus = sum_vm_plus / sum_tr
+        vi_minus = sum_vm_minus / sum_tr
+        
+        return vi_plus, vi_minus
+
+    def Choppiness(self, high, low, close, period=14):
+        """
+        Calculate Choppiness Index MANUALLY to match TradingView/Groww EXACTLY.
+        Formula: 100 * LOG10( SUM(TR, n) / ( MaxHi(n) - MinLo(n) ) ) / LOG10(n)
+        """
+        tr = self._calculate_true_range(high, low, close)
+        sum_tr = tr.rolling(period).sum()
+        
+        max_hi = high.rolling(period).max()
+        min_lo = low.rolling(period).min()
+        
+        # Avoid division by zero
+        range_diff = max_hi - min_lo
+        range_diff = range_diff.replace(0, np.nan) 
+        
+        # Calculate Chop
+        # 100 * Log10(SumTR / Range) / Log10(n)
+        x = sum_tr / range_diff
+        chop = 100 * np.log10(x) / np.log10(period)
+        
+        return chop
 
     def calculate_nifty_indicators(self):
         """
@@ -132,14 +173,14 @@ class IndicatorCalculator:
         df[f'ema{ema_period}'] = self.EMA(df['close'], ema_period)
         df['macd'], df['macd_signal'], df['macd_hist'] = self.MACD(df['close'])
         
-        # Vortex using pandas_ta (matches Phase 2)
+        # Vortex (Manual)
         vi_plus, vi_minus = self.Vortex(df['high'], df['low'], df['close'], vi_period)
         df[f'vi_plus_{vi_period}'] = vi_plus
         df[f'vi_minus_{vi_period}'] = vi_minus
 
-        # Calculate Choppiness Index
+        # Choppiness Index (Manual)
         chop_period = self.params.get('chop_period', 14)
-        df.ta.chop(length=chop_period, append=True)
+        df[f'CHOP_{chop_period}'] = self.Choppiness(df['high'], df['low'], df['close'], chop_period)
         
         self.nifty_df = df
         
@@ -280,12 +321,12 @@ class IndicatorCalculator:
         # We only strictly need the last value, but pandas ewm is vectorized.
         ema_series = self.EMA(df['close'], ema_period)
         
-        # 2. Calculate Vortex
+        # 2. Calculate Vortex (Manual)
         vi_plus_series, vi_minus_series = self.Vortex(df['high'], df['low'], df['close'], vi_period)
         
-        # 3. Calculate Choppiness
+        # 3. Calculate Choppiness (Manual)
         chop_period = self.params.get('chop_period', 14)
-        chop_series = df.ta.chop(length=chop_period)
+        chop_series = self.Choppiness(df['high'], df['low'], df['close'], chop_period)
 
         # Get latest values
         latest_idx = -1

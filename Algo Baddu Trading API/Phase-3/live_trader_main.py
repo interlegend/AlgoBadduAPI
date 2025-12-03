@@ -154,7 +154,7 @@ def display_dashboard(data_streamer, indicator_calculator, paper_order_manager, 
     else:
         # Hardcoded params matching StrategyV30
         ema_period = 21 
-        vi_period = 34 # V30 uses 34
+        vi_period = 34 # V30 uses 34 (Golden Number)
         ema_key = f'ema{ema_period}'
         vi_plus_key = f'vi_plus_{vi_period}'
         vi_minus_key = f'vi_minus_{vi_period}'
