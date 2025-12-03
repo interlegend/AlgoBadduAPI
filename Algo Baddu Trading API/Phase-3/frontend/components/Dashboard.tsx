@@ -209,7 +209,7 @@ export const Dashboard: React.FC = () => {
                 (botData?.indicators?.chop || 0) > 57 ? 'text-orange-400' : // Choppy Market
                 (botData?.indicators?.chop || 0) < 38.2 ? 'text-emerald-400' : '' // Trending Market
               }`}>
-                {botData?.indicators?.chop ? botData.indicators.chop.toFixed(1) : '---'}
+                {botData?.indicators?.chop ? botData.indicators.chop.toFixed(2) : '---'}
               </div>
             </div>
           </div>
