@@ -103,3 +103,5 @@ Signed,
 2. Streamer Functions (The Holy Grail): https://upstox.com/developer/api-documentation/streamer-function
 3. Portfolio Stream Feed: https://upstox.com/developer/api-documentation/get-portfolio-stream-feed
 4. Auth V3: https://upstox.com/developer/api-documentation/get-market-data-feed-authorize-v3
+5. Intraday Candle Data V3: https://upstox.com/developer/api-documentation/v3/get-intra-day-candle-data
+6. Historical Candle Data V3: https://upstox.com/developer/api-documentation/v3/get-historical-candle-data

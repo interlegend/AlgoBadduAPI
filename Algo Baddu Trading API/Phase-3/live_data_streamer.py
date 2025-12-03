@@ -67,7 +67,6 @@ class LiveDataStreamer:
         
         # 1. Historical Range (Up to Yesterday)
         # We use 'today' as to_date because Upstox Historical is exclusive/end-of-day logic mostly.
-        # Actually, to be safe, we rely on the deduplication logic.
         to_date = datetime.now().date()
         from_date = to_date - timedelta(days=days)
         

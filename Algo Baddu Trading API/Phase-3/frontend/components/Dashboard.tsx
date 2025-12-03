@@ -194,17 +194,17 @@ export const Dashboard: React.FC = () => {
             <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-sm w-full">
               <div className="text-right text-slate-500 font-mono">EMA (21):</div>
               <div className="text-left text-anime-blue font-bold font-mono">
-                {botData?.indicators?.ema ? botData.indicators.ema.toFixed(1) : '---'}
+                {botData?.indicators?.ema ? botData.indicators.ema.toFixed(2) : '---'}
               </div>
               
-              <div className="text-right text-slate-500 font-mono">VI + / - :</div>
+              <div className="text-right text-slate-500 font-mono">Vortex (34):</div>
               <div className="text-left font-bold font-mono flex gap-1">
                  <span className="text-success-green">{botData?.indicators?.vi_plus ? botData.indicators.vi_plus.toFixed(3) : '-'}</span>
                  <span className="text-slate-600">/</span>
                  <span className="text-danger-red">{botData?.indicators?.vi_minus ? botData.indicators.vi_minus.toFixed(3) : '-'}</span>
               </div>
 
-              <div className="text-right text-slate-500 font-mono">Choppiness:</div>
+              <div className="text-right text-slate-500 font-mono">Choppiness (14):</div>
               <div className={`text-left font-bold font-mono ${
                 (botData?.indicators?.chop || 0) > 57 ? 'text-orange-400' : // Choppy Market
                 (botData?.indicators?.chop || 0) < 38.2 ? 'text-emerald-400' : '' // Trending Market
