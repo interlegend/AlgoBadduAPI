@@ -1,3 +1,5 @@
+import React from 'react';
+
 // YO BRO! This is where we define the shape of our power levels (data).
 
 export interface Position {
